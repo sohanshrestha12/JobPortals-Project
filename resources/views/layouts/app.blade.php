@@ -20,11 +20,11 @@
         <nav id="navbar">
             <h1 class="header1">Job Portals</h1>
             <ul>
-                <li><a href="{{route('home')}}" class="active">Home</a></li>
-                <li><a href="{{route('about')}}">About</a></li>
-                <li><a href="{{route('jobs')}}">Jobs</a></li>
-                <li><a href="{{route('services')}}">Services</a></li>
-                <li><a href="{{route('contact')}}">Contact</a></li>
+                <li><a href="{{route('home')}}" @if(Request::is('/')) class="active" @endif>Home</a></li>
+                <li><a href="{{route('about')}}" @if(Request::is('about')) class="active" @endif>About</a></li>
+                <li><a href="{{route('jobs')}}" @if(Request::is('jobs')) class="active" @endif>Jobs</a></li>
+                <li><a href="{{route('services')}}" @if(Request::is('services')) class="active" @endif>Services</a></li>
+                <li><a href="{{route('contact')}}" @if(Request::is('contact')) class="active" @endif>Contact</a></li>
             </ul>
             <div class="butn">
                 <a href="#" class="btn">Login</a>
