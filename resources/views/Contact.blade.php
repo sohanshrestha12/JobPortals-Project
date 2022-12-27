@@ -75,18 +75,19 @@
                            <ul>
                               <li>
                                  <div class="icon">
-                                    <img src="../img/placeholder.png" alt="" style="width: 20px">
+                                    <img src="../img/placeholder.png" alt="" style="width: 40px">
                                  </div>
                                  <div class="info">
                                     <p>
                                        Our Location
-                                       <span>Alexima, NT 354789</span>
+                                       <span>Kathmandu, Nepal
+									   </span>
                                     </p>
                                  </div>
                               </li>
                               <li>
                                  <div class="icon">
-                                    <img src="../img/gmail.png" alt="" style="width: 20px">
+                                    <img src="../img/gmail.png" alt="" style="width: 40px">
                                  </div>
                                  <div class="info">
                                     <p>
@@ -97,7 +98,7 @@
                               </li>
                               <li>
                                  <div class="icon">
-                                    <img src="../img/phone-call.png" alt="" style="width: 20px">
+                                    <img src="../img/phone-call.png" alt="" style="width: 40px">
                                  </div>
                                  <div class="info">
                                     <p>

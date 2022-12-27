@@ -277,6 +277,7 @@ font-family: 'Poppins', sans-serif;
 }
 .contact-area .content h2 {
     font-weight: 600;
+     color: #3c2064;
         font-family: 'Poppins', sans-serif;
     margin-top: 0;
     font-size: 3rem;
@@ -285,12 +286,15 @@ font-family: 'Poppins', sans-serif;
 }
 .contact-area .content p {
     margin-top: 0;
+     color: #3c2064;
     margin-bottom: 1rem;
     font-size: 20px;
 }
 .form-group{
     margin-bottom: 1rem;
-
+}
+.form-group .form-control{
+    font-size: 25px;
 }
 .contact-area form .row:first-child {
     margin: 0 -8px;
@@ -299,17 +303,17 @@ font-family: 'Poppins', sans-serif;
 }
 
 .contact-area .info {
-    padding-left: 35px;
+    padding-left: 75px;
 
 }
 .mt-5, .my-5 {
     margin-top: 3rem!important;
 }
 
-.contact-area .contact-tabs > ul {
+.contact-area .contact-tabs  ul {
     margin-bottom: 30px;
     border-bottom: 1px solid #e7e7e7;
-    margin-top: -15px;
+    margin-top: 0;
 }
 .contact-area form button {
     background: #ff6158;
@@ -317,11 +321,12 @@ font-family: 'Poppins', sans-serif;
     display: inline-block;
     color: #ffffff;
     font-weight: 600;
+    font-size: 20px;
     padding: 15px 40px;
     border-radius: 5px;
 }
 .nav {
-    font-weight: 700;
+    font-weight: 500;
     display: flex;
     flex-wrap: wrap;
     padding-left: 0;
@@ -354,6 +359,8 @@ font-family: 'Poppins', sans-serif;
 .contact-tabs .tab-content ul li .info p {
     font-weight: 600;
     color: #0e2b3d;
+    font-size: 20px;
+     color: #3c2064;
     text-transform: uppercase;
     margin-bottom: 0;
         margin-top: 0;
@@ -362,5 +369,7 @@ font-family: 'Poppins', sans-serif;
     display: block;
     font-weight: normal;
     text-transform: none;
+    font-size: 20px;
+     color: #3c2064;
     color: #666666;
 }
