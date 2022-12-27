@@ -19,7 +19,7 @@
     <header>
         <div class="container">
             <nav id="navbar">
-                <h1 class="header1">Job Portals</h1>
+                <h1 class="header1"><span class="header1" style="color: var(--main-color)">J</span>ob Portals</h1>
                 <ul>
                     <li><a href="{{ route('home') }}" @if (Request::is('/')) class="active" @endif>Home</a>
                     </li>
@@ -34,44 +34,71 @@
                     </li>
                 </ul>
                 <div class="butn">
-                    <a href="#" class="btn">Login</a>
+                    <a href="javascript:void(0)" id="login" class="btn">Login</a>
                     <a href="#" class="btn">SignUp</a>
                 </div>
             </nav>
         </div>
     </header>
 
+  
 
-    @yield('content')
+    <div id="blurz">
 
-    <footer>
-        <div class="container">
-            <div class="box-1">
-                <h1>JobPortals</h1>
+        @yield('content')
+
+        <footer>
+            <div class="container">
+                <div class="box-1">
+                    <h1>JobPortals</h1>
+                </div>
+                <hr>
+                <div class="box-2">
+                    <div class="box-2-1">
+                        <h2 class="header2">Need Help?</h2>
+                        <i class="uil uil-phone"></i>
+                        <span class="paragraph">Call Us: 98********</span>
+                    </div>
+                    <div class="box-2-2">
+                        <h2 class="header2">Email:</h2>
+                        <i class="uil uil-message"></i>
+                        <span class="paragraph">info@test.com / support@test.com</span>
+                    </div>
+                    <div class="box-2-3">
+                        <h2 class="header2">Follow Us</h2>
+                        <a href="#"><i class="uil uil-facebook"></i></a>
+                        <a href="#"><i class="uil uil-twitter"></i></a>
+                        <a href="#"><i class="uil uil-linkedin"></i></a>
+                        <a href="#"><i class="uil uil-instagram-alt"></i></a>
+                        <a href="#"><i class="uil uil-github"></i></a>
+                    </div>
+                </div>
             </div>
-            <hr>
-            <div class="box-2">
-                <div class="box-2-1">
-                    <h2 class="header2">Need Help?</h2>
-                    <i class="uil uil-phone"></i>
-                    <span class="paragraph">Call Us: 98********</span>
+        </footer>
+    </div>
+      {{-- login modal --}}
+      <div class="row login-modal-background justify-content-center align-items-center" id="login-modal-background">
+        <div class="col-md-4">
+            <form class="form-layout">
+                <div class="close-modal" title="Close">&times;</div>
+                <div class="mb-3">
+                    <h1 class="header1 text-center">Login</h1>
                 </div>
-                <div class="box-2-2">
-                    <h2 class="header2">Email:</h2>
-                    <i class="uil uil-message"></i>
-                    <span class="paragraph">info@test.com / support@test.com</span>
+                <div class="form-grp">
+                    <div class="mb-3 form-input">
+                        <i class="uil uil-envelope"></i>
+                        <input type="email" aria-describedby="emailHelp" placeholder="Enter your email">
+                    </div>
+                    <div class="mb-3 form-input">
+                        <i class="uil uil-lock"></i>
+                        <input type="password" placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="Cbtn">Login</button>
                 </div>
-                <div class="box-2-3">
-                    <h2 class="header2">Follow Us</h2>
-                    <a href="#"><i class="uil uil-facebook"></i></a>
-                    <a href="#"><i class="uil uil-twitter"></i></a>
-                    <a href="#"><i class="uil uil-linkedin"></i></a>
-                    <a href="#"><i class="uil uil-instagram-alt"></i></a>
-                    <a href="#"><i class="uil uil-github"></i></a>
-                </div>
-            </div>
+            </form>
         </div>
-    </footer>
+    </div>
+    <script src="{{ asset('js/index.js') }}"></script>
 </body>
 
 </html>
