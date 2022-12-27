@@ -16,22 +16,30 @@
 </head>
 
 <body>
-    <div class="container">
-        <nav id="navbar">
-            <h1 class="header1">Job Portals</h1>
-            <ul>
-                <li><a href="{{route('home')}}" @if(Request::is('/')) class="active" @endif>Home</a></li>
-                <li><a href="{{route('about')}}" @if(Request::is('about')) class="active" @endif>About</a></li>
-                <li><a href="{{route('jobs')}}" @if(Request::is('jobs')) class="active" @endif>Jobs</a></li>
-                <li><a href="{{route('services')}}" @if(Request::is('services')) class="active" @endif>Services</a></li>
-                <li><a href="{{route('contact')}}" @if(Request::is('contact')) class="active" @endif>Contact</a></li>
-            </ul>
-            <div class="butn">
-                <a href="#" class="btn">Login</a>
-                <a href="#" class="btn">SignUp</a>
-            </div>
-        </nav>
-    </div>
+    <header>
+        <div class="container">
+            <nav id="navbar">
+                <h1 class="header1">Job Portals</h1>
+                <ul>
+                    <li><a href="{{ route('home') }}" @if (Request::is('/')) class="active" @endif>Home</a>
+                    </li>
+                    <li><a href="{{ route('about') }}" @if (Request::is('about')) class="active" @endif>About</a>
+                    </li>
+                    <li><a href="{{ route('jobs') }}" @if (Request::is('jobs')) class="active" @endif>Jobs</a>
+                    </li>
+                    <li><a href="{{ route('services') }}"
+                            @if (Request::is('services')) class="active" @endif>Services</a></li>
+                    <li><a href="{{ route('contact') }}"
+                            @if (Request::is('contact')) class="active" @endif>Contact</a>
+                    </li>
+                </ul>
+                <div class="butn">
+                    <a href="#" class="btn">Login</a>
+                    <a href="#" class="btn">SignUp</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
 
     @yield('content')

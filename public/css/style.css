@@ -21,6 +21,11 @@
     font-size: 1.6rem;
 }
 /* custom navbar */
+header{
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
 #navbar{
     display: flex;
     padding: 3rem 0;
