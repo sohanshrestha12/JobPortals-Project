@@ -12,6 +12,7 @@ window.onload=()=>{
         element.addEventListener('click',()=>{
             allmodal.classList.remove('show-modal');
             blur.classList.remove('blurz');
-        })
+            allmodal.style.opacity="1";
+        });
     });
 }

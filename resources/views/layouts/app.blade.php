@@ -41,7 +41,7 @@
         </div>
     </header>
 
-  
+
 
     <div id="blurz">
 
@@ -76,28 +76,63 @@
             </div>
         </footer>
     </div>
-      {{-- login modal --}}
-      <div class="row login-modal-background justify-content-center align-items-center" id="login-modal-background">
+    {{-- login modal --}}
+
+    <div class="row login-modal-background justify-content-center align-items-center" id="login-modal-background">
         <div class="col-md-4">
-            <form class="form-layout">
-                <div class="close-modal" title="Close">&times;</div>
+            <form class="form-layout" action="{{ route('login') }}" method="POST">
+                @csrf
+                <div class="close-div">
+                    <span class="close-modal" title="Close">&times;</span>
+                </div>
+                @if(session()->has('fail') || session()->has('ErrorLogin') || session()->has('role'))
+                    {{session()->get('fail')}}
+                    {{session()->get('ErrorLogin')}}
+                    {{session()->get('role')}}
+                @endif
                 <div class="mb-3">
                     <h1 class="header1 text-center">Login</h1>
                 </div>
                 <div class="form-grp">
-                    <div class="mb-3 form-input">
+                    <div class="form-input">
                         <i class="uil uil-envelope"></i>
-                        <input type="email" aria-describedby="emailHelp" placeholder="Enter your email">
+                        <input type="email" name="logemail" aria-describedby="emailHelp"
+                            placeholder="Enter your email">
                     </div>
-                    <div class="mb-3 form-input">
+                    @error('logemail')
+                        <div class="show-error">
+                            <i class="uil uil-exclamation-octagon"></i>
+                            <span>{{ $message }}</span>
+                        </div>
+                    @enderror
+                    <div class="form-input">
                         <i class="uil uil-lock"></i>
-                        <input type="password" placeholder="Enter your password">
+                        <input type="password" name="logpassword" placeholder="Enter your password">
                     </div>
+                    @error('logpassword')
+                        <div class="show-error">
+                            <i class="uil uil-exclamation-octagon"></i>
+                            <span>{{ $message }}</span>
+                        </div>
+                    @enderror
                     <button type="submit" class="Cbtn">Login</button>
                 </div>
             </form>
         </div>
     </div>
+    @if ($errors->has('logemail') || $errors->has('logpassword') || session()->has('fail') || session()->has('ErrorLogin') || session()->has('role'))
+        <script>
+            let blur = document.querySelector('#blurz');
+            let allmodal = document.querySelector('#login-modal-background');
+
+
+            allmodal.classList.add("show-modal");
+            blur.classList.add('blurz');
+        </script>
+    @endif
+
+
+
     <script src="{{ asset('js/index.js') }}"></script>
 </body>
 

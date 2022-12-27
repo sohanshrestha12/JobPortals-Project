@@ -82,11 +82,14 @@ header {
 }
 
 /* login */
-.close-modal{
+.close-div{
     display: flex;
+    padding: 0 3.6rem 0 0;
     justify-content: end;
+}
+.close-modal{
+    width: fit-content;
     font-size: 3rem;
-    padding: 0 3.6rem;
     margin-top: -1rem;
 }
 .close-modal:hover{
@@ -99,6 +102,7 @@ header {
     position: fixed;
     margin: 0 !important;
     top: 0;
+    opacity: 0;
     transform: translate(0, -30%) scale(0.1);
     visibility: hidden;
     transition: visibility 0.3s ease, transform 0.3s ease;
@@ -109,7 +113,7 @@ header {
 .show-modal {
     visibility: visible;
     transform: scale(1);
-
+    opacity: 1;
 }
 
 .form-layout {
@@ -166,7 +170,14 @@ header {
     filter: blur(1px);
 }
 
-
+/* error  */
+.show-error{
+    color: red;
+    padding-left:2rem;
+}
+.show-error i,.show-error span{
+    font-size: 1.2rem;
+}
 
 /* footer */
 footer {
