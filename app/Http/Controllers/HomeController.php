@@ -25,5 +25,12 @@ class HomeController extends Controller
     public function contact()
     {
         return view('Contact');
+    }  
+      public function panel()
+    {
+        return view('adminpanel');
+    }
+    public function job_view(){
+        return view('Job');
     }
 }

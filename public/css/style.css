@@ -341,4 +341,297 @@ hr {
 .box-2-3 i {
     margin-right: 1rem;
     font-size: 3rem;
+
+}
+
+/* about */
+ .about{
+    background-image: url(../img/about-banner.jpg);
+    padding: 150px;
+    margin: 0 0 50px 0;
+}
+.about-text{
+    left: 0;
+    right: 0;
+    margin: 0 0 0 30px;
+    display: flex;
+    height: 100%;
+    max-width: 900px;
+    padding: 30px;
+    top: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+}
+.about .about-text:before {
+    background-image: url("../img/man.png");
+    background-repeat: no-repeat;
+    background-position: center left 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    background-size: auto 280px;
+    width: 600px;
+    right: 0;
+    top: -80px;
+}
+.about-text h2{
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 35px;
+    color: #3c2064;
+    
+} 
+.about-text ul{
+    list-style: outside none none;
+    display: flex;
+    padding: 0px;
+} 
+.about-text ul li {
+   font-size: 18px;
+    color: #3c2064;
+} 
+.about-text ul li a{
+    text-decoration: none;
+   font-size: 18px;
+    color: #333;
+} 
+.about-text ul li:last-child::before {
+    content: "|";
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #a5a5a5;
+    font-weight: 500;
+}
+
+/* description */
+ .description{
+    background-image: url(../img/footer-bg.jpg);
+    padding: 75px;
+    margin: 0 0 50px 0;
+}
+.description-process h1{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #d9d9d9;
+}
+.description-process p{
+font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.57143;
+    font-weight: 400;
+    color: #d9d9d9;
+}
+
+/* planning */
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+ .planning{
+    background-color: #e9eaeb;
+    padding: 75px;
+    margin: 0 0 50px 0;
+}
+
+.planning-process h1{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #3c2064;
+}
+.planning-process p{
+font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.57143;
+    font-weight: 400;
+    color: #5d5d5d;
+}
+
+/* contact */
+ .contact{
+    background-image: url(../img/about-banner.jpg);
+    padding: 150px;
+    margin: 0 0 50px 0;
+}
+.contact .contact-text:before {
+    background-image: url("../img/man.png");
+    background-repeat: no-repeat;
+    background-position: center left 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    background-size: auto 280px;
+    width: 600px;
+    right: 0;
+    top: -80px;
+}
+.contact-text{
+    left: 0;
+    right: 0;
+    margin: 0 0 0 30px;
+    display: flex;
+    height: 100%;
+    max-width: 900px;
+    padding: 30px;
+    top: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+}
+.contact-text h2{
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 35px;
+    color: #3c2064;
+    
+} 
+.contact-text ul{
+    list-style: outside none none;
+    display: flex;
+    padding: 0px;
+} 
+.contact-text ul li {
+   font-size: 18px;
+    color: #3c2064;
+} 
+.contact-text ul li a{
+    text-decoration: none;
+   font-size: 18px;
+    color: #333;
+} 
+.contact-text ul li:last-child::before {
+    content: "|";
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #a5a5a5;
+    font-weight: 500;
+}
+
+/* form */
+
+.inner-content-wrapper {
+    padding: 50px 0;
+}
+.container{
+        width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row{
+        display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.col-lg-6{
+        position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.contact-area .content .heading {
+    margin-bottom: 30px;
+}
+.contact-area .content h2 {
+    font-weight: 600;
+     color: #3c2064;
+        font-family: 'Poppins', sans-serif;
+    margin-top: 0;
+    font-size: 3rem;
+        margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+.contact-area .content p {
+    margin-top: 0;
+     color: #3c2064;
+    margin-bottom: 1rem;
+    font-size: 20px;
+}
+.form-group{
+    margin-bottom: 1rem;
+}
+.form-group .form-control{
+    font-size: 25px;
+}
+.contact-area form .row:first-child {
+    margin: 0 -8px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contact-area .info {
+    padding-left: 75px;
+
+}
+.mt-5, .my-5 {
+    margin-top: 3rem!important;
+}
+
+.contact-area .contact-tabs  ul {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e7e7e7;
+    margin-top: 0;
+}
+.contact-area form button {
+    background: #ff6158;
+    border: none;
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 15px 40px;
+    border-radius: 5px;
+}
+.nav {
+    font-weight: 500;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.contact-area .contact-tabs ul li {
+    display: inline-block;
+    margin: 0;
+}
+.contact-area .contact-tabs ul li a.active {
+    background: transparent;
+    font-size: 3rem;
+    color: #ff6158;
+}
+.tab-content .active {
+    display: block;
+}
+.tab-content ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+.contact-tabs .tab-content ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+        list-style: outside none none;
+}
+.contact-tabs .tab-content ul li .info p {
+    font-weight: 600;
+    color: #0e2b3d;
+    font-size: 20px;
+     color: #3c2064;
+    text-transform: uppercase;
+    margin-bottom: 0;
+        margin-top: 0;
+}
+.contact-tabs .tab-content ul li .info span {
+    display: block;
+    font-weight: normal;
+    text-transform: none;
+    font-size: 20px;
+     color: #3c2064;
+    color: #666666;
+
 }
