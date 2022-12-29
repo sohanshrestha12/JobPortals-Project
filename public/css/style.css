@@ -126,6 +126,18 @@ hr{
     flex-direction: column;
     justify-content: center;
 }
+.about .about-text:before {
+    background-image: url("../img/man.png");
+    background-repeat: no-repeat;
+    background-position: center left 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    background-size: auto 280px;
+    width: 600px;
+    right: 0;
+    top: -80px;
+}
 .about-text h2{
     font-size: 3rem;
     font-weight: 700;
@@ -205,6 +217,18 @@ font-family: 'Poppins', sans-serif;
     background-image: url(../img/about-banner.jpg);
     padding: 150px;
     margin: 0 0 50px 0;
+}
+.contact .contact-text:before {
+    background-image: url("../img/man.png");
+    background-repeat: no-repeat;
+    background-position: center left 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    background-size: auto 280px;
+    width: 600px;
+    right: 0;
+    top: -80px;
 }
 .contact-text{
     left: 0;
