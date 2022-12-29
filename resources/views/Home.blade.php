@@ -2,7 +2,7 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 <body>
-   
+<a href="{{route('adminpanel')}}">Admin</a>
 <section class="banner-sec">
          <div class="banner-text">
             <h2>Find The Job That Fits Your Life</h2>
