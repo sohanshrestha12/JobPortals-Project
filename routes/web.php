@@ -19,3 +19,5 @@ Route::get('/about', [HomeController::class,'about'])->name('about');
 Route::get('/jobs', [HomeController::class,'jobs'])->name('jobs');
 Route::get('/services', [HomeController::class,'services'])->name('services');
 Route::get('/contact', [HomeController::class,'contact'])->name('contact');
+Route::get('/adminpanel', [HomeController::class,'panel'])->name('adminpanel');
+Route::get('/job', [HomeController::class,'job_view'])->name('job_control');
