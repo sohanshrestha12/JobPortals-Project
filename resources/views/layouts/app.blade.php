@@ -20,7 +20,7 @@
         <div class="container">
             <nav id="navbar">
                 <h1 class="header1"><span class="header1" style="color: var(--main-color)">J</span>ob Portals</h1>
-                <ul>
+                <ul class="links">
                     <li><a href="{{ route('home') }}" @if (Request::is('/')) class="active" @endif>Home</a>
                     </li>
                     <li><a href="{{ route('about') }}" @if (Request::is('about')) class="active" @endif>About</a>
@@ -34,19 +34,32 @@
                     </li>
                 </ul>
                 <div class="butn">
-                    <a href="javascript:void(0)" id="login" class="btn">Login</a>
-                    <a href="#" class="btn">SignUp</a>
+                    <a href="javascript:void(0)" id="login" class="login btn">Login</a>
+                    <div class="dropdown" id="signup-dropdown">
+                        <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown">
+                            SignUp
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
+                            <li><i class="uil uil-user"></i><a class="dropdown-item" href="#">Register as
+                                    JobSeeker</a></li>
+                            <hr class="mb-2">
+                            <li> <i class="uil uil-building"></i><a class="dropdown-item"
+                                    href="{{ route('CompanySignUp') }}">Register as
+                                    Company</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </nav>
+        </div>
+        </nav>
         </div>
     </header>
 
 
 
     <div id="blurz">
-
         @yield('content')
-
         <footer>
             <div class="container">
                 <div class="box-1">
@@ -79,16 +92,18 @@
     {{-- login modal --}}
 
     <div class="row login-modal-background justify-content-center align-items-center" id="login-modal-background">
-        <div class="col-md-4">
+        <div class="col-md-4 bg-white shadow">
             <form class="form-layout" action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="close-div">
                     <span class="close-modal" title="Close">&times;</span>
                 </div>
-                @if(session()->has('fail') || session()->has('ErrorLogin') || session()->has('role'))
-                    {{session()->get('fail')}}
-                    {{session()->get('ErrorLogin')}}
-                    {{session()->get('role')}}
+                @if (session()->has('fail') || session()->has('ErrorLogin') || session()->has('role'))
+                <div class="alert alert-danger mb-5" role="alert" style="display: flex;justify-content:center;font-size:1.6rem;">
+                    {{ session()->get('fail') }}
+                    {{ session()->get('ErrorLogin') }}
+                    {{ session()->get('role') }}
+                </div>
                 @endif
                 <div class="mb-3">
                     <h1 class="header1 text-center">Login</h1>
@@ -120,7 +135,11 @@
             </form>
         </div>
     </div>
-    @if ($errors->has('logemail') || $errors->has('logpassword') || session()->has('fail') || session()->has('ErrorLogin') || session()->has('role'))
+    @if ($errors->has('logemail') ||
+        $errors->has('logpassword') ||
+        session()->has('fail') ||
+        session()->has('ErrorLogin') ||
+        session()->has('role'))
         <script>
             let blur = document.querySelector('#blurz');
             let allmodal = document.querySelector('#login-modal-background');

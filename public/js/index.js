@@ -1,12 +1,13 @@
 window.onload=()=>{
-    let login_button = document.querySelector('#login'); 
+    let login_button = document.querySelectorAll('.login'); 
     let allmodal = document.querySelector('#login-modal-background');
     let blur = document.querySelector('#blurz');
     let close_modal = document.querySelectorAll('.close-modal');
-
-    login_button.addEventListener('click',()=>{
-        allmodal.classList.add("show-modal");
-        blur.classList.add('blurz');
+    login_button.forEach(element => {   
+        element.addEventListener('click',()=>{
+            allmodal.classList.add("show-modal");
+            blur.classList.add('blurz');
+        });
     });
     close_modal.forEach(element => {
         element.addEventListener('click',()=>{
