@@ -35,14 +35,37 @@
                             @if (Request::is('contact')) class="active" @endif>Contact</a>
                     </li>
                 </ul>
-                @if (session()->has('AloginId') || session()->has('UloginId') || session()->has('CloginId'))
+                @if ($data == null)
+                    <div class="butn">
+                        <a href="javascript:void(0)" id="login" class="login btn">Login</a>
+                        <div class="dropdown" id="signup-dropdown">
+                            <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown">
+                                SignUp
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
+                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="#">Register as
+                                        JobSeeker</a></li>
+                                <hr class="mb-2">
+                                <li> <i class="uil uil-building"></i><a class="dropdown-item"
+                                        href="{{ route('CompanySignUp') }}">Register as
+                                        Company</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                @elseif(session()->has('AloginId') || session()->has('UloginId') || session()->has('CloginId'))
                     <div class="profile">
-                        <img src="{{ asset('storage/img/th.jpg') }}" alt="404 not found">
+                        @if ($data->ProfileImg === 'defaultImg.png')
+                            <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
+                        @else
+                            <img src="{{ asset('storage/Company Logo/' . $data->ProfileImg) }}" alt="404 not found">
+                        @endif
                         <div class="dropdown" id="signup-dropdown">
                             <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown"
                                 style="background-color:transparent;color:black">
-                                CompanyName
+                                {{ ucfirst($data->name) }}
                             </a>
 
                             <ul class="dropdown-menu" id="drop-menu" style="width:12rem">

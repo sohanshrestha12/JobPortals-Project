@@ -26,6 +26,8 @@ Route::get('/companyprofile', [HomeController::class,'companyprofile'])->name('C
 Route::get('/RegisterCompany', [UserController::class,'CompanySignUp'])->name('CompanySignUp');
 Route::post('/login',[UserController::class,'login'])->name('login');
 Route::post('/RegisterCompany',[UserController::class,'RegisterCompany'])->name('RegisterCompany');
+Route::post('/UpdateCompanyInformation',[UserController::class,'UpdateCompanyInformation'])->name('UpdateCompanyInformation');
+Route::post('/UpdateCompanyLogo',[UserController::class,'UpdateCompanyLogo'])->name('UpdateCompanyLogo');
 Route::get('/logout', [UserController::class,'logout'])->name('logout');
 
 

@@ -51,7 +51,7 @@
                     <div class="signup-form-grp">
                         <label for="name">Company Name</label>
                         <input type="text" name="name"
-                            class="form-control @error('password_confirmation') is-invalid @enderror">
+                            class="form-control @error('name') is-invalid @enderror">
                         @error('name')
                             <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
                         @enderror
@@ -106,7 +106,7 @@
                         <div class="signup-form-grp" style="flex: 1">
                             <label for="location">Location</label>
                             <input type="text" name="location" placeholder="Company Street Address"
-                                class="form-control @error('phoneno') is-invalid @enderror">
+                                class="form-control @error('location') is-invalid @enderror">
                             @error('location')
                                 <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
                             @enderror

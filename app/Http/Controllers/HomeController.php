@@ -2,35 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        return view('Home');
+        $data = null;
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+        }
+        return view('Home', compact('data'));
     }
     public function services()
     {
-        return view('Services');
+        $data = null;
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+        }
+        return view('Services', compact('data'));
     }
     public function jobs()
     {
-        return view('Jobs');
+        $data = null;
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+        }
+        return view('Jobs', compact('data'));
     }
     public function about()
     {
-        return view('About');
+        $data = null;
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+        }
+        return view('About', compact('data'));
     }
     public function contact()
     {
-        return view('Contact');
-    }  
-      public function companyprofile()
-    {
-        return view('CompanyProfile');
+        $data = null;
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+        }
+        return view('Contact', compact('data'));
     }
-    public function job_view(){
+    public function companyprofile()
+    {
+        $data = null;
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+        }
+        return view('CompanyProfile', compact('data'));
+    }
+    public function job_view()
+    {
         return view('Job');
     }
 }

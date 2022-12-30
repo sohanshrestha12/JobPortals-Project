@@ -90,7 +90,7 @@
     align-items: center;
 }
 .sidebar ul li a div{
-    font-size: 1.6rem;
+    font-size: 1.6rem;signup-form-fea
 }
 .sidebar ul li a i{
     min-width: 60px;
@@ -115,7 +115,7 @@
 .company-logo img{
     height: 100%;
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
 }
 .update-company-photo{
     width: 220px;
@@ -148,7 +148,7 @@
 }
 .company-update-information form{
     width: 100%;
-    padding: 2rem 3.3rem;
+    padding: 1rem 3.3rem;
 }
 .company-form-grp {
     padding: 0.8rem 1rem;
