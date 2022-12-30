@@ -26,9 +26,9 @@ class HomeController extends Controller
     {
         return view('Contact');
     }  
-      public function panel()
+      public function companyprofile()
     {
-        return view('adminpanel');
+        return view('CompanyProfile');
     }
     public function job_view(){
         return view('Job');

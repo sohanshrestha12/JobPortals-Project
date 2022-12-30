@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -60,22 +61,22 @@ class UserController extends Controller
         if ($alluser) {
             if ($alluser->role == 'admin') {
                 if ($req->logpassword == $alluser->password) {
-                    session()->put('loginId', $alluser->id);
+                    session()->put('AloginId', $alluser->id);
                     return redirect('/admin');
                 } else {
                     return back()->with('fail', 'Password not matched.');
                 }
             } elseif ($alluser->role == 'user') {
                 if ($req->logpassword == $alluser->password) {
-                    session()->put('loginId', $alluser->id);
+                    session()->put('UloginId', $alluser->id);
                     return redirect('/user');
                 } else {
                     return back()->with('fail', 'Password not matched.');
                 }
             } elseif ($alluser->role == 'company') {
                 if (Hash::check($req->logpassword, $alluser->password)) {
-                    session()->put('loginId', $alluser->id);
-                    return redirect('/company');
+                    session()->put('CloginId', $alluser->id);
+                    return redirect()->route('CompanyProfile');
                 } else {
                     return back()->with('fail', 'Password not matched.');
                 }
@@ -84,6 +85,20 @@ class UserController extends Controller
             }
         } else {
             return back()->with('ErrorLogin', 'Email is not registered.');
+        }
+    }
+    public function logout(){
+        if(Session::has('CloginId')){
+            Session::pull('CloginId');
+            return redirect()->route('home');
+        }
+        else if(Session::has('UloginId')){
+            Session::pull('UloginId');
+            return redirect()->route('home');
+        }
+        else if(Session::has('AloginId')){
+            Session::pull('AloginId');
+            return redirect()->route('home');
         }
     }
 }

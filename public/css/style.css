@@ -78,6 +78,16 @@ header {
     display: flex;
     gap:8px;
 }
+.profile{
+    display: flex;
+    gap:2px;
+}
+.profile img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
 #drop-menu hr{
     height: 2px;
     color: var(--main-color)!important;
@@ -86,6 +96,7 @@ header {
 }
 #drop-menu li{
     display: flex;
+    width: 100%;
 }
 #drop-menu li:hover{
     background-color: #e9ecef;
@@ -97,7 +108,9 @@ header {
     color: black;
     font-size: 1.4rem;
     padding: 0 0.5rem;
+    width: 100%;
 }
+
 #drop-menu li i{
     font-size: 1.6rem;
 }
