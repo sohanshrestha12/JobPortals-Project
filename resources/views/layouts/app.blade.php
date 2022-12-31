@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+
     @vite(['resources/js/app.js'])
 
 </head>
@@ -33,26 +35,69 @@
                             @if (Request::is('contact')) class="active" @endif>Contact</a>
                     </li>
                 </ul>
-                <div class="butn">
-                    <a href="javascript:void(0)" id="login" class="login btn">Login</a>
-                    <div class="dropdown" id="signup-dropdown">
-                        <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown">
-                            SignUp
-                        </a>
+                @if ($data == null)
+                    <div class="butn">
+                        <a href="javascript:void(0)" id="login" class="login btn">Login</a>
+                        <div class="dropdown" id="signup-dropdown">
+                            <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown">
+                                SignUp
+                            </a>
 
-                        <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
-                            <li><i class="uil uil-user"></i><a class="dropdown-item" href="#">Register as
-                                    JobSeeker</a></li>
-                            <hr class="mb-2">
-                            <li> <i class="uil uil-building"></i><a class="dropdown-item"
-                                    href="{{ route('CompanySignUp') }}">Register as
-                                    Company</a></li>
-                        </ul>
+                            <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
+                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="#">Register as
+                                        JobSeeker</a></li>
+                                <hr class="mb-2">
+                                <li> <i class="uil uil-building"></i><a class="dropdown-item"
+                                        href="{{ route('CompanySignUp') }}">Register as
+                                        Company</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-        </div>
-        </nav>
+                @elseif(session()->has('AloginId') || session()->has('UloginId') || session()->has('CloginId'))
+                    <div class="profile">
+                        @if ($data->ProfileImg === 'defaultImg.png')
+                            <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
+                        @else
+                            <img src="{{ asset('storage/Company Logo/' . $data->ProfileImg) }}" alt="404 not found">
+                        @endif
+                        <div class="dropdown" id="signup-dropdown">
+                            <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown"
+                                style="background-color:transparent;color:black">
+                                {{ ucfirst($data->name) }}
+                            </a>
+
+                            <ul class="dropdown-menu" id="drop-menu" style="width:12rem">
+                                <li><i class="uil uil-user"></i><a class="dropdown-item"
+                                        href="{{ route('CompanyProfile') }}">Profile</a></li>
+                                <hr class="mb-2">
+                                <li> <i class="uil uil-signout"></i><a class="dropdown-item"
+                                        href="{{ route('logout') }}">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                @else
+                    <div class="butn">
+                        <a href="javascript:void(0)" id="login" class="login btn">Login</a>
+                        <div class="dropdown" id="signup-dropdown">
+                            <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown">
+                                SignUp
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
+                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="#">Register as
+                                        JobSeeker</a></li>
+                                <hr class="mb-2">
+                                <li> <i class="uil uil-building"></i><a class="dropdown-item"
+                                        href="{{ route('CompanySignUp') }}">Register as
+                                        Company</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+            </nav>
         </div>
     </header>
 
@@ -99,11 +144,12 @@
                     <span class="close-modal" title="Close">&times;</span>
                 </div>
                 @if (session()->has('fail') || session()->has('ErrorLogin') || session()->has('role'))
-                <div class="alert alert-danger mb-5" role="alert" style="display: flex;justify-content:center;font-size:1.6rem;">
-                    {{ session()->get('fail') }}
-                    {{ session()->get('ErrorLogin') }}
-                    {{ session()->get('role') }}
-                </div>
+                    <div class="alert alert-danger mb-5" role="alert"
+                        style="display: flex;justify-content:center;font-size:1.6rem;">
+                        {{ session()->get('fail') }}
+                        {{ session()->get('ErrorLogin') }}
+                        {{ session()->get('role') }}
+                    </div>
                 @endif
                 <div class="mb-3">
                     <h1 class="header1 text-center">Login</h1>
