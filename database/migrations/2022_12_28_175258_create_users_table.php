@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('location');
             $table->string('role');
             $table->bigInteger('phoneno');
+            $table->string('description',500)->nullable();
+            $table->string('ProfileImg')->default('defaultImg.png');
+            $table->string('ProfileImgPath')->default('public/default/defaultImg.jpg');
             $table->timestamps();
         });
     }

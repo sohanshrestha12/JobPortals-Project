@@ -5,7 +5,7 @@
             <div class="col-md-6 p-5 shadow">
                 @if(session()->has('success'))
                     <div class="alert alert-success" role="alert" style="display: flex;justify-content:center;font-size:1.6rem;">
-                        {{session()->get('success')}}
+                        {{session()->get('success')}}  &nbsp; <a class="paragraph login" style="text-decoration: none" href="javascript:void(0)"> Please login</a>
                     </div>
                 @endif
                 <h1 class="header1">Company Registration</h1>
@@ -22,7 +22,7 @@
                     <h2 class="header2 text-center">Login Information</h2>
                     <div class="signup-form-grp">
                         <label for="email">Email Address</label>
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror">
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
                         @error('email')
                             <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
                         @enderror
@@ -51,14 +51,14 @@
                     <div class="signup-form-grp">
                         <label for="name">Company Name</label>
                         <input type="text" name="name"
-                            class="form-control @error('password_confirmation') is-invalid @enderror">
+                            class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}">
                         @error('name')
                             <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="signup-form-grp">
                         <label for="phoneno">Primary Phone Number</label>
-                        <input type="text" name="phoneno" class="form-control @error('phoneno') is-invalid @enderror">
+                        <input type="text" name="phoneno" class="form-control @error('phoneno') is-invalid @enderror" value="{{old('phoneno')}}">
                         @error('phoneno')
                             <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
                         @enderror
@@ -106,7 +106,7 @@
                         <div class="signup-form-grp" style="flex: 1">
                             <label for="location">Location</label>
                             <input type="text" name="location" placeholder="Company Street Address"
-                                class="form-control @error('phoneno') is-invalid @enderror">
+                                class="form-control @error('location') is-invalid @enderror" value="{{old('location')}}">
                             @error('location')
                                 <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
                             @enderror
