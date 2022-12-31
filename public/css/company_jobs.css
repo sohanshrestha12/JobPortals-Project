@@ -11,6 +11,7 @@
 .intro {
     padding: 80px;
     margin-left: 260px;
+    position: relative;
 }
 
 .gradient-custom-1 {
@@ -49,4 +50,10 @@ tbody td {
     border: 1px solid;
     padding: 35px;
     border-radius: 25px;
+    position: absolute;
+    left: 361px;
+    background: aliceblue;
+}
+.hidden{
+    display: none;
 }

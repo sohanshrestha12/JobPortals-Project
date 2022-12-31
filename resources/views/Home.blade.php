@@ -114,48 +114,126 @@
       </section>
       <!-- End Services Section -->
 
-      <section class="job-section">
+      <section class="inner-content-wrapper section current-job-sec">
          <div class="container">
             <h2 class="section-title mb-0">Recent Jobs<br> <img src="img/title-border.png" alt="">
-            <div class="job-sec-list-box">
-                  <a  href="" style="text-decoration:none;"><div class="box1">
-                        <div class="image-sec">
-                           <img src="img/blog3.jpg" alt="">
-                        </div>
-                        <div class="info-sec">
-                           <h3 style="margin-bottom:10px ;margin-top:10px">Heading</h3>
-                           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio temporibus quo quod dolores.</p>
-                        </div>
-                  </div></a>
-                  <a href="" style="text-decoration:none;"><div class="box1">
-                        <div class="image-sec">
-                           <img src="img/blog3.jpg" alt="">
-                        </div>
-                        <div class="info-sec">
-                           <h3 style="margin-bottom:10px ;margin-top:10px">Heading</h3>
-                           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio temporibus quo quod dolores.</p>
-                        </div>
-                  </div></a>
-                  <a href="" style="text-decoration:none;"><div class="box1">
-                        <div class="image-sec">
-                           <img src="img/blog3.jpg" alt="">
-                        </div>
-                        <div class="info-sec">
-                            <h3 style="margin-bottom:10px ;margin-top:10px">Heading</h3>
-                           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio temporibus quo quod dolores.</p>
-                        </div>
-                  </div></a>
-                  <a href="" style="text-decoration:none;"><div class="box1">
-                        <div class="image-sec">
-                           <img src="img/blog3.jpg" alt="">
-                        </div>
-                        <div class="info-sec">
-                            <h3 style="margin-bottom:10px ;margin-top:10px">Heading</h3>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio temporibus quo quod dolores.</p>
-                        </div>
-                  </div></a>
-            </div>
+				<div class="row w-100 m-0">
+					<div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter new">
+						<div class="box1 d-flex">
+							<div class="icon-sec">
+								<img src="../img/job-icon1.png" alt="">
+							</div>
+							<div class="text-sec">
+								<h4>UI / UX Designer</h4>
+								<a href="job-details.html" target="_blank">job-details.html</a>
+								<p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
+								<p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
+									Victoria Canada</p>
+							</div>
+						</div>
+					</div>
+					<div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter featured">
+						<div class="box1 d-flex">
+							<div class="icon-sec">
+								<img src="../img/job-icon1.png" alt="">
+							</div>
+							<div class="text-sec">
+								<h4>UI / UX Designer</h4>
+								<a href="job-details.html" target="_blank">job-details.html</a>
+								<p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
+								<p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
+									Victoria Canada</p>
+							</div>
+						</div>
+					</div>
+					<div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter featured">
+						<div class="box1 d-flex">
+							<div class="icon-sec">
+								<img src="../img/job-icon1.png" alt="">
+							</div>
+							<div class="text-sec">
+								<h4>UI / UX Designer</h4>
+								<a href="job-details.html" target="_blank">job-details.html</a>
+								<p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
+								<p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
+									Victoria Canada</p>
+							</div>
+						</div>
+					</div>
+					<div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter full-time">
+						<div class="box1 d-flex">
+							<div class="icon-sec">
+								<img src="../img/job-icon1.png" alt="">
+							</div>
+							<div class="text-sec">
+								<h4>UI / UX Designer</h4>
+								<a href="job-details.html" target="_blank">job-details.html</a>
+								<p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
+								<p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
+									Victoria Canada</p>
+							</div>
+						</div>
+					</div>
+					<div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter full-time">
+						<div class="box1 d-flex">
+							<div class="icon-sec">
+								<img src="../img/job-icon1.png" alt="">
+							</div>
+							<div class="text-sec">
+								<h4>UI / UX Designer</h4>
+								<a href="job-details.html" target="_blank">job-details.html</a>
+								<p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
+								<p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
+									Victoria Canada</p>
+							</div>
+						</div>
+					</div>
+					<div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter recent">
+						<div class="box1 d-flex">
+							<div class="icon-sec">
+								<img src="../img/job-icon1.png" alt="">
+							</div>
+							<div class="text-sec">
+								<h4>UI / UX Designer</h4>
+								<a href="job-details.html" target="_blank">job-details.html</a>
+								<p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
+								<p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
+									Victoria Canada</p>
+							</div>
+						</div>
+					</div>
+					<div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter part-time">
+						<div class="box1 d-flex">
+							<div class="icon-sec">
+								<img src="../img/job-icon1.png" alt="">
+							</div>
+							<div class="text-sec">
+								<h4>UI / UX Designer</h4>
+								<a href="job-details.html" target="_blank">job-details.html</a>
+								<p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
+								<p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
+									Victoria Canada</p>
+							</div>
+						</div>
+					</div>
+					<div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter recent">
+						<div class="box1 d-flex">
+							<div class="icon-sec">
+								<img src="../img/job-icon1.png" alt="">
+							</div>
+							<div class="text-sec">
+								<h4>UI / UX Designer</h4>
+								<a href="job-details.html" target="_blank">job-details.html</a>
+								<p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
+								<p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
+									Victoria Canada</p>
+							</div>
+						</div>
+					</div>
+				</div>
 
+
+         </div>
          </div>
       </section>
 
