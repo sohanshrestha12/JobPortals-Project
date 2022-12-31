@@ -14,7 +14,7 @@
                         @endif
                     </div>
                     <div class="update-company-photo shadow">
-                        <p class="paragraph" style="margin: 0;color:#ff6158">Update Photo</p>
+                        <p class="paragraph" style="margin: 0;color:#ff6158">Update Company Logo</p>
                         <hr style="height: 3px;width:90%;color: black !important;margin: 0.2rem 0 1rem 0;opacity:1;">
                         <form action="UpdateCompanyLogo" enctype="multipart/form-data" method="POST"
                             class="d-flex flex-column">

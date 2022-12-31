@@ -46,7 +46,7 @@ class UserController extends Controller
             'location' => $req->location,
             'role' => 'company'
         ]);
-        return back()->with('success', 'Your form has been successfully registered. Please login.');
+        return back()->with('success', 'Your form has been successfully registered.');
     }
 
     public function login(Request $req)
@@ -137,6 +137,9 @@ class UserController extends Controller
         $thisone=User::find($req->id);
         $oldpath = $thisone->ProfileImgPath;
         if($oldpath === 'public/default/defaultImg.jpg'){
+            $Savelogo->save();
+        }
+        elseif($logopath == $oldpath){
             $Savelogo->save();
         }
         else{
