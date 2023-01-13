@@ -176,6 +176,9 @@
                             <span>{{ $message }}</span>
                         </div>
                     @enderror
+                    <div class="forgot-password">
+                        <a href="{{ route('ForgotPassword') }}" class="paragraph">Forgot Password?</a>
+                    </div>
                     <button type="submit" class="Cbtn">Login</button>
                 </div>
             </form>

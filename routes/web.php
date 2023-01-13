@@ -29,6 +29,7 @@ Route::post('/RegisterCompany',[UserController::class,'RegisterCompany'])->name(
 Route::post('/UpdateCompanyInformation',[UserController::class,'UpdateCompanyInformation'])->name('UpdateCompanyInformation');
 Route::post('/UpdateCompanyLogo',[UserController::class,'UpdateCompanyLogo'])->name('UpdateCompanyLogo');
 Route::get('/logout', [UserController::class,'logout'])->name('logout');
+Route::get('/ForgotPassword',[UserController::class,'ForgotPassword'])->name('ForgotPassword');
 
 
 Route::get('/job', [HomeController::class,'job_view'])->name('job_control');

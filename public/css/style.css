@@ -720,3 +720,36 @@ hr {
     color: #666666;
 
 }
+
+/* forget-password-login  */
+.forgot-password{
+    display: flex;
+    margin-top: 2rem;
+    justify-content: flex-end;
+    text-decoration: none;
+}
+.forgot-password a{
+    text-decoration: none;
+}
+#ForgotPasswordForm form input{
+    width: 100%;
+    padding: 0.3rem 1.1rem;
+    border-radius: 5px;
+    border:2px solid #a5a5a5;
+    outline: none;
+    font-size: 1.8rem;
+}
+.ForgotButtons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    font-size: 1.6rem;
+}
+.ForgotButtons button{
+    border-radius: 5px;
+    background-color: var(--main-color);
+    padding: 0.5rem 1rem;
+    border: none;
+    color: white;
+    font-weight: 500;
+}

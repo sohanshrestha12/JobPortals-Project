@@ -148,10 +148,6 @@ class UserController extends Controller
         }
         return redirect()->route('CompanyProfile');
     }
-
-
-
-
     public function logout()
     {
         if (Session::has('CloginId')) {
@@ -167,5 +163,8 @@ class UserController extends Controller
             Session::flush();
             return redirect()->route('home');
         }
+    }
+    public function ForgotPassword(){
+        return view('Auth/ForgotPassword');
     }
 }
