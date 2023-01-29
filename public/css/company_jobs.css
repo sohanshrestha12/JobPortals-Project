@@ -1,3 +1,5 @@
+*{
+}
 .heading {
     text-align: center;
     margin-bottom: 30px;
@@ -10,11 +12,13 @@
 
 .intro {
     padding: 80px;
-    margin-left: 260px;
     position: relative;
+    width: 100%;
 }
 
 .gradient-custom-1 {
+font-size: 20px;
+
     /* fallback for old browsers */
     background: #cd9cf2;
 

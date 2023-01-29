@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,7 @@ Route::get('/contact', [HomeController::class,'contact'])->name('contact');
 Route::get('/companyprofile', [HomeController::class,'companyprofile'])->name('CompanyProfile');
 
 
+
 Route::get('/RegisterCompany', [UserController::class,'CompanySignUp'])->name('CompanySignUp');
 Route::post('/login',[UserController::class,'login'])->name('login');
 Route::post('/RegisterCompany',[UserController::class,'RegisterCompany'])->name('RegisterCompany');
@@ -31,5 +33,10 @@ Route::post('/UpdateCompanyLogo',[UserController::class,'UpdateCompanyLogo'])->n
 Route::get('/logout', [UserController::class,'logout'])->name('logout');
 
 
-Route::get('/job', [HomeController::class,'job_view'])->name('job_control');
+
+Route::get('/job_details', [HomeController::class,'Job_details'])->name('Job_details');
+    
+Route::post('/save_jobs_List',[JobController::class,'Add_Job_list'])->name('Save_jobs_List');
+Route::get('/job', [JobController::class,'show_jobs'])->name('job_control');
+
 
