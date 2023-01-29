@@ -169,6 +169,7 @@
     padding: 0.2rem 1rem;
 }
 .company-form-grp textarea{
+    border-color: lightgray;
     width: 100%;
     padding: 0.2rem 1rem;
     font-size: 1.6rem;

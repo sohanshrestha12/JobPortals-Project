@@ -7,7 +7,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
             </p>
-            <a href="job-list.html" class="btn">Know More</a>
+            <a href="job-list.html" style="color: white" class="btn">Know More</a>
 </section>
       <!-- End Banner Section -->
   

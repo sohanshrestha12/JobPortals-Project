@@ -158,7 +158,7 @@
                     <div class="form-input">
                         <i class="uil uil-envelope"></i>
                         <input type="email" name="logemail" aria-describedby="emailHelp"
-                            placeholder="Enter your email">
+                            placeholder="Enter your email" value="{{old('logemail')}}">
                     </div>
                     @error('logemail')
                         <div class="show-error">

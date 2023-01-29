@@ -30,6 +30,11 @@ Route::post('/UpdateCompanyInformation',[UserController::class,'UpdateCompanyInf
 Route::post('/UpdateCompanyLogo',[UserController::class,'UpdateCompanyLogo'])->name('UpdateCompanyLogo');
 Route::get('/logout', [UserController::class,'logout'])->name('logout');
 Route::get('/ForgotPassword',[UserController::class,'ForgotPassword'])->name('ForgotPassword');
+Route::post('/ForgotPassword',[UserController::class,'sendResetLink'])->name('ForgotPassword/link');
+Route::get('/Cancel',[UserController::class,'Cancel'])->name('Cancel');
+Route::get('/ResetPassword/{token}',[UserController::class,'resetpasswordform'])->name('UserResetPasswordForm');
+Route::post('/ResetPassword',[UserController::class,'resetpassword'])->name('ForgotResetPassword');
+Route::get('/PasswordResetSuccessful',[UserController::class,'gobackmsg'])->name('ResetGobackPage');
 
 
 Route::get('/job', [HomeController::class,'job_view'])->name('job_control');
