@@ -247,6 +247,7 @@ header {
 }
 
 .signup-form-grp {
+    position: relative;
     padding: 0.7rem 2rem;
 }
 
@@ -786,4 +787,20 @@ hr {
     border-radius: 5px;
     font-size: 1.6rem;
     padding: 0.5rem 1rem;
+}
+
+
+/* show and hide password */
+#register-eye{
+    padding-right: 3rem!important; ;
+}
+#eyes{
+    position: absolute;
+    top: 10%;
+    right: 3rem;
+    cursor: pointer;
+    z-index: 999;
+}
+#eyes #register-eye-hide,#eyes #register-eye-show{
+    font-size: 2.2rem;
 }

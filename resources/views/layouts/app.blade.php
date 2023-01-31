@@ -168,7 +168,11 @@
                     @enderror
                     <div class="form-input">
                         <i class="uil uil-lock"></i>
-                        <input type="password" name="logpassword" placeholder="Enter your password">
+                        <input type="password" name="logpassword" id="register-eye" placeholder="Enter your password">
+                        <div id="eyes">
+                            <i class="uil uil-eye-slash" id="register-eye-hide"></i>
+                            <i class="uil uil-eye" id="register-eye-show"></i>
+                        </div>
                     </div>
                     @error('logpassword')
                         <div class="show-error">
