@@ -58,6 +58,10 @@ class HomeController extends Controller
     }
     public function job_view()
     {
-        return view('Job');
+        $data = null;
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+        }
+        return view('Job',compact('data'));
     }
 }

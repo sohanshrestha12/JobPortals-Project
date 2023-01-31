@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Password_reset;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -20,8 +25,8 @@ class UserController extends Controller
     {
         $req->validate(
             [
-                'email' => 'required',
-                'password' => 'required|confirmed',
+                'email' => 'required|email:rfc,dns|unique:users,email',
+                'password' => 'required|confirmed|min:6',
                 'password_confirmation' => 'required',
                 'name' => 'required',
                 'category' => 'required',
@@ -53,11 +58,12 @@ class UserController extends Controller
     {
         $req->validate(
             [
-                'logemail' => 'required',
+                'logemail' => 'required|email:rfc,dns',
                 'logpassword' => 'required'
             ],
             [
                 'logemail.required' => 'The email field is required.',
+                'logemail.email' => ' The email must be a valid email address.',
                 'logpassword.required' => 'The password field is required.'
             ]
         );
@@ -134,24 +140,18 @@ class UserController extends Controller
         $Savelogo->ProfileImg = $logoname;
         $Savelogo->ProfileImgPath = $logopath;
         //delete old image
-        $thisone=User::find($req->id);
+        $thisone = User::find($req->id);
         $oldpath = $thisone->ProfileImgPath;
-        if($oldpath === 'public/default/defaultImg.jpg'){
+        if ($oldpath === 'public/default/defaultImg.jpg') {
             $Savelogo->save();
-        }
-        elseif($logopath == $oldpath){
+        } elseif ($logopath == $oldpath) {
             $Savelogo->save();
-        }
-        else{
+        } else {
             Storage::disk('local')->delete($oldpath);
             $Savelogo->save();
         }
         return redirect()->route('CompanyProfile');
     }
-
-
-
-
     public function logout()
     {
         if (Session::has('CloginId')) {
@@ -167,5 +167,75 @@ class UserController extends Controller
             Session::flush();
             return redirect()->route('home');
         }
+    }
+    public function ForgotPassword()
+    {
+        return view('Auth/ForgotPassword');
+    }
+    public function sendResetLink(Request $req)
+    {
+        
+        $req->validate(
+            [
+                'ForgotEmail' => 'required|email:rfc,dns|exists:users,email'
+            ],
+            [
+                'ForgotEmail.required' => 'The email field is required.',
+                'ForgotEmail.email' => 'The email must be a valid email address.',
+                'ForgotEmail.exists' => 'The selected email is invalid.'
+            ]
+        );
+        $token = Str::random(64);
+        $pr = new Password_reset();
+        $pr->email = $req->ForgotEmail;
+        $pr->token = $token;
+        $pr->save();
+
+        $action_link = route('UserResetPasswordForm', ['token' => $token, 'email' => $req->ForgotEmail]);
+        $body  = "We received a request to reset the password for <b>JobPortal</b> account associated with " . $req->ForgotEmail . " You can reset your password by clicking the link below.";
+
+        Mail::send('Auth.ResetPassword', ['actionlink' => $action_link, 'body' => $body], function ($message) use ($req) {
+            $message->from('sohanshrestha40@gmail.com', 'JobPortal');
+            $message->to($req->ForgotEmail, 'User');
+            $message->subject('JobPortal Reset Password!');
+        });
+
+        // Mail::to($req->ForgotEmail)->send(new ForgotPassword());
+
+
+        return back()->with('success', 'We have e-mailed your password reset link!');
+    }
+    public function resetpasswordform(Request $req, $token = null)
+    {
+        // dd($req->all(),$token);
+        return view('Auth.FormResetPassword')->with(['token' => $token, 'email' => $req->email]);
+    }
+    public function resetpassword(Request $req)
+    {
+        $req->validate([
+            'email' => 'required|email:rfc,dns|exists:users,email',
+            'password' => 'required|confirmed|min:6',
+            'password_confirmation' => 'required'
+        ]);
+        $checkToken = Password_reset::where('email', '=', $req->email)->where('token', '=', $req->token)->first();
+        if (!$checkToken) {
+            return back()->withInput()->with('ResetFail', 'Invalid Token');
+        } else {
+            $resetuser  = User::where('email', '=', $req->email)->first();
+            $resetuser->password = Hash::make($req->password);
+            $resetuser->save();
+
+            Password_reset::where('email', '=', $resetuser->email)->delete();
+            Session::flush('CloginId');
+            return redirect()->route('ResetGobackPage');
+        }
+    }
+    public function gobackmsg()
+    {
+        return view('Auth.Gobackreset');
+    }
+    public function Cancel()
+    {
+        return redirect()->route('home');
     }
 }

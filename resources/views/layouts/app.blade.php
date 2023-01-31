@@ -158,7 +158,7 @@
                     <div class="form-input">
                         <i class="uil uil-envelope"></i>
                         <input type="email" name="logemail" aria-describedby="emailHelp"
-                            placeholder="Enter your email">
+                            placeholder="Enter your email" value="{{old('logemail')}}">
                     </div>
                     @error('logemail')
                         <div class="show-error">
@@ -168,7 +168,11 @@
                     @enderror
                     <div class="form-input">
                         <i class="uil uil-lock"></i>
-                        <input type="password" name="logpassword" placeholder="Enter your password">
+                        <input type="password" name="logpassword" id="register-eye" placeholder="Enter your password">
+                        <div id="eyes">
+                            <i class="uil uil-eye-slash" id="register-eye-hide"></i>
+                            <i class="uil uil-eye" id="register-eye-show"></i>
+                        </div>
                     </div>
                     @error('logpassword')
                         <div class="show-error">
@@ -176,6 +180,9 @@
                             <span>{{ $message }}</span>
                         </div>
                     @enderror
+                    <div class="forgot-password">
+                        <a href="{{ route('ForgotPassword') }}" class="paragraph">Forgot Password?</a>
+                    </div>
                     <button type="submit" class="Cbtn">Login</button>
                 </div>
             </form>
