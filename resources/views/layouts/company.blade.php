@@ -91,7 +91,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('job_control')}}">
+
+                    <a href="{{ route('job_control') }}">
+
                         <i class="fas fa-user-graduate"></i>
                         <div>Jobs</div>
                     </a>

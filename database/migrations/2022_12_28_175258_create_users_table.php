@@ -28,7 +28,11 @@ return new class extends Migration
             $table->string('ProfileImgPath')->default('public/default/defaultImg.jpg');
             $table->timestamps();
         });
+
+
+      
     }
+   
 
     /**
      * Reverse the migrations.

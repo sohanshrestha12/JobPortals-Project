@@ -1,20 +1,24 @@
+
 .heading {
     text-align: center;
-    margin-bottom: 30px;
 }
 .button{
     width: 100%;
     text-align: end;
     margin-bottom: 20px;
+    font-size: 13px;
+
 }
 
 .intro {
-    padding: 80px;
-    margin-left: 260px;
+    padding: 50px;
     position: relative;
+    width: 100%;
 }
 
 .gradient-custom-1 {
+font-size: 20px;
+
     /* fallback for old browsers */
     background: #cd9cf2;
 
@@ -36,24 +40,45 @@
 table td,
 table th {
     text-overflow: ellipsis;
+    font-size: 15px;
     white-space: nowrap;
     overflow: hidden;
 }
 tbody td {
     font-weight: 500;
-    color: #999999;
+    font-size: 13px;
+    overflow: hidden;
 }
 
 /* form */
 #form_box{
-    width: 40%;
+    width: 35%;
     border: 1px solid;
-    padding: 35px;
+    padding: 27px;
     border-radius: 25px;
     position: absolute;
     left: 361px;
-    background: aliceblue;
+    background: #F1F6F5;
 }
 .hidden{
     display: none;
+}
+input{
+    height: 31px;
+}
+label{
+    font-size: 17px;
+}
+.close{
+    margin-bottom: 5px;
+    margin-left: 98%;
+}
+.close i{
+    font-size: 17px;
+}
+textarea{
+    height: 79px;
+}
+.date{
+    display: flex;
 }
