@@ -19,6 +19,7 @@
 							<div class="icon-sec">
 								<img src="../img/job-icon1.png" alt="">
 							</div>
+							
 							<div class="text-sec">
 								<h4>UI / UX Designer</h4>
 								<a href="job-details.html" target="_blank">job-details.html</a>

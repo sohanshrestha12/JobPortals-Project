@@ -38,5 +38,8 @@ Route::get('/job_details', [HomeController::class,'Job_details'])->name('Job_det
     
 Route::post('/save_jobs_List',[JobController::class,'Add_Job_list'])->name('Save_jobs_List');
 Route::get('/job', [JobController::class,'show_jobs'])->name('job_control');
+Route::get('/delete/{id}', [JobController::class ,'delete_job']);
+Route::post('/edit_jobs_List',[JobController::class,'edit_job'])->name('Update_jobs_List');
+
 
 

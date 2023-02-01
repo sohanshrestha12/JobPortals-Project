@@ -56,7 +56,14 @@ class HomeController extends Controller
         }
         return view('CompanyProfile', compact('data'));
     }
-
+    public function job_view()
+    {
+        $data = null;
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+        }
+        return view('Job', compact('data'));
+    }
     public function Job_details()
     {
         $data=null;
@@ -65,15 +72,4 @@ class HomeController extends Controller
         }
         return view('SpecificJob',compact('data'));
     }
-    public function JobLists()
-    {
-        $data = null;
-        if (Session::has('CloginId')) {
-            $data = User::find(Session::get('CloginId'));
-        }
-        return view('Job', compact('data'));
-    }
-
-
-
 }
