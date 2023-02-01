@@ -1,4 +1,5 @@
 
+
 @extends('layouts.company')
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/company_jobs.css') }}">
@@ -24,16 +25,14 @@
 </script>
 
 
-        <section class="intro">
+    <section class="intro">
         <div class="form_box hidden">
+
         <div class="container" id="form_box">
           <div class="close " id="close_btn">
                 <i class="fa-thin fa-phone" onclick="menupop()"></i>
           </div>
-          @if($errors->all()){
-            openmenu();
-          }
-          @endif
+
         <form action="{{route('Save_jobs_List')}}" method="post">
         @csrf
               <div class="mb-3">
@@ -92,7 +91,6 @@
             <button type="submit" class="btn btn-primary" style="font-size:12px;" >Add</button>
           </form>
           </div>
-
     </div>
     <!-- edit_box -->
     @foreach($List as $value)
@@ -135,7 +133,8 @@
                             <option value="Security">Security</option>
                             <option value="Telecommunication">Telecommunication</option>
                         </select>
-            </div>
+                    </div>
+                    
               <div class="mb-3">
                 <span class="input-group-text">Job Description</span>
                 <textarea class="form-control" aria-label="With textarea" name="Job_description_edited" value={{$value->Job_description}}></textarea>
@@ -158,8 +157,10 @@
                  <button type="button" class="btn btn-primary" style="width:115px;height: 50px; font-size:12px;" onclick="openmenu();">Add</button>
             </div>
 
-             <div class="gradient-custom-1 ">
+
+        <div class="gradient-custom-1 ">
             <div class="mask d-flex align-items-center">
+
             <div class="container">
         <div class="row justify-content-center">
           <div class="col-12">
@@ -190,12 +191,9 @@
                 </tbody>
               </table>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-</body>
-</html>
+    </section>
+    </body>
+
+    </html>
 @endsection

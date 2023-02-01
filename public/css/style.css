@@ -247,6 +247,7 @@ header {
 }
 
 .signup-form-grp {
+    position: relative;
     padding: 0.7rem 2rem;
 }
 
@@ -264,6 +265,7 @@ header {
     border: 1px solid lightgray;
     outline: none;
     padding: 0.2rem 1rem;
+    border-color: lightgray;
 }
 
 #category {
@@ -719,4 +721,86 @@ hr {
     color: #3c2064;
     color: #666666;
 
+}
+
+/* forget-password-login  */
+.forgot-password{
+    display: flex;
+    margin-top: 2rem;
+    justify-content: flex-end;
+    text-decoration: none;
+}
+.forgot-password a{
+    text-decoration: none;
+}
+#ForgotPasswordForm form input{
+    width: 100%;
+    padding: 0.3rem 1.1rem;
+    border-radius: 10px;
+    /* border:1.8px solid #a5a5a5; */
+    outline: none;
+    font-size: 1.8rem;
+}
+#ForgotPasswordForm form input::placeholder{
+    font-size: 1.6rem;
+    opacity: 0.9;
+}
+.ForgotButtons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+}
+.ForgotButtons a,.ForgotButtons button,.ResetButton button{
+    border-radius: 5px;
+    background-color: var(--main-color);
+    padding: 0.5rem 1rem;
+    border: none;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+.ForgotButtons a:hover,.ForgotButtons button:hover{
+    color: white;
+}
+.resetmessage{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ResetFormLogin{
+    display: flex;
+    gap: 10px;
+}
+.ResetFormLogin input{
+    height: 3.6rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    width: 23rem;
+}
+.ResetFormLoginButton Button{
+    background-color: #ff6158;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    padding: 0.5rem 1rem;
+}
+
+
+/* show and hide password */
+#register-eye{
+    padding-right: 3rem!important; ;
+}
+#eyes{
+    position: absolute;
+    top: 10%;
+    right: 3rem;
+    cursor: pointer;
+    z-index: 999;
+}
+#eyes #register-eye-hide,#eyes #register-eye-show{
+    font-size: 2.2rem;
 }
