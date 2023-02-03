@@ -54,7 +54,7 @@ class HomeController extends Controller
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-        return view('CompanyProfile', compact('data'));
+        return view('Company.CompanyProfile', compact('data'));
     }
     public function job_view()
     {

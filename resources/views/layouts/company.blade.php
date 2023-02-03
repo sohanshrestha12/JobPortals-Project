@@ -8,7 +8,6 @@
     <title>Job Portal || Company Profile</title>
     <link rel="stylesheet" href="{{ asset('css/companydashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/company_jobs.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
@@ -80,50 +79,51 @@
             </nav>
         </div>
     </header>
-    <div class="company-main-container">
-
-        <div class="sidebar">
+    <div class="Company-container">
+        <div class="navigation">
             <ul>
                 <li>
+                    <a href="javascript:void(0)">
+                        <span class="icon"><i class="uil uil-estate"></i></span>
+                        <span class="title">Company DashBoard</span>
+                    </a>
+                </li>
+                <li @if (Request::is('companyprofile')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('CompanyProfile') }}">
-                        <i class="fas fa-th-large"></i>
-                        <div>Profile</div>
+                        <span class="icon"><i class="uil uil-user-circle"></i></span>
+                        <span class="title">Company Profile</span>
                     </a>
                 </li>
-                <li>
-
-                    <a href="{{ route('job_control') }}">
-
-                        <i class="fas fa-user-graduate"></i>
-                        <div>Jobs</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <div>Teachers</div>
+                <li @if(Request::is('PostJobs')) class="Company-sidebar-active" @endif>
+                    <a href="{{ route('PostJob') }}">
+                        <span class="icon"><i class="uil uil-comment-plus"></i></span>
+                        <span class="title">Post Jobs</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-cog"></i>
-                        <div>Settings</div>
+                        <span class="icon"><i class="uil uil-list-ul"></i></span>
+                        <span class="title">Lists of Jobs</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-question"></i>
-                        <div>Help</div>
+                        <span class="icon"><i class="uil uil-edit"></i></span>
+                        <span class="title">Change Email and Password</span>
                     </a>
                 </li>
             </ul>
         </div>
-
-        @yield('content')
-
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <i class="uil uil-bars"></i>
+            </div>
+        </div>
+        @yield('content')
+    </div>
+    <script src="{{ asset('js/index.js') }}"></script>
 </body>
 
 </html>

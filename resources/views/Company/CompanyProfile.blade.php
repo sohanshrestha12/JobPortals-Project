@@ -1,10 +1,10 @@
 @extends('layouts.company')
 @section('content')
     <div class="profile-right-box">
-        <div class="container p-5">
+        <div class="container" style="padding: 0 4rem">
             <div class="row">
-                <h1 class="header1" style="color: #ff6158;letter-spacing:1px;">Company Profile</h1>
-                <hr style="height: 3px;width:90%;color: black !important;margin: 0.7rem 0 5rem 0rem;">
+                <h1 class="header1" style="color: #ff6158;letter-spacing:1px;padding-left:25px;">Company Profile</h1>
+                <hr style="height: 3px;width:90%;color: black !important;margin: 0.7rem 0 5rem 2.5rem;">
                 <div class="col-md-3 d-flex flex-column align-items-center mt" style="gap: 3rem">
                     <div class="company-logo shadow">
                         @if ($data->ProfileImg === 'defaultImg.png')
@@ -20,7 +20,7 @@
                             class="d-flex flex-column">
                             @csrf
                             <input type="hidden" name="id" value="{{ $data->id }}">
-                            <input type="file" accept="image/x-png,image/gif,image/jpeg" name="logo">
+                            <input type="file" accept="image/x-png,image/gif,image/jpeg" name="logo" style="color:black;">
                             @error('logo')
                                 <span style="font-size:1.3rem;color:red">{{ $message }}</span>
                             @enderror
@@ -47,7 +47,7 @@
                             <div class="form-one-line">
                                 <div class="company-form-grp" style="flex: 1;">
                                     <label for="city">City</label>
-                                    <select id="category" name="city">
+                                    <select class="category" name="city">
                                         <option @if ($data->city == 'Kathmandu') selected @endif value="Kathmandu">
                                             Kathmandu</option>
                                         <option @if ($data->city == 'Baktapur') selected @endif value="Baktapur">Baktapur
@@ -98,7 +98,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-3 d-flex justify-content-center ">
+                <div class="col-md-3 d-flex justify-content-center">
                     <div class="company-information shadow">
                         <h2 class="header2">About Your Company</h2>
                         <hr style="height: 3px;width:90%;color: black !important;margin: 0.2rem 0 1rem 0;opacity:1;">

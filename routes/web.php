@@ -21,12 +21,12 @@ Route::get('/about', [HomeController::class,'about'])->name('about');
 Route::get('/jobs', [HomeController::class,'jobs'])->name('jobs');
 Route::get('/services', [HomeController::class,'services'])->name('services');
 Route::get('/contact', [HomeController::class,'contact'])->name('contact');
-Route::get('/companyprofile', [HomeController::class,'companyprofile'])->name('CompanyProfile');
+Route::get('/companyprofile', [HomeController::class,'companyprofile'])->name('CompanyProfile')->middleware('isLoggedIn');
 
 
 
-Route::get('/RegisterCompany', [UserController::class,'CompanySignUp'])->name('CompanySignUp');
-Route::post('/login',[UserController::class,'login'])->name('login');
+Route::get('/RegisterCompany', [UserController::class,'CompanySignUp'])->name('CompanySignUp')->middleware('alreadyLoggedIn');
+Route::post('/login',[UserController::class,'login'])->name('login')->middleware('alreadyLoggedIn');
 Route::post('/RegisterCompany',[UserController::class,'RegisterCompany'])->name('RegisterCompany');
 Route::post('/UpdateCompanyInformation',[UserController::class,'UpdateCompanyInformation'])->name('UpdateCompanyInformation');
 Route::post('/UpdateCompanyLogo',[UserController::class,'UpdateCompanyLogo'])->name('UpdateCompanyLogo');
@@ -40,10 +40,13 @@ Route::get('/PasswordResetSuccessful',[UserController::class,'gobackmsg'])->name
 
 
 
+Route::get('/PostJobs', [JobController::class,'PostJobs'])->name('PostJob')->middleware('isLoggedIn');
+Route::post('/PostJobs',[JobController::class,'PostnewJob'])->name('PostnewJob');
+
+
+
 Route::get('/job_details', [HomeController::class,'Job_details'])->name('Job_details');
-    
 Route::post('/save_jobs_List',[JobController::class,'Add_Job_list'])->name('Save_jobs_List');
-Route::get('/job', [JobController::class,'show_jobs'])->name('job_control');
 Route::get('/delete/{id}', [JobController::class ,'delete_job']);
 Route::post('/edit_jobs_List',[JobController::class,'edit_job'])->name('Update_jobs_List');
 
