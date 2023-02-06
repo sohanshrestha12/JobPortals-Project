@@ -248,4 +248,27 @@ body{
 }
 
 
+/* jobs table */
+.JobsTable table{
+    margin-top: 0.9rem;
+}
+.JobsTable table th{
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.6rem;
+}
+.JobsTable table td{
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.4rem;
+    vertical-align: middle;
+}
+.JobsTable table td a{
+    text-decoration: none;
+}
+.JobsTable table td a i{
+    font-size: 2rem;
+}
+
+
 

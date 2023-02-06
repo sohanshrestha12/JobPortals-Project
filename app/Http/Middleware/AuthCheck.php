@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Session\Session;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthCheck
@@ -17,7 +18,8 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Session()->has('CloginId')){
+        $db_id = User::find(Session()->get('CloginId'));
+        if(!Session()->has('CloginId') || !$db_id){
             return redirect()->route('home');
         }
         return $next($request);

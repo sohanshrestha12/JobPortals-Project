@@ -16,11 +16,16 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('Title');
-            $table->date('Posted_Date');
-            $table->date('Expiry_Date');
-            $table->string('Company_industry');
+            $table->date('ExpiryDate');
+            $table->string('Category');
             $table->bigInteger('Salary');
-            $table->string('Job_description',500)->nullable();
+            $table->string('Skills');
+            $table->string('Description');
+            $table->string('Type');
+            $table->string('experience');
+            $table->integer('status');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

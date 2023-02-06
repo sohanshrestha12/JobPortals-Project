@@ -94,14 +94,14 @@
                         <span class="title">Company Profile</span>
                     </a>
                 </li>
-                <li @if(Request::is('PostJobs')) class="Company-sidebar-active" @endif>
+                <li @if (Request::is('PostJobs')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('PostJob') }}">
                         <span class="icon"><i class="uil uil-comment-plus"></i></span>
                         <span class="title">Post Jobs</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li @if (Request::is('ListofAllJobs') || Request::is('editJobs/'.$id = $id ?? 0)) class="Company-sidebar-active" @endif>
+                    <a href="{{ route('ListofAllJobs') }}">
                         <span class="icon"><i class="uil uil-list-ul"></i></span>
                         <span class="title">Lists of Jobs</span>
                     </a>
@@ -109,7 +109,7 @@
                 <li>
                     <a href="#">
                         <span class="icon"><i class="uil uil-edit"></i></span>
-                        <span class="title">Change Email and Password</span>
+                        <span class="title">Change Password</span>
                     </a>
                 </li>
             </ul>

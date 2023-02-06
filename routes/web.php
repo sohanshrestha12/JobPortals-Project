@@ -42,13 +42,14 @@ Route::get('/PasswordResetSuccessful',[UserController::class,'gobackmsg'])->name
 
 Route::get('/PostJobs', [JobController::class,'PostJobs'])->name('PostJob')->middleware('isLoggedIn');
 Route::post('/PostJobs',[JobController::class,'PostnewJob'])->name('PostnewJob');
+Route::get('/ListofAllJobs', [JobController::class,'ListJobs'])->name('ListofAllJobs');
+Route::get('/editJobs/{id}', [JobController::class,'editJob'])->name('editJobs');
+Route::post('/editJobs', [JobController::class,'JobEditing'])->name('JobEdit');
+Route::get('/deletejobs/{id}', [JobController::class,'Deletejobs'])->name('deletejobs');
 
 
 
 Route::get('/job_details', [HomeController::class,'Job_details'])->name('Job_details');
-Route::post('/save_jobs_List',[JobController::class,'Add_Job_list'])->name('Save_jobs_List');
-Route::get('/delete/{id}', [JobController::class ,'delete_job']);
-Route::post('/edit_jobs_List',[JobController::class,'edit_job'])->name('Update_jobs_List');
 
 
 
