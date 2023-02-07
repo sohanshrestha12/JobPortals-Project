@@ -108,8 +108,8 @@ class JobController extends Controller
     }
 
 
-    public function Deletejobs($id){
-        Job::find($id)->delete();
+    public function Deletejobs(Request $req){
+        Job::find($req->Jobid)->delete();
         return back();
     }
 }

@@ -270,5 +270,13 @@ body{
     font-size: 2rem;
 }
 
+/* job modal  */
+.jobmodal h1{
+    font-size: 1.6rem!important;
+}
+.jobmodal h5,.jobmodal button{
+    font-size: 1.4rem!important;
+}
+
 
 

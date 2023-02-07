@@ -116,25 +116,41 @@
     </section>
     <!-- End Services Section -->
 
+    {{-- Recent Jobs Starts here  --}}
     <section class="inner-content-wrapper section current-job-sec">
         <div class="container">
             <h2 class="section-title mb-0">Recent Jobs<br> <img src="img/title-border.png" alt="">
                 <div class="row w-100 m-0">
-                    <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter new">
-                        <div class="box1 d-flex">
-                            <div class="icon-sec">
-                                <img src="../img/job-icon1.png" alt="">
-                            </div>
-                            <div class="text-sec">
-                                <h4>UI / UX Designer</h4>
+                       @foreach($latestJobs as $jobs)
+                            <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter new">
+                                <div class="box1 d-flex">
+                                    <div class="icon-sec" >
+                                        @if ($jobs->company->ProfileImg == 'defaultImg.png')
+                                            <img src="../img/job-icon1.png" alt="">
+                                        @else
+                                            <img src="{{ asset('storage/Company Logo/' . $jobs->company->ProfileImg) }}"
+                                                alt="" style="height:90px;width:90px;">
+                                        @endif
+                                    </div>
+                                    <div class="text-sec">
+                                        <h4>{{ $jobs->Title }}</h4>
+                                        <a href="job-details.html" target="_blank">job-details.html</a>
+                                        <p><img src="../img/money-bag-icon.png" alt=""> {{ $jobs->Salary }}
+                                        </p>
+                                        <p><img src="../img/map-icon.png"
+                                                alt="">{{ $jobs->company->city . ', ' . $jobs->company->location }}
+                                        </p>
+
+                                        {{-- <h4>UI / UX Designer</h4>
                                 <a href="job-details.html" target="_blank">job-details.html</a>
                                 <p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
                                 <p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
-                                    Victoria Canada</p>
+                                    Victoria Canada</p> --}}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter featured">
+                        @endforeach
+                    {{-- <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter featured">
                         <div class="box1 d-flex">
                             <div class="icon-sec">
                                 <img src="../img/job-icon1.png" alt="">
@@ -231,7 +247,7 @@
                                     Victoria Canada</p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
 

@@ -1,5 +1,28 @@
 @extends('layouts.company')
 @section('content')
+    <!-- Job Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ url('deletejobs') }}" method="post">
+                    @csrf
+                    <div class="modal-header jobmodal">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Job Delete</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body jobmodal">
+                        <input type="hidden" name="Jobid" id="Jobid">
+                        <h5>Are you sure you want to delete this Job?</h5>
+                    </div>
+                    <div class="modal-footer jobmodal">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Yes Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="profile-right-box">
         <div class="row" style="padding: 0 8rem">
             <div class="col-md-12 bg-white shadow-sm" style="padding-bottom: 2rem;">
@@ -30,7 +53,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (count($Jobinfo) <= 0 || count($Jobactive) <=0)
+                                @if (count($Jobinfo) <= 0 || count($Jobactive) <= 0)
                                     <td colspan="7" style="text-align: center;vertical-align:middle;height:6rem">
                                         Currently no active Jobs Listed.</td>
                                 @else
@@ -52,8 +75,11 @@
                                                     <td>
                                                         <a href="{{ url('editJobs') . '/' . $item->id }}" title="Edit"><i
                                                                 class="uil uil-edit" style="color:#287bff;"></i></a>
-                                                        <a href="{{ url('deletejobs') . '/' . $item->id }}"><i
+                                                        {{-- <a href="{{ url('deletejobs') . '/' . $item->id }}"><i
                                                                 class="uil uil-trash-alt"
+                                                                style="margin-left:0.8rem;color:red" title="Delete"></i></a> --}}
+                                                        <a href="javscript:void(0)" data-value="{{ $item->id }}"
+                                                            class="DeleteJobs"><i class="uil uil-trash-alt"
                                                                 style="margin-left:0.8rem;color:red" title="Delete"></i></a>
                                                     </td>
                                                 </tr>
@@ -84,7 +110,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (count($Jobinfo) <= 0 || count($Jobexpired) <=0)
+                                @if (count($Jobinfo) <= 0 || count($Jobexpired) <= 0)
                                     <td colspan="7" style="text-align: center;vertical-align:middle;height:6rem">
                                         Currently no expired Jobs Listed.</td>
                                 @else
@@ -105,8 +131,11 @@
                                                     <td>
                                                         <a href="{{ url('editJobs') . '/' . $item->id }}" title="Edit"><i
                                                                 class="uil uil-edit" style="color:#287bff;"></i></a>
-                                                        <a href="{{ url('deletejobs') . '/' . $item->id }}"><i
+                                                        {{-- <a href="{{ url('deletejobs') . '/' . $item->id }}"><i
                                                                 class="uil uil-trash-alt"
+                                                                style="margin-left:0.8rem;color:red" title="Delete"></i></a> --}}
+                                                        <a href="javscript:void(0)" data-value="{{ $item->id }}"
+                                                            class="DeleteJobs"><i class="uil uil-trash-alt"
                                                                 style="margin-left:0.8rem;color:red" title="Delete"></i></a>
                                                     </td>
                                                 </tr>

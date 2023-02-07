@@ -45,7 +45,8 @@ Route::post('/PostJobs',[JobController::class,'PostnewJob'])->name('PostnewJob')
 Route::get('/ListofAllJobs', [JobController::class,'ListJobs'])->name('ListofAllJobs');
 Route::get('/editJobs/{id}', [JobController::class,'editJob'])->name('editJobs');
 Route::post('/editJobs', [JobController::class,'JobEditing'])->name('JobEdit');
-Route::get('/deletejobs/{id}', [JobController::class,'Deletejobs'])->name('deletejobs');
+// Route::get('/deletejobs/{id}', [JobController::class,'Deletejobs'])->name('deletejobs');
+Route::post('/deletejobs', [JobController::class,'Deletejobs'])->name('deletejobs');
 
 
 

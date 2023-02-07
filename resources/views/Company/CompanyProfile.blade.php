@@ -38,7 +38,7 @@
 
                             <div class="company-form-grp">
                                 <label for="name">Company name</label>
-                                <input type="text" name="name" placeholder="{{ $data->name }}"
+                                <input type="text" name="name" value="{{ $data->name }}"
                                     class="form-control @error('name') is-invalid @enderror">
                                 @error('name')
                                     <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="company-form-grp" style="flex: 1">
                                     <label for="location">Location</label>
-                                    <input type="text" name="location" placeholder="{{ $data->location }}"
+                                    <input type="text" name="location" value="{{ $data->location }}"
                                         class="form-control @error('location') is-invalid @enderror">
                                     @error('location')
                                         <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="company-form-grp" style="flex: 1">
                                 <label for="phoneno">Phone No</label>
-                                <input type="text" name="phoneno" placeholder="{{ $data->phoneno }}"
+                                <input type="text" name="phoneno" value="{{ $data->phoneno }}"
                                     class="form-control @error('phoneno') is-invalid @enderror">
                                 @error('phoneno')
                                     <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
@@ -89,8 +89,7 @@
                             </div>
                             <div class="company-form-grp">
                                 <label for="description">Description </label>
-                                <textarea name="description" rows="5"
-                                    @if ($data->description == '') placeholder="Write about your company" @else placeholder="{{ $data->description }} @endif"></textarea>
+                                <textarea name="description" rows="5">@if ($data->description == '') {{'Write about your company'}} @else {{ $data->description }} @endif</textarea>
                             </div>
                             <div class="company-form-grp d-flex justify-content-end">
                                 <button type="submit">Update</button>

@@ -56,5 +56,12 @@ window.onload = () => {
         }
     }
 
-
+    // deletejobs jquery 
+    $('.DeleteJobs').click(function(e){
+        e.preventDefault();
+    
+        var Jobid = $(this).data("value");
+        $('#Jobid').val(Jobid);
+        $('#deleteModal').modal('show');
+    });
 }
