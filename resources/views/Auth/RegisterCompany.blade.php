@@ -70,7 +70,7 @@
                     </div>
                     <div class="signup-form-grp">
                         <label for="category">Choose Company Industry</label>
-                        <select class="form-select @error('category') is-invalid @enderror" name="category" id="category">
+                        <select class="form-select category @error('category') is-invalid @enderror" name="category" >
                             <option hidden disabled selected value> Choose Company Industries</option>
                             <option value="Art">Art</option>
                             <option value="Web Development">Web Development</option>
@@ -91,7 +91,7 @@
                     <div class="form-one-line">
                         <div class="signup-form-grp" style="flex: 1">
                             <label for="city">City</label>
-                            <select class="form-select @error('city') is-invalid @enderror" name="city" id="category">
+                            <select class="form-select category @error('city') is-invalid @enderror" name="city">
                                 <option hidden disabled selected value> Choose Company City</option>
                                 <option value="Kathmandu">Kathmandu</option>
                                 <option value="Baktapur">Baktapur</option>
