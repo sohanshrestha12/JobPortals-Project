@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="company-information shadow">
-                        <h2 class="header2">About Your Company</h2>
+                        <h2 class="header2" style="color:black">About Your Company</h2>
                         <hr style="height: 3px;width:90%;color: black !important;margin: 0.2rem 0 1rem 0;opacity:1;">
                         <div class="company-information-details">
                             <div class="mt-2 d-flex flex-column" style="padding-left: 2rem;flex-wrap:wrap">

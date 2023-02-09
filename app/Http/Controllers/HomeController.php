@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $data = null;
         $allJobs = Job::all();
-        $latestJobs = Job::latest()->take(6)->get();
+        $latestJobs = Job::where('status','=','1')->latest()->take(6)->get();
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
