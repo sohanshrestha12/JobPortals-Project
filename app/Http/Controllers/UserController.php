@@ -170,7 +170,7 @@ class UserController extends Controller
     }
     public function ForgotPassword()
     {
-        return view('Auth/ForgotPassword');
+        return view('Auth.ForgotPassword');
     }
     public function sendResetLink(Request $req)
     {

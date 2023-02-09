@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -11,10 +12,12 @@ class HomeController extends Controller
     public function home()
     {
         $data = null;
+        $allJobs = Job::all();
+        $latestJobs = Job::where('status','=','1')->latest()->take(6)->get();
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-        return view('Home', compact('data'));
+        return view('Home', compact('data','allJobs','latestJobs'));
     }
     public function services()
     {
@@ -54,7 +57,7 @@ class HomeController extends Controller
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-        return view('CompanyProfile', compact('data'));
+        return view('Company.CompanyProfile', compact('data'));
     }
     public function job_view()
     {
@@ -62,6 +65,16 @@ class HomeController extends Controller
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-        return view('Job',compact('data'));
+
+        return view('Job', compact('data'));
+    }
+    public function Job_details()
+    {
+        $data=null;
+        if(Session::has('Clogin')){
+            $data = User::find(Session::get('CloginId'));
+        }
+        return view('SpecificJob',compact('data'));
+
     }
 }
