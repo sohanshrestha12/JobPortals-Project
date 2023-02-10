@@ -25,6 +25,10 @@ Route::get('/companyprofile', [HomeController::class,'companyprofile'])->name('C
 
 
 
+Route::get('/RegisterJobSeeker', [UserController::class,'JobSeekerSignUp'])->name('JobSeekerSignUp');
+Route::post('/RegisterJobSeeker',[UserController::class,'RegisterJobSeeker'])->name('RegisterJobSeeker');
+
+
 Route::get('/RegisterCompany', [UserController::class,'CompanySignUp'])->name('CompanySignUp')->middleware('alreadyLoggedIn');
 Route::post('/login',[UserController::class,'login'])->name('login')->middleware('alreadyLoggedIn');
 Route::post('/RegisterCompany',[UserController::class,'RegisterCompany'])->name('RegisterCompany');

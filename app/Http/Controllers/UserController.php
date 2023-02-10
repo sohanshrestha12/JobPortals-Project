@@ -21,6 +21,7 @@ class UserController extends Controller
         $data = null;
         return view('Auth.RegisterCompany', compact('data'));
     }
+
     public function RegisterCompany(Request $req)
     {
         $req->validate(
@@ -238,4 +239,7 @@ class UserController extends Controller
     {
         return redirect()->route('home');
     }
+
+//job seeker ko part
+   
 }

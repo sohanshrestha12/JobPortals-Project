@@ -67,7 +67,7 @@
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
-                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="#">Register as
+                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="{{ route('JobSeekerSignUp') }}">Register as
                                         JobSeeker</a></li>
                                 <hr class="mb-2">
                                 <li> <i class="uil uil-building"></i><a class="dropdown-item"
