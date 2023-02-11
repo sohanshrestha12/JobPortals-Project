@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Rules\expireDate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class JobController extends Controller
@@ -112,4 +113,33 @@ class JobController extends Controller
         Job::find($req->Jobid)->delete();
         return back();
     }
+
+    public function ChangeCompanyPassword(){
+        $data = null;
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+            return view('Company.ChangePassword', compact('data'));
+        }
+    }
+    public function ChangePassword(Request $req){
+        $req->validate([
+            'CurrentPassword' => 'required',
+            'NewPassword' => 'required|confirmed|min:6',
+            'NewPassword_confirmation' => 'required'
+        ]);
+        $currentCompany = User::find(session()->get('CloginId'));
+        if($req->email == $currentCompany->email){
+            if(Hash::check($req->CurrentPassword, $currentCompany->password)){
+                $currentCompany->password = Hash::make($req->NewPassword);
+                $currentCompany->Save();
+                return back()->with('success','Password Changed Successfully.');
+            }
+            else{
+                return back()->with('fail','Current password is not valid. Please try again!!!');
+            }
+        }
+        else{
+            return back()->with('fail','Email not found.');
+        }
+    } 
 }

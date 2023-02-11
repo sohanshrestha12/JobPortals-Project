@@ -47,7 +47,8 @@ Route::get('/editJobs/{id}', [JobController::class,'editJob'])->name('editJobs')
 Route::post('/editJobs', [JobController::class,'JobEditing'])->name('JobEdit');
 // Route::get('/deletejobs/{id}', [JobController::class,'Deletejobs'])->name('deletejobs');
 Route::post('/deletejobs', [JobController::class,'Deletejobs'])->name('deletejobs');
-
+Route::get('/ChangeCompanyPassword', [JobController::class,'ChangeCompanyPassword'])->name('ChangeCompanyPassword');
+Route::post('/ChangePassword', [JobController::class,'ChangePassword'])->name('ChangePassword');
 
 
 Route::get('/job_details', [HomeController::class,'Job_details'])->name('Job_details');
