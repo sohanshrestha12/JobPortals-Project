@@ -51,7 +51,6 @@ Route::get('/ChangeCompanyPassword', [JobController::class,'ChangeCompanyPasswor
 Route::post('/ChangePassword', [JobController::class,'ChangePassword'])->name('ChangePassword');
 
 
-Route::get('/job_details', [HomeController::class,'Job_details'])->name('Job_details');
 
 
 
