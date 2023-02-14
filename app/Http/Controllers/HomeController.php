@@ -13,11 +13,11 @@ class HomeController extends Controller
     {
         $data = null;
         $allJobs = Job::all();
-        $latestJobs = Job::where('status','=','1')->latest()->take(6)->get();
+        $latestJobs = Job::where('status', '=', '1')->latest()->take(6)->get();
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-        return view('Home', compact('data','allJobs','latestJobs'));
+        return view('Home', compact('data', 'allJobs', 'latestJobs'));
     }
     public function services()
     {
@@ -59,14 +59,14 @@ class HomeController extends Controller
         }
         return view('Company.CompanyProfile', compact('data'));
     }
-    public function job_view()
+
+    public function ShowJobProfile($id)
     {
         $data = null;
+        $Jid = Job::find($id);
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-
-        return view('Job', compact('data'));
+        return view('Job.JobProfile', compact('data','Jid'));
     }
-
 }

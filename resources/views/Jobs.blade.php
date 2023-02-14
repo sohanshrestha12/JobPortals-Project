@@ -14,7 +14,7 @@
 
             <div class="row w-100 m-0">
                 <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter new">
-                    <a href="{{ route('Job_details') }}">
+                    <a href="">
                         <div class="box d-flex">
                             <div class="icon-sec">
                                 <img src="../img/job-icon1.png" alt="">
