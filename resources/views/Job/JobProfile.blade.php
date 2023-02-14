@@ -9,7 +9,7 @@
             </ul>
         </div>
     </section>
-    <div class="container" style="padding:0 8rem;margin-bottom:8rem;" >
+    <div class="container" style="padding:0 8rem;margin-bottom:8rem;">
         <div class="row bg-white shadow p-5">
             <div class="col-md-12 justify-content-between">
                 <div class="row">
@@ -18,7 +18,8 @@
                             @if ($Jid->company->ProfileImg == 'defaultImg.png')
                                 <img src="../img/job-icon1.png" alt="404 image not found">
                             @else
-                                <img src="{{ asset('storage/Company Logo/' . $Jid->company->ProfileImg) }}" alt="404 image not found">
+                                <img src="{{ asset('storage/Company Logo/' . $Jid->company->ProfileImg) }}"
+                                    alt="404 image not found">
                             @endif
                         </div>
                         <div class="JobCompanyProfilecontent">
@@ -33,19 +34,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5 d-flex flex-column align-items-end">
+                    <div class="col-md-5 d-flex flex-column align-items-end"> 
                         <div style="display: inline-block">
                             <div class="JobProfilePhone">
                                 <i class="uil uil-phone"></i>
                                 <p>{{ $Jid->company->phoneno }}</p>
                             </div>
-                            <div class="JobProfilelocation">
+                            <div class="JobProfilelocation1">
                                 <i class="uil uil-map-marker-alt"></i>
                                 <p>{{ $Jid->company->city . ', ' . $Jid->company->location }}</p>
                             </div>
                             <div class="JobProfileCompanyProfile">
-                                <i class="uil uil-globe"></i>
-                                <p>View Company Profile</p>
+                                <i class="uil uil-globe" style="color: #3c2064"></i>
+                                <a href="{{url('UserCompanyProfile/' . $Jid->company->id)}}" style="text-decoration: none;color:#3c2064;">View Company Profile</a>
                             </div>
                         </div>
                     </div>
@@ -141,7 +142,7 @@
                             <p class="paragraph">Education Degree</p>
                         </div>
                         <div class="col-md-7">
-                            <p class="paragraph">:&nbsp;&nbsp;&nbsp; abcxsssssss</p>
+                            <p class="paragraph">:&nbsp;&nbsp;&nbsp; {{ $Jid->EducationDegree }}</p>
                         </div>
                     </div>
                     <hr style="height: 3px;width:100%;color: black !important;margin: -1.2rem 0 1rem 0">
@@ -152,7 +153,7 @@
                             <p class="paragraph">Education</p>
                         </div>
                         <div class="col-md-7">
-                            <p class="paragraph">:&nbsp;&nbsp;&nbsp; abcxsssssss</p>
+                            <p class="paragraph">:&nbsp;&nbsp;&nbsp; {{ $Jid->Education }}</p>
                         </div>
                     </div>
                     <hr style="height: 3px;width:100%;color: black !important;margin: -1.2rem 0 1rem 0">
@@ -174,7 +175,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="paragraph mt-5" style="text-align:justify;white-space:normal;word-break:break-word;">{{ $Jid->Description }}</p>
+                        <p class="paragraph mt-5" style="text-align:justify;white-space:normal;word-break:break-word;">
+                            {{ $Jid->Description }}</p>
                     </div>
                 </div>
                 <div class="d-flex justify-content-end"

@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('Type');
             $table->string('experience');
             $table->integer('status');
+            $table->string('EducationDegree');
+            $table->string('Education');
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('users');
             $table->timestamps();

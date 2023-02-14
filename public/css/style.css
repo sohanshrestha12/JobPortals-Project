@@ -31,7 +31,7 @@ header {
     position: sticky;
     top: 0;
     background-color: white;
-    z-index: 9;
+    z-index: 99;
 }
 
 #navbar {
@@ -1304,9 +1304,10 @@ p {
     border-radius: 50%;
     overflow: hidden;
     width: 100px;
+    height: 105px;
 }
 .JobCompanyProfile img{
-    object-fit: fill;
+    object-fit: cover;
     width: 100%;
     height: 100%;
 }
@@ -1326,12 +1327,16 @@ p {
     font-size: 1.6rem;
     color: gray;
 }
-.JobProfilePhone,.JobProfilelocation,.JobProfileCompanyProfile{
+.JobProfilePhone,.JobProfilelocation1,.JobProfileCompanyProfile{
     display: flex;
     gap:1.3rem;
 }
-.JobProfilePhone i,.JobProfilelocation i,.JobProfileCompanyProfile i{
+.JobProfilePhone i,.JobProfilelocation1 i,.JobProfileCompanyProfile i{
     font-size:1.8rem;
+}
+.JobProfileCompanyProfile a{
+    font-size: 1.6rem;
+    z-index: 9;
 }
 .JobHeader{
     background-color: black;
@@ -1379,8 +1384,9 @@ p {
     margin: 1rem 0 0 0 ;
 }
 .JobProfileType{
+    margin-top: 1rem;
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
 }
 .JobProfileType div{
@@ -1390,6 +1396,7 @@ p {
 .JobProfileType div p{
     border-radius: 5px;
     padding: .1rem 1rem;
+    margin-top: 0.3rem;
     color: white;
     
 }
@@ -1398,6 +1405,7 @@ p {
     align-items: center;
 }
 .Jobiconprofile i{
+    line-height: 27px;
     font-size: 1.8rem;
     margin-right: .5rem;
     color: var(--main-color);
@@ -1410,4 +1418,15 @@ p {
 }
 .box1:hover{
     scale: 1.02;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+/* UserCompanyProfileImglogo */
+.UserCompanyProfileImglogo{
+    height: 22rem;
+}
+.UserCompanyProfileImglogo img{
+    object-fit: cover;
+    width: 62%;
+    height: 89%;
 }

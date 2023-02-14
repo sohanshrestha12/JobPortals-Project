@@ -126,10 +126,10 @@
                             <div class="box1 d-flex">
                                 <div class="icon-sec">
                                     @if ($jobs->company->ProfileImg == 'defaultImg.png')
-                                        <img src="../img/job-icon1.png" alt="">
+                                        <img src="../img/job-icon1.png" alt="" style="object-fit: cover;">
                                     @else
                                         <img src="{{ asset('storage/Company Logo/' . $jobs->company->ProfileImg) }}"
-                                            alt="" style="height:90px;width:90px;border-radius:50%">
+                                            alt="" style="height:90px;width:90px;border-radius:50%;object-fit: cover;">
                                     @endif
                                 </div>
                                 <div class="text-sec">
@@ -149,7 +149,7 @@
                                         <p>{{ $jobs->Skills }}</p>
                                         <div>
                                             <p
-                                                @if ($jobs->Type == 'Freelance') style="background-color: green" 
+                                                @if ($jobs->Type == 'Freelance') style="background-color: #28a745" 
                                         @elseif($jobs->Type == 'Full Time') style="background-color: orange" 
                                         @else style="background-color:red" @endif>
                                                 {{ $jobs->Type }}</p>
