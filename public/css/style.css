@@ -837,6 +837,7 @@ hr {
     bottom: 0;
     background-size: auto 280px;
     width: 600px;
+    z-index: 1;
     right: 0;
     top: -80px;
 }
@@ -1429,4 +1430,62 @@ p {
     object-fit: cover;
     width: 62%;
     height: 89%;
+}
+
+
+
+/* RelatedJobs  */
+.RelatedJobs img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* pagination  */
+.pagination nav{
+    display: flex;
+    justify-content: center;
+}
+
+.pagination nav ul li span,.pagination nav ul li a{
+    font-size: 1.6rem;
+    padding: 0.7rem 1.5rem;
+}
+.page-link.active, .active>.page-link{
+    background-color: var(--main-color)!important;
+    border-color: var(--main-color)!important;
+    color: white!important;
+}
+.page-link{
+    color: var(--main-color)!important;
+}
+
+/* jobsearch  */
+.search input{
+    padding: 1rem 1.6rem;
+    font-size: 1.4rem;
+}
+.JobsearchBtn button{
+    border-radius: 5px;
+    padding: 0.9rem 2rem;
+    font-size: 1.6rem;
+    border: none;
+    background-color: var(--main-color);
+    color: white;
+}
+.JobFilter{
+    font-size: 1.6rem;
+    gap:0.5rem;
+    background:#ff6158;
+    border-radius: 5px;
+    margin-left: -11rem;
+}
+.JobFilter i{
+    font-size: 1.8rem;
+}
+.JobFilter i,.JobFilter h2{
+    color: white;
+}
+.JobFilter h2{
+    margin: 0;
 }

@@ -28,13 +28,20 @@ class HomeController extends Controller
         }
         return view('Services', compact('data'));
     }
-    public function jobs()
+    public function jobs(Request $req)
     {
         $data = null;
+        $Jobsearch = $req->Jobsearch;
+        if($req->Jobsearch == ""){
+            $joblist = Job::paginate(10);
+        }
+        else{
+            $joblist = Job::where('Title', 'LIKE', "%$req->Jobsearch%")->paginate(10);
+        }
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-        return view('Jobs', compact('data'));
+        return view('Jobs', compact('data','joblist','Jobsearch'));
     }
     public function about()
     {
@@ -65,10 +72,11 @@ class HomeController extends Controller
     {
         $data = null;
         $Jid = Job::find($id);
+        $relatedjobs = Job::where([['Category', $Jid->Category], ['id','!=',$Jid->id],['status','1']])->latest()->take(6)->get();
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-        return view('Job.JobProfile', compact('data','Jid'));
+        return view('Job.JobProfile', compact('data','Jid','relatedjobs'));
     }
     public function ShowCompanyProfile($id)
     {

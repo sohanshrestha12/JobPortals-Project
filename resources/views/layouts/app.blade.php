@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -137,7 +139,7 @@
 
     <div class="row login-modal-background justify-content-center align-items-center" id="login-modal-background">
         <div class="col-md-4 bg-white shadow">
-            <form class="form-layout" action="{{ route('login') }}" method="POST">
+            <form class="form-layout" action="{{ route('login') }}" method="POST" >
                 @csrf
                 <div class="close-div">
                     <span class="close-modal" title="Close">&times;</span>
@@ -182,6 +184,7 @@
                     <div class="forgot-password">
                         <a href="{{ route('ForgotPassword') }}" class="paragraph">Forgot Password?</a>
                     </div>
+                    
                     <button type="submit" class="Cbtn">Login</button>
                 </div>
             </form>
@@ -205,7 +208,6 @@
 
 
     <script src="{{ asset('js/index.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 </body>
 

@@ -1,5 +1,21 @@
 @extends('layouts.app')
 @section('content')
+    @php
+        
+        use Carbon\Carbon;
+        
+        $currentdate = Carbon::now();
+        
+        $userexpire = App\Models\Job::get();
+        
+        foreach ($userexpire as $user) {
+            if ($currentdate > $user->ExpiryDate) {
+                $user->status = '0';
+                $user->save();
+            }
+        }
+    @endphp
+
     <section class="banner-sec">
         <div class="banner-text">
             <h2>Find The Job That Fits Your Life</h2>
@@ -129,21 +145,23 @@
                                         <img src="../img/job-icon1.png" alt="" style="object-fit: cover;">
                                     @else
                                         <img src="{{ asset('storage/Company Logo/' . $jobs->company->ProfileImg) }}"
-                                            alt="" style="height:90px;width:90px;border-radius:50%;object-fit: cover;">
+                                            alt=""
+                                            style="height:90px;width:90px;border-radius:50%;object-fit: cover;">
                                     @endif
                                 </div>
                                 <div class="text-sec">
                                     <a href="{{ url('JobProfile/' . $jobs->id) }}">
                                         <h4>{{ ucfirst($jobs->Title) }}</h4>
                                     </a>
-                                    <a href="job-details.html"  style="margin-left: .5rem!important" target="_blank">{{ ucfirst($jobs->company->name) }}</a>
+                                    <a href="job-details.html" style="margin-left: .5rem!important"
+                                        target="_blank">{{ ucfirst($jobs->company->name) }}</a>
                                     <div class="Jobiconprofile">
                                         <i class="uil uil-rupee-sign"></i>
-                                        <p>{{'Rs. ' . $jobs->Salary }}</p>
+                                        <p>{{ 'Rs. ' . $jobs->Salary }}</p>
                                     </div>
                                     <div class="Jobiconprofile">
                                         <i class="uil uil-map-marker"></i>
-                                        <p>{{'Location ' . $jobs->company->city . ', ' . $jobs->company->location }}</p>
+                                        <p>{{ 'Location ' . $jobs->company->city . ', ' . $jobs->company->location }}</p>
                                     </div>
                                     <div class="JobProfileType">
                                         <p>{{ $jobs->Skills }}</p>

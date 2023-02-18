@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5 d-flex flex-column align-items-end"> 
+                    <div class="col-md-5 d-flex flex-column align-items-end">
                         <div style="display: inline-block">
                             <div class="JobProfilePhone">
                                 <i class="uil uil-phone"></i>
@@ -46,7 +46,8 @@
                             </div>
                             <div class="JobProfileCompanyProfile">
                                 <i class="uil uil-globe" style="color: #3c2064"></i>
-                                <a href="{{url('UserCompanyProfile/' . $Jid->company->id)}}" style="text-decoration: none;color:#3c2064;">View Company Profile</a>
+                                <a href="{{ url('UserCompanyProfile/' . $Jid->company->id) }}"
+                                    style="text-decoration: none;color:#3c2064;">View Company Profile</a>
                             </div>
                         </div>
                     </div>
@@ -54,10 +55,40 @@
             </div>
         </div>
         <div class="row justify-content-between" style="margin-top:5rem">
-            <div class="col-md-4 bg-white shadow p-5" style="height:fit-content">
-                <div style="background: rgba(0,0,0,.03);margin:-3rem;padding:2rem 1rem;">
+            <div class="col-md-4 bg-white shadow " style="height:fit-content">
+                <div class="border border-top-0 border-start-0 border-end-0"
+                    style="background: rgba(0,0,0,.03);padding:2rem 1rem;margin: 0 -1rem">
                     <h2 class="header2" style="margin-left:3rem;margin-bottom: 0">Related Jobs</h2>
                 </div>
+                @if (count($relatedjobs) <= 0)
+                    <div class="row border border-top-0 border-start-0 border-end-0"
+                        style="margin:1rem 0 0 0; padding:1rem 0">
+                        <div class="col-md-12 RelatedJobs d-flex justify-content-center">
+                            <p>Currently no related jobs available.</p>
+                        </div>
+                    </div>
+                @else
+                    @foreach ($relatedjobs as $jobs)
+                        <div class="row border border-top-0 border-start-0 border-end-0"
+                            style="margin:1rem 0 0 0; padding:1rem 0">
+                            <div class="col-md-4 RelatedJobs d-flex justify-content-center">
+                                <div style="height:70px;width:70px">
+                                    @if ($jobs->company->ProfileImg == 'defaultImg.png')
+                                        <img src="../img/job-icon1.png" alt="">
+                                    @else
+                                        <img src="{{ asset('storage/Company Logo/' . $jobs->company->ProfileImg) }}"
+                                            alt="">
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <a href="{{ url('JobProfile/' . $jobs->id) }}"
+                                    style="letter-spacing: 2px;font-weight:500;text-decoration:none;color:#3c2064;font-size:1.8rem">{{ucfirst($jobs->Title) }}</a>
+                                <p style="letter-spacing: 0.9px">{{ ucfirst($jobs->company->name) }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
             <div class="col-md-7 bg-white shadow p-5" style="overflow: hidden">
                 <div style="background: rgba(0,0,0,.03);margin:-3rem;padding:2rem 1rem;">
@@ -67,6 +98,7 @@
                 <div class="JobHeader" style="margin-top: 4rem">
                     <h2 style="margin-bottom: 0">Basic Information</h2>
                 </div>
+
                 <div class="SingleJobCategory">
                     <div class="row">
                         <div class="col-md-5">

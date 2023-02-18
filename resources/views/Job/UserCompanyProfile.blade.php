@@ -24,7 +24,30 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-9 border border-dark-subtle border-start-0 border-end-0 p-4">
-                <h1>oaspd</h1>
+                <div class="row justify-content-between">
+                    <div class="col-md-4">
+                        <h2 class="header2" style="letter-spacing:2px">Type:</h2>
+                        <p style="letter-spacing:2px">{{ $Cid->category }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 class="header2" style="letter-spacing:2px">Established In:</h2>
+                        <p style="letter-spacing:2px">{{ Carbon\Carbon::parse($Cid->established)->format('Y') }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 class="header2" style="letter-spacing:2px">Official Website:</h2>
+                        @if ($Cid->link == null || $Cid->link == '')
+                            <p style="letter-spacing:2px">Link not available.</p>
+                        @else
+                            <a href="{{ $Cid->link }}" target="_blank" style="font-size:16px; text-decoration:none;letter-spacing:2px">{{ $Cid->link }}</a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-9 p-4">
+                <h1>Company description</h1>
+                <p>{{$Cid->description}}</p>
             </div>
         </div>
     </div>
