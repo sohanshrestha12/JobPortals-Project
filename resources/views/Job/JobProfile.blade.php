@@ -83,7 +83,7 @@
                             </div>
                             <div class="col-md-8">
                                 <a href="{{ url('JobProfile/' . $jobs->id) }}"
-                                    style="letter-spacing: 2px;font-weight:500;text-decoration:none;color:#3c2064;font-size:1.8rem">{{ucfirst($jobs->Title) }}</a>
+                                    style="letter-spacing: 2px;font-weight:500;text-decoration:none;color:#3c2064;font-size:1.8rem">{{ ucfirst($jobs->Title) }}</a>
                                 <p style="letter-spacing: 0.9px">{{ ucfirst($jobs->company->name) }}</p>
                             </div>
                         </div>
@@ -211,14 +211,21 @@
                             {{ $Jid->Description }}</p>
                     </div>
                 </div>
-                <div class="d-flex justify-content-end"
-                    style="background: rgba(0,0,0,.03);margin:3rem -3rem -3rem -3rem;padding:2rem 1rem;">
-                    <div class="d-flex">
-                        <button class="JobApplyNowBtn" type="submit"><i class="uil uil-plus-circle"
-                                style="color:white;font-size: 1.8rem;margin-right:0.6rem;margin-top:0.2rem"></i>Apply
-                            Now</button>
+                @if (Session::has('UloginId'))
+                    <div class="d-flex justify-content-end"
+                        style="background: rgba(0,0,0,.03);margin:3rem -3rem -3rem -3rem;padding:2rem 1rem;">
+                        <div class="d-flex">
+                            <button class="JobApplyNowBtn" type="submit"><i class="uil uil-plus-circle"
+                                    style="color:white;font-size: 1.8rem;margin-right:0.6rem;margin-top:0.2rem"></i>Apply
+                                Now</button>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="d-flex justify-content-center"
+                        style="background: rgba(0,0,0,.03);margin:3rem -3rem -3rem -3rem;padding:2rem 1rem;">
+                        <p style="margin: 1rem 0 0 0;color:black;">Login as Jobseeker to apply to this job.</p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

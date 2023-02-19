@@ -1480,6 +1480,9 @@ p {
     border-radius: 5px;
     margin-left: -11rem;
 }
+.JobFilter:hover{
+    cursor: pointer;
+}
 .JobFilter i{
     font-size: 1.8rem;
 }
@@ -1488,4 +1491,18 @@ p {
 }
 .JobFilter h2{
     margin: 0;
+}
+#Jfilter{
+    height: 0;
+    visibility: hidden;
+    transition: max-height 0.3s ease;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    margin-right: 0.8rem;
+    margin-left: 0.8rem;
+    padding-left: 0.8rem;
+}
+.Jactive{
+    height: 10rem !important;
+    visibility: visible!important;
 }

@@ -31,17 +31,67 @@ class HomeController extends Controller
     public function jobs(Request $req)
     {
         $data = null;
+        $searchdata = $req->all();  
         $Jobsearch = $req->Jobsearch;
-        if($req->Jobsearch == ""){
+        if($req->Jobsearch == "" && empty($req->JobType) && empty($req->jobCategory) && empty($req->minsalary) && empty($req->maxsalary)){
             $joblist = Job::paginate(10);
+        } 
+        elseif($req->Jobsearch && empty($req->JobType) && empty($req->jobCategory) && empty($req->minsalary) && empty($req->maxsalary)){
+            $joblist = Job::where([['Title', 'LIKE', "%$req->Jobsearch%"]])->paginate(10);       
+        }
+        elseif($req->Jobsearch && $req->JobType && empty($req->jobCategory) && empty($req->minsalary) && empty($req->maxsalary)){
+            $joblist = Job::where([['Title', 'LIKE', "%$req->Jobsearch%"],['Type',$req->JobType]])->paginate(10);       
+        }
+        elseif($req->Jobsearch && $req->JobType && $req->jobCategory && empty($req->minsalary) && empty($req->maxsalary)){
+            $joblist = Job::where([['Title', 'LIKE', "%$req->Jobsearch%"],['Type',$req->JobType],['Category', $req->jobCategory]])->paginate(10);       
+        }
+        elseif($req->Jobsearch && $req->JobType && $req->minsalary && $req->maxsalary && empty($req->jobCategory)){
+            $joblist = Job::where([['Title', 'LIKE', "%$req->Jobsearch%"],['Type',$req->JobType],['Salary','>=',$req->minsalary],['Salary','<=',$req->maxsalary]])->paginate(10);       
+        }
+        elseif($req->Jobsearch && $req->jobCategory && $req->minsalary && $req->maxsalary && empty($req->JobType) ){
+            $joblist = Job::where([['Title', 'LIKE', "%$req->Jobsearch%"],['Category', $req->jobCategory],['Salary','>=',$req->minsalary],['Salary','<=',$req->maxsalary]])->paginate(10);       
+        }
+        elseif($req->Jobsearch && $req->jobCategory && empty($req->JobType) && empty($req->minsalary) && empty($req->maxsalary)){
+            $joblist = Job::where([['Title', 'LIKE', "%$req->Jobsearch%"],['Category', $req->jobCategory]])->paginate(10);       
+        }
+        elseif($req->Jobsearch && $req->minsalary && $req->maxsalary && empty($req->jobCategory) && empty($req->JobType)){
+            $joblist = Job::where([['Title', 'LIKE', "%$req->Jobsearch%"],['Salary','>=',$req->minsalary],['Salary','<=',$req->maxsalary]])->paginate(10);       
+        }
+        elseif($req->Jobsearch && $req->JobType && $req->jobCategory  && $req->minsalary && $req->maxsalary){
+            $joblist = Job::where([['Title', 'LIKE', "%$req->Jobsearch%"],['Type',$req->JobType],['Category', $req->jobCategory],['Salary','>=',$req->minsalary],['Salary','<=',$req->maxsalary]])->paginate(10);       
+        }
+        elseif($req->JobType && empty($req->Jobsearch) && empty($req->jobCategory) && empty($req->minsalary) && empty($req->maxsalary)){
+            $joblist = Job::where([['Type',$req->JobType]])->paginate(10);       
+        }
+        elseif($req->jobCategory && empty($req->Jobsearch) && empty($req->JobType) && empty($req->minsalary) && empty($req->maxsalary)){
+            $joblist = Job::where([['Category', $req->jobCategory]])->paginate(10);       
+        }
+        elseif($req->minsalary && $req->maxsalary && empty($req->Jobsearch) && empty($req->jobCategory) && empty($req->JobType)){
+            $joblist = Job::where([['Salary','>=',$req->minsalary],['Salary','<=',$req->maxsalary]])->paginate(10);       
+        }
+        elseif(empty($req->Jobsearch) && $req->JobType && $req->jobCategory  && $req->minsalary && $req->maxsalary){
+            $joblist = Job::where([['Type',$req->JobType],['Category', $req->jobCategory],['Salary','>=',$req->minsalary],['Salary','<=',$req->maxsalary]])->paginate(10);       
+        }
+        elseif(empty($req->Jobsearch) && $req->JobType && $req->jobCategory && empty($req->minsalary) && empty($req->maxsalary)){
+            $joblist = Job::where([['Type',$req->JobType],['Category', $req->jobCategory]])->paginate(10);       
+        }
+        elseif(empty($req->Jobsearch) && $req->JobType && $req->minsalary && $req->maxsalary && empty($req->jobCategory)){
+            $joblist = Job::where([['Type',$req->JobType],['Salary','>=',$req->minsalary],['Salary','<=',$req->maxsalary]])->paginate(10);       
+        }
+        elseif(empty($req->Jobsearch) && $req->jobCategory && $req->minsalary && $req->maxsalary && empty($req->JobType) ){
+            $joblist = Job::where([['Category', $req->jobCategory],['Salary','>=',$req->minsalary],['Salary','<=',$req->maxsalary]])->paginate(10);       
         }
         else{
-            $joblist = Job::where('Title', 'LIKE', "%$req->Jobsearch%")->paginate(10);
+            $joblist = Job::paginate(10);
         }
+
+
+
+
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-        return view('Jobs', compact('data','joblist','Jobsearch'));
+        return view('Jobs', compact('data','joblist','Jobsearch','searchdata'));
     }
     public function about()
     {

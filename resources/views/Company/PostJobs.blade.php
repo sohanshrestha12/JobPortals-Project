@@ -157,7 +157,7 @@
                     <div class="company-form-grp">
                         <label for="salary">Salary</label>
                         <input type="text" name="salary" class="form-control @error('salary') is-invalid @enderror"
-                            value="{{ old('salary') }}">
+                            value="{{ old('salary') }}" placeholder="In Rs.">
                         @error('salary')
                             <span class="invalid-feedback"
                                 style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
