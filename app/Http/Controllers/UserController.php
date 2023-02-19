@@ -174,7 +174,7 @@ class UserController extends Controller
     }
     public function sendResetLink(Request $req)
     {
-        
+
         $req->validate(
             [
                 'ForgotEmail' => 'required|email:rfc,dns|exists:users,email'
@@ -195,7 +195,7 @@ class UserController extends Controller
         $body  = "We received a request to reset the password for <b>JobPortal</b> account associated with " . $req->ForgotEmail . " You can reset your password by clicking the link below.";
 
         Mail::send('Auth.ResetPassword', ['actionlink' => $action_link, 'body' => $body], function ($message) use ($req) {
-            $message->from('sohanshrestha40@gmail.com', 'JobPortal');
+            $message->from('psunuwar100@gmail.com', 'JobPortal');
             $message->to($req->ForgotEmail, 'User');
             $message->subject('JobPortal Reset Password!');
         });
