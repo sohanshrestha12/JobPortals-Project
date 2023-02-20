@@ -34,7 +34,7 @@
                             @if (Request::is('contact')) class="active" @endif>Contact</a>
                     </li>
                 </ul>
-                @if (session()->has('AloginId') || session()->has('UloginId') || session()->has('CloginId'))
+                @if (session()->has('AloginId') || session()->has('UloginId') || session()->has('CloginId') || session()->has('GUloginId') )
                     <div class="profile">
                         @if ($data->ProfileImg === 'defaultImg.png')
                             <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
@@ -50,7 +50,7 @@
 
                             <ul class="dropdown-menu" id="drop-menu" style="width:12rem">
                                 <li><i class="uil uil-user"></i><a class="dropdown-item"
-                                        href="{{ route('CompanyProfile') }}">Profile</a></li>
+                                        href="{{ route('JobSeekerprofile') }}">Profile</a></li>
                                 <hr class="mb-2">
                                 <li> <i class="uil uil-signout"></i><a class="dropdown-item"
                                         href="{{ route('logout') }}">Logout</a></li>
@@ -86,31 +86,25 @@
                 <li>
                     <a href="javascript:void(0)">
                         <span class="icon"><i class="uil uil-estate"></i></span>
-                        <span class="title">Company DashBoard</span>
+                        <span class="title">DashBoard</span>
                     </a>
                 </li>
                 <li @if (Request::is('companyprofile')) class="Company-sidebar-active" @endif>
-                    <a href="{{ route('CompanyProfile') }}">
+                    <a href="{{ route('JobSeekerprofile') }}">
                         <span class="icon"><i class="uil uil-user-circle"></i></span>
-                        <span class="title">Company Profile</span>
-                    </a>
-                </li>
-                <li @if (Request::is('PostJobs')) class="Company-sidebar-active" @endif>
-                    <a href="{{ route('PostJob') }}">
-                        <span class="icon"><i class="uil uil-comment-plus"></i></span>
-                        <span class="title">Post Jobs</span>
-                    </a>
-                </li>
-                <li @if (Request::is('ListofAllJobs') || Request::is('editJobs/'.$id = $id ?? 0)) class="Company-sidebar-active" @endif>
-                    <a href="{{ route('ListofAllJobs') }}">
-                        <span class="icon"><i class="uil uil-list-ul"></i></span>
-                        <span class="title">Lists of Jobs</span>
+                        <span class="title">Profile</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <span class="icon"><i class="uil uil-edit"></i></span>
+                        <span class="icon"><i class="uil uil-key-skeleton"></i></span>
                         <span class="title">Change Password</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('logout') }}">
+                        <span class="icon"><i class="uil uil-sign-out-alt"></i></span>
+                        <span class="title">Logout</span>
                     </a>
                 </li>
             </ul>

@@ -44,7 +44,7 @@
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
-                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="#">Register as
+                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="{{ route('JobSeekerSignUp') }}">Register as
                                         JobSeeker</a></li>
                                 <hr class="mb-2">
                                 <li> <i class="uil uil-building"></i><a class="dropdown-item"
@@ -53,7 +53,7 @@
                             </ul>
                         </div>
                     </div>
-                @elseif(session()->has('AloginId') || session()->has('UloginId') || session()->has('CloginId'))
+                @elseif(session()->has('AloginId') || session()->has('UloginId') || session()->has('CloginId') || session()->has('GUloginId'))
                     <div class="profile">
                         @if ($data->ProfileImg === 'defaultImg.png')
                             <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
@@ -86,7 +86,7 @@
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
-                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="#">Register as
+                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="{{ route('JobSeekerSignUp') }}">Register as
                                         JobSeeker</a></li>
                                 <hr class="mb-2">
                                 <li> <i class="uil uil-building"></i><a class="dropdown-item"
@@ -181,6 +181,9 @@
                     @enderror
                     <div class="forgot-password">
                         <a href="{{ route('ForgotPassword') }}" class="paragraph">Forgot Password?</a>
+                    </div>
+                    <div class="Google_login">
+                        <a href="{{ route('login_with_google') }}" class="paragraph">Login With Google</a>
                     </div>
                     <button type="submit" class="Cbtn">Login</button>
                 </div>
