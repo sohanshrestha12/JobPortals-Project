@@ -1,10 +1,10 @@
 @extends('layouts.company')
 @section('content')
     <div class="profile-right-box">
-        <div class="container p-5">
+        <div class="container" style="padding: 0 4rem">
             <div class="row">
-                <h1 class="header1" style="color: #ff6158;letter-spacing:1px;">Company Profile</h1>
-                <hr style="height: 3px;width:90%;color: black !important;margin: 0.7rem 0 5rem 0rem;">
+                <h1 class="header1" style="color: #ff6158;letter-spacing:1px;padding-left:25px;">Company Profile</h1>
+                <hr style="height: 3px;width:90%;color: black !important;margin: 0.7rem 0 5rem 2.5rem;">
                 <div class="col-md-3 d-flex flex-column align-items-center mt" style="gap: 3rem">
                     <div class="company-logo shadow">
                         @if ($data->ProfileImg === 'defaultImg.png')
@@ -20,7 +20,7 @@
                             class="d-flex flex-column">
                             @csrf
                             <input type="hidden" name="id" value="{{ $data->id }}">
-                            <input type="file" accept="image/x-png,image/gif,image/jpeg" name="logo">
+                            <input type="file" accept="image/x-png,image/gif,image/jpeg" name="logo" style="color:black;">
                             @error('logo')
                                 <span style="font-size:1.3rem;color:red">{{ $message }}</span>
                             @enderror
@@ -38,7 +38,7 @@
 
                             <div class="company-form-grp">
                                 <label for="name">Company name</label>
-                                <input type="text" name="name" placeholder="{{ $data->name }}"
+                                <input type="text" name="name" value="{{ $data->name }}"
                                     class="form-control @error('name') is-invalid @enderror">
                                 @error('name')
                                     <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
@@ -47,7 +47,7 @@
                             <div class="form-one-line">
                                 <div class="company-form-grp" style="flex: 1;">
                                     <label for="city">City</label>
-                                    <select id="category" name="city">
+                                    <select class="category" name="city">
                                         <option @if ($data->city == 'Kathmandu') selected @endif value="Kathmandu">
                                             Kathmandu</option>
                                         <option @if ($data->city == 'Baktapur') selected @endif value="Baktapur">Baktapur
@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="company-form-grp" style="flex: 1">
                                     <label for="location">Location</label>
-                                    <input type="text" name="location" placeholder="{{ $data->location }}"
+                                    <input type="text" name="location" value="{{ $data->location }}"
                                         class="form-control @error('location') is-invalid @enderror">
                                     @error('location')
                                         <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="company-form-grp" style="flex: 1">
                                 <label for="phoneno">Phone No</label>
-                                <input type="text" name="phoneno" placeholder="{{ $data->phoneno }}"
+                                <input type="text" name="phoneno" value="{{ $data->phoneno }}"
                                     class="form-control @error('phoneno') is-invalid @enderror">
                                 @error('phoneno')
                                     <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
@@ -89,8 +89,7 @@
                             </div>
                             <div class="company-form-grp">
                                 <label for="description">Description </label>
-                                <textarea name="description" rows="5"
-                                    @if ($data->description == '') placeholder="Write about your company" @else placeholder="{{ $data->description }} @endif"></textarea>
+                                <textarea name="description" rows="5">@if ($data->description == '') {{'Write about your company'}} @else {{ $data->description }} @endif</textarea>
                             </div>
                             <div class="company-form-grp d-flex justify-content-end">
                                 <button type="submit">Update</button>
@@ -98,9 +97,9 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-3 d-flex justify-content-center ">
+                <div class="col-md-3 d-flex justify-content-center">
                     <div class="company-information shadow">
-                        <h2 class="header2">About Your Company</h2>
+                        <h2 class="header2" style="color:black">About Your Company</h2>
                         <hr style="height: 3px;width:90%;color: black !important;margin: 0.2rem 0 1rem 0;opacity:1;">
                         <div class="company-information-details">
                             <div class="mt-2 d-flex flex-column" style="padding-left: 2rem;flex-wrap:wrap">

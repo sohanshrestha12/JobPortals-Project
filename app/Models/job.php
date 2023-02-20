@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class job extends Model
+class Job extends Model
 {
     use HasFactory;
-    protected $fillable = ['Title','Posted_Date','Expiry_Date','Company_industry','Salary','Job_description'];
-
+    protected $fillable = ['Title','ExpiryDate','Category','Salary','Skills','Description','Type','experience','company_id','status'];
+    
+    public function company(){
+        return $this->belongsTo(User::class);
+    }
 }

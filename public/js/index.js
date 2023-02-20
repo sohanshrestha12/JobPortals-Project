@@ -24,25 +24,44 @@ window.onload = () => {
     });
 
     // show and hide password 
+    if(register_closeeye){
+        register_closeeye.style.fontSize = "0";
+    }
+    if(eyes){
+        eyes.addEventListener('click', () => {
+            if (register_password.type == "text") {
+                register_password.type = "password";
+                register_openeye.style.fontSize = "2.2rem";
+                register_closeeye.style.fontSize = "0";
+    
+            }
+            else {
+                register_password.type = "text";
+                register_closeeye.style.fontSize = "2.2rem";
+                register_openeye.style.fontSize = "0";
+            }
+    
+        });
+    }
 
-    register_closeeye.style.fontSize = "0";
-
-    eyes.addEventListener('click', () => {
-        if (register_password.type == "text") {
-            register_password.type = "password";
-            register_openeye.style.fontSize = "2.2rem";
-            register_closeeye.style.fontSize = "0";
-
+    // Company Menu Toggle
+    let toggle = document.querySelector('.toggle');
+    let navigation = document.querySelector('.navigation');
+    let main = document.querySelector('.main');
+    if(toggle)
+    {
+        toggle.onclick = function(){
+            navigation.classList.toggle('Company-sidebar-toggle');
+            main.classList.toggle('active');
         }
-        else {
-            register_password.type = "text";
-            register_closeeye.style.fontSize = "2.2rem";
-            register_openeye.style.fontSize = "0";
-        }
+    }
 
+    // deletejobs jquery 
+    $('.DeleteJobs').click(function(e){
+        e.preventDefault();
+    
+        var Jobid = $(this).data("value");
+        $('#Jobid').val(Jobid);
+        $('#deleteModal').modal('show');
     });
-
-
-   
-
 }
