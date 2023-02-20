@@ -18,13 +18,20 @@ class HomeController extends Controller
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-        return view('Home', compact('data', 'allJobs', 'latestJobs'));
+        elseif(Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+        }
+        return view('Home', compact('data','allJobs','latestJobs'));
+
     }
     public function services()
     {
         $data = null;
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
+        }
+        elseif(Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
         }
         return view('Services', compact('data'));
     }
@@ -91,13 +98,23 @@ class HomeController extends Controller
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
+
+        
+
+        elseif(Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+        }
         return view('Jobs', compact('data','joblist','Jobsearch','searchdata'));
+
     }
     public function about()
     {
         $data = null;
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
+        }
+        elseif(Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
         }
         return view('About', compact('data'));
     }
@@ -107,6 +124,9 @@ class HomeController extends Controller
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
+        elseif(Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+        }
         return view('Contact', compact('data'));
     }
     public function companyprofile()
@@ -115,7 +135,27 @@ class HomeController extends Controller
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
+        elseif(Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+        }
         return view('Company.CompanyProfile', compact('data'));
+    } 
+ 
+    public function JobSeekerprofile()
+    {
+        if (Session::has('GUloginId')) {
+            $data = User::where('email','=',Session::get('GUloginId'))->first();         
+        }
+        elseif(Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+        }
+        elseif(Session::has('CloginId')){
+            $data = User::find(Session::get('CloginId'));
+        }
+        else{
+            $data = null;
+        }
+        return view('JobSeeker.JobSeekerProfile', compact('data'));
     }
 
     public function ShowJobProfile($id)
@@ -135,6 +175,11 @@ class HomeController extends Controller
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
+        elseif(Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+        }
         return view('Job.UserCompanyProfile', compact('data','Cid'));
     }
+
+
 }
