@@ -22,8 +22,10 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('location')->nullable();
             $table->string('role');
+            $table->string('link')->nullable();
             $table->bigInteger('phoneno')->nullable();
             $table->string('description',500)->nullable();
+            $table->date('established')->nullable();
             $table->string('ProfileImg')->default('defaultImg.png');
             $table->string('ProfileImgPath')->default('public/default/defaultImg.jpg');
             $table->string('Skills',200)->nullable();

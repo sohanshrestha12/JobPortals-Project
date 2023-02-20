@@ -64,4 +64,11 @@ window.onload = () => {
         $('#Jobid').val(Jobid);
         $('#deleteModal').modal('show');
     });
+
+    //filter jobs
+    let filter = document.querySelector('.JobFilter');
+    let Jfilter = document.querySelector('#Jfilter');
+    filter.addEventListener('click',()=>{
+        Jfilter.classList.toggle('Jactive');
+    });
 }

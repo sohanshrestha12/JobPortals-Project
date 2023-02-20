@@ -30,7 +30,9 @@ class JobController extends Controller
             'jobType' => 'required',
             'requiredSkills' => 'required',
             'experience' => 'required',
-            'salary' => 'required|integer'
+            'salary' => 'required|integer',
+            'EducationDegree' => 'required',
+            'Education' => 'required'
         ]);
         Job::create([
             'Title' => $req->jobTitle,
@@ -41,6 +43,8 @@ class JobController extends Controller
             'Description' => $req->jobDescription,
             'Type' => $req->jobType,
             'experience' => $req->experience,
+            'Education' => $req->Education,
+            'EducationDegree' => $req->EducationDegree,
             'company_id' => $req->companyId,
             'status' => '1'
         ]);
@@ -91,7 +95,9 @@ class JobController extends Controller
             'requiredSkills' => 'required',
             'experience' => 'required',
             'salary' => 'required|integer',
-            'status' => 'required'
+            'status' => 'required',
+            'Education' => 'required',
+            'EducationDegree' =>'required'
         ]);
         $newData = Job::where('id', '=', $req->Jobid)->first();
         $newData->Title = $req->jobTitle;
@@ -103,6 +109,8 @@ class JobController extends Controller
         $newData->experience = $req->experience;
         $newData->Salary = $req->salary;
         $newData->status = $req->status;
+        $newData->EducationDegree = $req->EducationDegree;
+        $newData->Education = $req->Education;
         $newData->save();
 
         return redirect()->route('ListofAllJobs')->with('sucess','The record has been successfully changed.');

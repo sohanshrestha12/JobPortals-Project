@@ -1,5 +1,21 @@
 @extends('layouts.app')
 @section('content')
+    @php
+        
+        use Carbon\Carbon;
+        
+        $currentdate = Carbon::now();
+        
+        $userexpire = App\Models\Job::get();
+        
+        foreach ($userexpire as $user) {
+            if ($currentdate > $user->ExpiryDate) {
+                $user->status = '0';
+                $user->save();
+            }
+        }
+    @endphp
+
     <section class="banner-sec">
         <div class="banner-text">
             <h2>Find The Job That Fits Your Life</h2>
@@ -121,35 +137,55 @@
         <div class="container">
             <h2 class="section-title mb-0">Recent Jobs<br> <img src="img/title-border.png" alt="">
                 <div class="row w-100 m-0">
-                       @foreach($latestJobs as $jobs)
-                            <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter new">
-                                <div class="box1 d-flex">
-                                    <div class="icon-sec" >
-                                        @if ($jobs->company->ProfileImg == 'defaultImg.png')
-                                            <img src="../img/job-icon1.png" alt="">
-                                        @else
-                                            <img src="{{ asset('storage/Company Logo/' . $jobs->company->ProfileImg) }}"
-                                                alt="" style="height:90px;width:90px;">
-                                        @endif
+                    @foreach ($latestJobs as $jobs)
+                        <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter new">
+                            <div class="box1 d-flex">
+                                <div class="icon-sec">
+                                    @if ($jobs->company->ProfileImg == 'defaultImg.png')
+                                        <img src="../img/job-icon1.png" alt="" style="object-fit: cover;">
+                                    @else
+                                        <img src="{{ asset('storage/Company Logo/' . $jobs->company->ProfileImg) }}"
+                                            alt=""
+                                            style="height:90px;width:90px;border-radius:50%;object-fit: cover;">
+                                    @endif
+                                </div>
+                                <div class="text-sec">
+                                    <a href="{{ url('JobProfile/' . $jobs->id) }}">
+                                        <h4>{{ ucfirst($jobs->Title) }}</h4>
+                                    </a>
+                                    <a href="job-details.html" style="margin-left: .5rem!important"
+                                        target="_blank">{{ ucfirst($jobs->company->name) }}</a>
+                                    <div class="Jobiconprofile">
+                                        <i class="uil uil-rupee-sign"></i>
+                                        <p>{{ 'Rs. ' . $jobs->Salary }}</p>
                                     </div>
-                                    <div class="text-sec">
-                                        <h4>{{ $jobs->Title }}</h4>
-                                        <a href="job-details.html" target="_blank">job-details.html</a>
-                                        <p><img src="../img/money-bag-icon.png" alt=""> {{ $jobs->Salary }}
-                                        </p>
-                                        <p><img src="../img/map-icon.png"
-                                                alt="">{{ $jobs->company->city . ', ' . $jobs->company->location }}
-                                        </p>
-
-                                        {{-- <h4>UI / UX Designer</h4>
+                                    <div class="Jobiconprofile">
+                                        <i class="uil uil-map-marker"></i>
+                                        <p>{{ 'Location ' . $jobs->company->city . ', ' . $jobs->company->location }}</p>
+                                    </div>
+                                    <div class="JobProfileType">
+                                        <p>{{ $jobs->Skills }}</p>
+                                        <div>
+                                            <p
+                                                @if ($jobs->Type == 'Freelance') style="background-color: #28a745" 
+                                        @elseif($jobs->Type == 'Full Time') style="background-color: orange" 
+                                        @else style="background-color:red" @endif>
+                                                {{ $jobs->Type }}</p>
+                                        </div>
+                                    </div>
+                                    {{-- <h4>UI / UX Designer</h4>
                                 <a href="job-details.html" target="_blank">job-details.html</a>
                                 <p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
                                 <p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
                                     Victoria Canada</p> --}}
-                                    </div>
+                                </div>
+                                <div class="JobTypehome">
+                                    <a href="{{ url('JobProfile/' . $jobs->id) }}">View Details</a>
+
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
+                    @endforeach
                     {{-- <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter featured">
                         <div class="box1 d-flex">
                             <div class="icon-sec">

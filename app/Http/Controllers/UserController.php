@@ -6,6 +6,7 @@ use App\Models\Password_reset;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Rules\CompanyDate;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -177,11 +178,15 @@ class UserController extends Controller
             [
                 'name' => 'required',
                 'location' => 'required',
-                'phoneno' => 'required|integer'
+                'phoneno' => 'required|integer',
+                'weblink' => 'nullable|url',
+                'established' => ['required', new CompanyDate]
             ],
             [
                 'name.required' => 'The company name field is required.',
-                'phoneno.required' => 'The phone number field is required.'
+                'phoneno.required' => 'The phone number field is required.',
+                'weblink.url' => 'The link should be valid.',
+                'established.required' => 'Enter the valid Company Date.'
             ]
         );
         $update = User::find($req->id);
@@ -189,7 +194,9 @@ class UserController extends Controller
         $update->location = $req->location;
         $update->city = $req->city;
         $update->phoneno = $req->phoneno;
+        $update->link = $req->weblink ?? 'Link not available.';
         $update->description = $req->description;
+        $update->established = $req->established;
         $update->save();
         return redirect()->route('CompanyProfile');
     } 
