@@ -18,14 +18,17 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('category');
-            $table->string('city');
-            $table->string('location');
+            $table->string('category')->nullable();
+            $table->string('city')->nullable();
+            $table->string('location')->nullable();
             $table->string('role');
-            $table->bigInteger('phoneno');
+            $table->bigInteger('phoneno')->nullable();
             $table->string('description',500)->nullable();
             $table->string('ProfileImg')->default('defaultImg.png');
             $table->string('ProfileImgPath')->default('public/default/defaultImg.jpg');
+            $table->string('Skills',200)->nullable();
+            $table->string('AboutMe',500)->nullable();
+
             $table->timestamps();
         });
 

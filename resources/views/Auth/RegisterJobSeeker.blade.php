@@ -23,6 +23,14 @@
                     @csrf
                     <h2 class="header2 text-center">Login Information</h2>
                     <div class="signup-form-grp">
+                        <label for="name">Full Name</label>
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                            value="{{ old('name') }}">
+                        @error('name')
+                            <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="signup-form-grp">
                         <label for="email">Email Address</label>
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                             value="{{ old('email') }}">
@@ -48,76 +56,9 @@
                         @enderror
                     </div>
 
-                    <hr style="color: black !important;height:2px;opacity:1;margin:3rem 0;">
 
 
-                    <h2 class="header2 text-center">Personal Information</h2>
-                    <div class="signup-form-grp">
-                        <label for="name">Full Name</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                            value="{{ old('name') }}">
-                        @error('name')
-                            <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="signup-form-grp">
-                        <label for="phoneno">Primary Phone Number</label>
-                        <input type="text" name="phoneno" class="form-control @error('phoneno') is-invalid @enderror"
-                            value="{{ old('phoneno') }}">
-                        @error('phoneno')
-                            <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="signup-form-grp">
-                        <label for="category">Choose Job Preference</label>
-                        <select class="form-select category @error('category') is-invalid @enderror" name="category" >
-                            <option hidden disabled selected value> Choose Job Category</option>
-                            <option value="Art">Art</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="Online Media">Online Media</option>
-                            <option value="Laravel">Laravel</option>
-                            <option value="Literature">Literature</option>
-                            <option value="Intertior/exterior design">Intertior/exterior design</option>
-                            <option value="Agriculture">Agriculture</option>
-                            <option value="Business">Business</option>
-                            <option value="Security">Security</option>
-                            <option value="Telecommunication">Telecommunication</option>
-                        </select>
-                        @error('category')
-                            <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="form-one-line">
-                        <div class="signup-form-grp" style="flex: 1">
-                            <label for="city">City</label>
-                            <select class="form-select category @error('city') is-invalid @enderror" name="city">
-                                <option hidden disabled selected value> Choose Your City</option>
-                                <option value="Kathmandu">Kathmandu</option>
-                                <option value="Baktapur">Baktapur</option>
-                                <option value="Lalitpur">Lalitpur</option>
-                                <option value="Pokhara">Pokhara</option>
-                                <option value="Biratnagar">Biratnagar</option>
-                                <option value="Birgunj">Birgunj</option>
-                                <option value="Chitwan">Chitwan</option>
-                                <option value="Dharan">Dharan</option>
-                                <option value="Nepalgunj">Nepalgunj</option>
-                                <option value="Outside Nepal">Outside Nepal</option>
-                            </select>
-                            @error('city')
-                                <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="signup-form-grp" style="flex: 1">
-                            <label for="location">Location</label>
-                            <input type="text" name="location" placeholder="Company Street Address"
-                                class="form-control @error('location') is-invalid @enderror"
-                                value="{{ old('location') }}">
-                            @error('location')
-                                <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
+                   
 
                     <hr style="color: black !important;height:2px;opacity:1;margin:3rem 0;">
 
