@@ -7,6 +7,7 @@
     <title>Document</title>
      <link rel="stylesheet" href="adminDashboard.css">
      <link rel="stylesheet" href="{{ asset('css/adminDashboard.css') }}">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
      <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@300;400;900&family=Fira+Sans&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
      @vite(['resources/js/app.js'])
 </head>
@@ -69,7 +70,12 @@
             <div class="toggle">
                 <ion-icon name="menu-outline"></ion-icon>
             </div>
-            
+            <div class="search">
+                <label for="">
+                    <input type="text" placeholder="Search Here">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
         </div>
     </div>
 
