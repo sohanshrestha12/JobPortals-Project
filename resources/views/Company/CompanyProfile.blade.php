@@ -16,7 +16,7 @@
                     <div class="update-company-photo shadow">
                         <p class="paragraph" style="margin: 0;color:#ff6158">Update Company Logo</p>
                         <hr style="height: 3px;width:90%;color: black !important;margin: 0.2rem 0 1rem 0;opacity:1;">
-                        <form action="UpdateCompanyLogo" enctype="multipart/form-data" method="POST"
+                        <form action="{{route('UpdateCompanyLogo')}}" enctype="multipart/form-data" method="POST"
                             class="d-flex flex-column">
                             @csrf
                             <input type="hidden" name="id" value="{{ $data->id }}">
@@ -33,7 +33,7 @@
                     <div class="company-update-information shadow">
                         <h2 class="header2">Update Your Company Information</h2>
                         <hr style="height: 3px;width:90%;color: black !important;margin: 0.2rem 0 1rem 0;opacity:1;">
-                        <form action="UpdateCompanyInformation" method="post">
+                        <form action="{{route('UpdateCompanyInformation')}}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $data->id }}">
 
@@ -110,9 +110,7 @@
                             </div>
                             <div class="company-form-grp">
                                 <label for="description">Description </label>
-                                <textarea name="description" rows="5" style="padding: 0.5rem 1rem">
-                                    @if ($data->description == '')
-                                    {{ 'Write about your company' }}
+                                <textarea name="description" rows="5" style="padding: 0.5rem 1rem">@if ($data->description == ''){{ 'Write about your company.' }}
                                     @else
                                     {{ $data->description }}
                                     @endif
