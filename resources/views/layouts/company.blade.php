@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-        
+
     @vite(['resources/js/app.js'])
 </head>
 
@@ -101,14 +101,14 @@
                         <span class="title">Post Jobs</span>
                     </a>
                 </li>
-                <li @if (Request::is('ListofAllJobs') || Request::is('editJobs/'.$id = $id ?? 0)) class="Company-sidebar-active" @endif>
+                <li @if (Request::is('ListofAllJobs') || Request::is('editJobs/' . ($id = $id ?? 0))) class="Company-sidebar-active" @endif>
                     <a href="{{ route('ListofAllJobs') }}">
                         <span class="icon"><i class="uil uil-list-ul"></i></span>
                         <span class="title">Lists of Jobs</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li @if(Request::is('ChangeCompanyPassword')) class="Company-sidebar-active" @endif>
+                    <a href="{{ route('ChangeCompanyPassword') }}">
                         <span class="icon"><i class="uil uil-edit"></i></span>
                         <span class="title">Change Password</span>
                     </a>
