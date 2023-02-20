@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -21,6 +22,7 @@ class UserController extends Controller
         $data = null;
         return view('Auth.RegisterCompany', compact('data'));
     }
+
     public function RegisterCompany(Request $req)
     {
         $req->validate(
@@ -53,6 +55,75 @@ class UserController extends Controller
         ]);
         return back()->with('success', 'Your form has been successfully registered.');
     }
+    public function JobSeekerSignUp()
+    {
+        $data = null;
+        return view('Auth.RegisterJobSeeker',compact('data'));
+    }
+    public function RegisterJobSeeker(Request $req)
+    {
+        $req->validate(
+            [
+                'email' => 'required|email:rfc,dns|unique:users,email',
+                'password' => 'required|confirmed|min:6',
+                'password_confirmation' => 'required',
+            
+            ],
+            [
+                'name.required' => 'The company name field is required.',
+               
+            ]
+        );
+        User::Create([
+            'email' => $req->email,
+            'password' => Hash::make($req->password),
+            'name' => $req->name,
+            'role' => 'user'
+        ]);
+        return back()->with('success', 'Your form has been successfully registered.');
+    }
+    public function loginWithGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+    public function callbackFromGoogle()
+    {
+      try {
+        $user = Socialite::driver('google')->user();    
+        $is_user = User::where('email',$user->getEmail())->first();
+        if(!$is_user){
+            $SaveUser = User::updateOrCreate(
+                [
+                    'google_id' => $user->getId()
+                ],
+                [
+                    'name' =>  $user->getName(),
+                    'email' =>  $user->getEmail(),
+                    //password generate
+                    'password' => Hash::make($user->getName().'@'.$user->getId()),
+                    'role' => 'user'
+                ],
+            );
+            Session::put('GUloginId',$user->getEmail());
+        }
+        else{
+            $SaveUser = User::where('email',$user->getEmail())->update(
+                [
+                    'google_id' => $user->getId(),
+                ]
+            );
+            $SaveUser = User::where('email',$user->getEmail())->first();
+            Session::put('GUloginId',$user->getEmail());
+
+        }
+        
+    //   Auth::loginUsingId($SaveUser->id);
+      return redirect()->route('JobSeekerprofile');
+
+      } catch (\Throwable $th) {
+        throw $th;
+      }
+    }
 
     public function login(Request $req)
     {
@@ -78,9 +149,11 @@ class UserController extends Controller
                     return back()->with('fail', 'Password not matched.');
                 }
             } elseif ($alluser->role == 'user') {
-                if ($req->logpassword == $alluser->password) {
+
+                if (Hash::check($req->logpassword,$alluser->password)) {
+
                     session()->put('UloginId', $alluser->id);
-                    return redirect('/user');
+                    return redirect()->route('JobSeekerprofile');
                 } else {
                     return back()->with('fail', 'Password not matched.');
                 }
@@ -119,6 +192,30 @@ class UserController extends Controller
         $update->description = $req->description;
         $update->save();
         return redirect()->route('CompanyProfile');
+    } 
+    
+    public function UpdateJobSeekerInformation(Request $req)
+    {
+        $req->validate(
+            [
+                'name' => 'required',
+                'location' => 'required',
+                'phoneno' => 'required|integer'
+            ],
+            [
+                'name.required' => 'The company name field is required.',
+                'phoneno.required' => 'The phone number field is required.'
+            ]
+        );
+        $update = User::find($req->id);
+        $update->name = $req->name;
+        $update->location = $req->location;
+        $update->city = $req->city;
+        $update->phoneno = $req->phoneno;
+        $update->AboutMe = $req->AboutMe;
+        $update->Skills = $req->Skills;
+        $update->save();
+        return redirect()->route('JobSeekerprofile');
     }
     public function UpdateCompanyLogo(Request $req)
     {
@@ -151,6 +248,38 @@ class UserController extends Controller
             $Savelogo->save();
         }
         return redirect()->route('CompanyProfile');
+    }
+    public function UpdateProfilePicture(Request $req)
+    {
+        $req->validate(
+            [
+                'logo' => 'required'
+            ],
+            [
+                'logo.required' => 'Please select a logo'
+            ]
+        );
+        $image = $req->file('logo');
+        $logoname = $req->id . $image->getClientOriginalName();
+        // dd($logoname);
+        // uniqid() to name uniquely
+        // $logopath = $image->storeAs('public/Company Logo', $logoname . $req->id);
+        $logopath = $image->storeAs('public/Company Logo', $logoname);
+        $Savelogo = User::find($req->id);
+        $Savelogo->ProfileImg = $logoname;
+        $Savelogo->ProfileImgPath = $logopath;
+        //delete old image
+        $thisone = User::find($req->id);
+        $oldpath = $thisone->ProfileImgPath;
+        if ($oldpath === 'public/default/defaultImg.jpg') {
+            $Savelogo->save();
+        } elseif ($logopath == $oldpath) {
+            $Savelogo->save();
+        } else {
+            Storage::disk('local')->delete($oldpath);
+            $Savelogo->save();
+        }
+        return redirect()->route('JobSeekerprofile');
     }
     public function logout()
     {
@@ -195,7 +324,7 @@ class UserController extends Controller
         $body  = "We received a request to reset the password for <b>JobPortal</b> account associated with " . $req->ForgotEmail . " You can reset your password by clicking the link below.";
 
         Mail::send('Auth.ResetPassword', ['actionlink' => $action_link, 'body' => $body], function ($message) use ($req) {
-            $message->from('sohanshrestha40@gmail.com', 'JobPortal');
+            $message->from('ujwalshakha@gmail.com', 'JobPortal');
             $message->to($req->ForgotEmail, 'User');
             $message->subject('JobPortal Reset Password!');
         });
@@ -238,4 +367,7 @@ class UserController extends Controller
     {
         return redirect()->route('home');
     }
+
+//job seeker ko part
+   
 }

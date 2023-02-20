@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\JobSeekerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,17 @@ Route::get('/jobs', [HomeController::class,'jobs'])->name('jobs');
 Route::get('/services', [HomeController::class,'services'])->name('services');
 Route::get('/contact', [HomeController::class,'contact'])->name('contact');
 Route::get('/companyprofile', [HomeController::class,'companyprofile'])->name('CompanyProfile')->middleware('isLoggedIn');
+Route::get('/JobSeekerprofile', [HomeController::class,'JobSeekerprofile'])->name('JobSeekerprofile');
 
+Route::post('/UpdateJobSeekerInformation',[UserController::class,'UpdateJobSeekerInformation'])->name('UpdateJobSeekerInformation');
+
+
+
+Route::get('/RegisterJobSeeker', [UserController::class,'JobSeekerSignUp'])->name('JobSeekerSignUp');
+Route::post('/RegisterJobSeeker',[UserController::class,'RegisterJobSeeker'])->name('RegisterJobSeeker');
+Route::get('auth/google', [UserController::class,'loginWithGoogle'])->name('login_with_google');
+Route::get('auth/google/callback', [UserController::class,'callbackFromGoogle'])->name('callback');
+Route::post('/UpdateProfilePicture',[UserController::class,'UpdateProfilePicture'])->name('UpdateProfilePicture');
 
 
 Route::get('/RegisterCompany', [UserController::class,'CompanySignUp'])->name('CompanySignUp')->middleware('alreadyLoggedIn');
