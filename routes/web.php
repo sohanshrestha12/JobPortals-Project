@@ -70,3 +70,9 @@ Route::get('/UserCompanyProfile/{id}', [HomeController::class, 'ShowCompanyProfi
 
 //admin login
 Route::get('/admin', [Admin::class, 'adminhome'])->name('admin');
+Route::get('/admindashboard', [Admin::class, 'admindashboard']);
+Route::get('/adminmail', [Admin::class, 'adminmessage']);
+Route::get('/admincompany', [Admin::class, 'admincompany']);
+Route::get('/adminuser', [Admin::class, 'adminuser']);
+Route::get('/adminpw', [Admin::class, 'adminpw']);
+Route::get('/adminlogout', [Admin::class, 'adminlogout']);
