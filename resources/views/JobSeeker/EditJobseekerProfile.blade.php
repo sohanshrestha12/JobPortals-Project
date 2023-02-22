@@ -1,4 +1,4 @@
-@extends('layouts.company')
+@extends('layouts.user')
 @section('content')
     <div class="profile-right-box">
         <div class="row">
@@ -7,7 +7,7 @@
                 @if ($check == null)
                     <p class="paragraph">Id: {{ $id }}</p>
                 @else
-                    <p class="paragraph">Id: {{ $id . ' ' . '(' . $check . ')' }}</p>
+                    <p class="paragraph">Id: {{ $id . ' ' . '(' . $check .')' }}</p>
                 @endif
             </div>
             <hr style="height: 3px;width:90%;color: black !important;margin: 0.7rem 0 3rem 8rem;">
@@ -16,7 +16,7 @@
             <div class="col-md-8 shadow rounded" style="background-color: rgb(252, 252, 252);padding:1rem 0.5rem">
                 <form action="{{ route('JobEdit') }}" method="post">
                     @csrf
-                    <input type="hidden" value="{{ $id }}" name="Jobid">
+                    <input type="hidden" value="{{$id}}" name="Jobid">
                     <div class="company-form-grp">
                         <label for="jobTitle">Job Title</label>
                         <input type="text" class="form-control @error('jobTitle') is-invalid @enderror" name="jobTitle"
@@ -117,39 +117,6 @@
                                 <option @if ($value->experience == '5 Years') selected @endif value="5 Years">5 Years</option>
                             </select>
                             @error('experience')
-                                <span class="invalid-feedback"
-                                    style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-one-line">
-                        <div class="company-form-grp" style="flex: 1;">
-                            <label for="EducationDegree">Education Degree</label>
-                            <select name="EducationDegree"
-                                class="category form-select  @error('EducationDegree') is-invalid @enderror">
-                                <option hidden disabled selected value>Required Degree</option>
-                                <option @if ($value->EducationDegree == 'High school passout') selected @endif value="High school passout">
-                                    High school passout</option>
-                                <option @if ($value->EducationDegree == 'Bachelor Degree') selected @endif value="Bachelor Degree">
-                                    Bachelor Degree</option>
-                                <option @if ($value->EducationDegree == 'Master Degree') selected @endif value="Master Degree">Master
-                                    Degree</option>
-                                <option @if ($value->EducationDegree == 'Doctoral Degree') selected @endif value="Doctoral Degree">
-                                    Doctoral Degree</option>
-                                <option @if ($value->EducationDegree == 'None required') selected @endif value="None required">None
-                                    required</option>
-                            </select>
-                            @error('EducationDegree')
-                                <span class="invalid-feedback"
-                                    style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="company-form-grp" style="flex: 1;">
-                            <label for="Education">Education</label>
-                            <input type="text" name="Education"
-                                class="form-control  @error('Education') is-invalid @enderror"
-                                placeholder="eg: BIT,BIM,etc" value="{{$value->Education}}">
-                            @error('Education')
                                 <span class="invalid-feedback"
                                     style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
                             @enderror
