@@ -23,6 +23,13 @@ class HomeController extends Controller
         return view('Home', compact('data', 'allJobs', 'latestJobs'));
 
     }
+    public function viewData($id)
+    {
+        if (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+            return view('ApplyJob', compact('data'));
+        }
+    }
     public function services()
     {
         $data = null;
@@ -104,6 +111,8 @@ class HomeController extends Controller
         }
         return view('Jobs', compact('data', 'joblist', 'Jobsearch', 'searchdata'));
     }
+
+
     public function about()
     {
         $data = null;
@@ -114,6 +123,9 @@ class HomeController extends Controller
         }
         elseif(Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
+        }
+        elseif(Session::has('GUloginId')) {
+            $data = User::where('email','=',Session::get('GUloginId'))->first();         
         }
         return view('About', compact('data'));
     }
@@ -128,6 +140,9 @@ class HomeController extends Controller
         elseif(Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
         }
+        elseif(Session::has('GUloginId')) {
+            $data = User::where('email','=',Session::get('GUloginId'))->first();         
+        }
         return view('Contact', compact('data'));
     }
     public function companyprofile()
@@ -141,6 +156,7 @@ class HomeController extends Controller
         elseif(Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
         }
+        
         return view('Company.CompanyProfile', compact('data'));
     } 
  

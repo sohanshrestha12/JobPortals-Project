@@ -121,7 +121,7 @@ class JobController extends Controller
         Job::find($req->Jobid)->delete();
         return back();
     }
-
+    
     public function ChangeCompanyPassword(){
         $data = null;
         if (Session::has('CloginId')) {
@@ -140,6 +140,34 @@ class JobController extends Controller
             if(Hash::check($req->CurrentPassword, $currentCompany->password)){
                 $currentCompany->password = Hash::make($req->NewPassword);
                 $currentCompany->Save();
+                return back()->with('success','Password Changed Successfully.');
+            }
+            else{
+                return back()->with('fail','Current password is not valid. Please try again!!!');
+            }
+        }
+        else{
+            return back()->with('fail','Email not found.');
+        }
+    } 
+    public function ChangeJobSeekerPassword(){
+        $data = null;
+        if (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+            return view('JobSeeker.ChangePassword', compact('data'));
+        }
+    }
+    public function ChangeUserPassword(Request $req){
+        $req->validate([
+            'CurrentPassword' => 'required',
+            'NewPassword' => 'required|confirmed|min:6',
+            'NewPassword_confirmation' => 'required'
+        ]);
+        $currentUser = User::find(session()->get('UloginId'));
+        if($req->email == $currentUser->email){
+            if(Hash::check($req->CurrentPassword, $currentUser->password)){
+                $currentUser->password = Hash::make($req->NewPassword);
+                $currentUser->Save();
                 return back()->with('success','Password Changed Successfully.');
             }
             else{

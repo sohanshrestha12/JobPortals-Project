@@ -15,6 +15,7 @@
             }
         }
     @endphp
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
     <section class="banner-sec">
         <div class="banner-text">
