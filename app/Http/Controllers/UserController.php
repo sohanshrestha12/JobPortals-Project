@@ -260,30 +260,6 @@ class UserController extends Controller
         $update->save();
         return redirect()->route('JobSeekerprofile');
     }
-
-    public function UpdateJobSeekerInformation(Request $req)
-    {
-        $req->validate(
-            [
-                'name' => 'required',
-                'location' => 'required',
-                'phoneno' => 'required|integer'
-            ],
-            [
-                'name.required' => 'The company name field is required.',
-                'phoneno.required' => 'The phone number field is required.'
-            ]
-        );
-        $update = User::find($req->id);
-        $update->name = $req->name;
-        $update->location = $req->location;
-        $update->city = $req->city;
-        $update->phoneno = $req->phoneno;
-        $update->AboutMe = $req->AboutMe;
-        $update->Skills = $req->Skills;
-        $update->save();
-        return redirect()->route('JobSeekerprofile');
-    }
     public function UpdateCompanyLogo(Request $req)
     {
         $req->validate(
