@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+:root{
+    --purple : #3c2064;
+    --white : #fff;
+    --grey : #f5f5f5;
+    --black1 : #222;
+    --black2 : #999;
+}
+body
+{
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.container{
+    position: relative;
+    width: 100%;
+}
+.navigation
+{
+    position: fixed;
+    width: 250px;
+
+    height: 100%;
+    background: var(--purple);
+    border-left: 10px solid var(--purple) ;
+    transition: 0.5s;
+    overflow: hidden;
+    margin-left:-120px ;
+}
+.navigation.active
+{
+    width: 80px;
+}
+.navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-left:-30px ;
+
+}
+.navigation ul li{
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius:30px;
+    border-bottom-left-radius:30px;
+    border-top-right-radius:30px;
+    border-bottom-right-radius:30px;
+}
+.navigation ul li:hover,
+.navigation ul li.hovered
+{
+    background: var(--white);
+}
+
+/* list ko 1st select garxa */
+.navigation ul li:nth-child(1)
+{
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+.navigation ul li a
+{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a
+{
+    color: var(--purple);
+}
+.navigation ul li a .icon 
+{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height:60px;
+    line-height: 70px;
+    text-align: center;
+    /* margin-top: 15px; */
+}
+.navigation ul li a .icon ion-icon
+{
+    font-size: 1.75em;
+}
+.navigation ul li a .title
+{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space:nowrap;
+}

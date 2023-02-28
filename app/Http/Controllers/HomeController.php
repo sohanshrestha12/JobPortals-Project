@@ -17,11 +17,10 @@ class HomeController extends Controller
         $latestJobs = Job::where('status', '=', '1')->latest()->take(6)->get();
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
-        }
-        elseif(Session::has('UloginId')) {
+        } elseif (Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
         }
-        return view('Home', compact('data','allJobs','latestJobs'));
+        return view('Home', compact('data', 'allJobs', 'latestJobs'));
 
     }
     public function viewData($id)
@@ -36,6 +35,8 @@ class HomeController extends Controller
         $data = null;
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
+        } elseif (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
         }
         elseif(Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
@@ -45,6 +46,7 @@ class HomeController extends Controller
     public function jobs(Request $req)
     {
         $data = null;
+
         $searchdata = $req->all();  
         $Jobsearch = $req->Jobsearch;
         if($req->Jobsearch == "" && empty($req->JobType) && empty($req->jobCategory) && empty($req->minsalary) && empty($req->maxsalary)){
@@ -104,15 +106,10 @@ class HomeController extends Controller
 
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
-        }
-
-        
-
-        elseif(Session::has('UloginId')) {
+        } elseif (Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
         }
-        return view('Jobs', compact('data','joblist','Jobsearch','searchdata'));
-
+        return view('Jobs', compact('data', 'joblist', 'Jobsearch', 'searchdata'));
     }
 
 
@@ -121,6 +118,8 @@ class HomeController extends Controller
         $data = null;
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
+        } elseif (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
         }
         elseif(Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
@@ -135,6 +134,8 @@ class HomeController extends Controller
         $data = null;
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
+        } elseif (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
         }
         elseif(Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
@@ -149,6 +150,8 @@ class HomeController extends Controller
         $data = null;
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
+        } elseif (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
         }
         elseif(Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
@@ -174,6 +177,21 @@ class HomeController extends Controller
         return view('JobSeeker.JobSeekerProfile', compact('data'));
     }
 
+    public function JobSeekerprofile()
+    {
+        if (Session::has('GUloginId')) {
+            $data = User::where('email', '=', Session::get('GUloginId'))->first();
+        } elseif (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+        } elseif (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+        } else {
+            $data = null;
+        }
+        return view('JobSeeker.JobSeekerProfile', compact('data'));
+    }
+
+
     public function ShowJobProfile($id)
     {
         $data = null;
@@ -183,6 +201,7 @@ class HomeController extends Controller
             $data = User::find(Session::get('CloginId'));
         }
         return view('Job.JobProfile', compact('data','Jid','relatedjobs'));
+
     }
     public function ShowCompanyProfile($id)
     {
@@ -190,11 +209,10 @@ class HomeController extends Controller
         $Cid = User::find($id);
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
-        }
-        elseif(Session::has('UloginId')) {
+        } elseif (Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
         }
-        return view('Job.UserCompanyProfile', compact('data','Cid'));
+        return view('Job.UserCompanyProfile', compact('data', 'Cid'));
     }
 
 

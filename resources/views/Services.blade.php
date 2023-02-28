@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <section class="breadcrumbs-sec">
 		<img src="img/about-banner.jpg" class="w-100 banner-img" alt="">
 
@@ -89,6 +90,7 @@
                   </div>
                </div>
              
+
             </div>
          </div>
       </section>
