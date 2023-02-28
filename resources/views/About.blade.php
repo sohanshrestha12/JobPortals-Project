@@ -1,34 +1,156 @@
 @extends('layouts.app')
 @section('content')
+<section class="breadcrumbs-sec">
+		<img src="img/about-banner.jpg" class="w-100 banner-img" alt="">
 
-<section class="about">
-		<div class="about-text">
-            <h2>About US</h2>
+		<div class="breadcrumbs-text">
+			<h2>About US</h2>
 			<ul>
 				<li><a href="index.html">Home</a> </li>
 				<li>About </li>
-            </ul>
-		</div>  
-    </section>
-    <section class="description">
-        <div class="description-process">
-            <h1>Our Working process</h1>
-            <br>
-            <img src="../img/title-border-gray.png" class="rounded mx-auto d-block" alt=""><br>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque inventore ipsum placeat autem. Sunt saepe sequi vitae repellendus similique impedit labore, rem fuga doloribus accusantium quae vero accusamus! Quis itaque blanditiis voluptatem culpa, vero omnis dolor! Dolores dolor exercitationem numquam illo ut laudantium quam voluptatibus tempore. Repudiandae dignissimos facere accusamus voluptatibus et corporis vero nihil dolore quia consequatur officiis aperiam cupiditate repellendus, numquam quidem laudantium! Ex expedita unde nesciunt, magnam laboriosam aliquam placeat saepe praesentium, ipsa eius neque sit minus! Tempora consequatur nisi doloremque aliquid laborum ratione. Nobis delectus id cum! Tenetur, in? Sequi nihil, voluptas ipsa explicabo quasi incidunt tenetur necessitatibus, odio dolorum quia optio doloremque cum harum esse quos corporis, excepturi nisi aut magnam est nostrum! Quaerat at itaque optio officia expedita numquam enim ad illo placeat asperiores ea odit repellat ipsam quasi voluptatum eum modi deleniti ab repudiandae rerum distinctio, ullam earum consequuntur? Dolorem iste ullam adipisci odit ratione voluptate molestias libero illo provident alias dolor atque eligendi maiores blanditiis incidunt impedit aliquam exercitationem aut et esse, in cupiditate voluptatibus, quis facilis. Tenetur veritatis quod voluptatem quae corrupti dolor magni deleniti excepturi perspiciatis, delectus amet accusantium alias accusamus maxime officia quaerat culpa itaque voluptatibus eius praesentium et reprehenderit pariatur possimus natus? Eum, sequi! Odio facere nemo doloribus nobis perspiciatis ea itaque totam, saepe vel suscipit quae nisi tenetur earum est blanditiis expedita? Recusandae, officia. Quia beatae voluptatum sit ducimus nam reprehenderit quaerat corporis at exercitationem est, adipisci facilis qui sint quod voluptate voluptates. Nulla id quibusdam quaerat.</p>
-        </div>
-    </section>
+			  </ul>
+		</div>
 
-        <section class="planning">
-                <div class="planning-process">
-                <h1>Planning and Strategy</h1>
-                <br>
-                <img src="../img/title-border-gray.png" class="rounded mx-auto d-block" alt=""><br>
-                    <p>Lorem ipsum dolor sit amet, con Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore facilis recusandae quia laboriosam possimus iste debitis ex repellendus, voluptatem, vero consequatur ducimus reprehenderit, nesciunt assumenda porro minima obcaecati eligendi officia consequuntur. Mollitia numquam iure harum facilis inventore impedit autem aspernatur ratione et nihil itaque expedita id aperiam minus, odit quas!lorem50
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem magni excepturi corporis repudiandae deserunt aspernatur, nihil eligendi nobis. Consectetur neque perspiciatis asperiores, cumque officia fuga exercitationem possimus adipisci? Quos quibusdam qui molestias, illo nemo tempora nam voluptate laborum voluptatem earum? Minima, ratione minus? Necessitatibus sequi quod voluptate et, pariatur atque. iste placeat? Molestias quibusdam nihil libero expedita quisquam?</p>
-                </div>
+	</section>
+<section class="sectionAbout section1">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-7 col-md-4 col-sm-12 left-sec " style="position:relative;">
+					<img src="img/section1-img1.jpg" class="img1" alt="">
+					<div class="video">
+						<img src="img/video-bg.jpg" class="w-100" alt="">
+						<a class="play-btn video-play-btn mfp-iframe"
+							href="https://youtu.be/BS4TUd7FJSg">
+							<i class="fas fa-play-circle"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-8 col-sm-12 right-sec">
+					<div class="text">
+						<h2 class="section-titled mb-3">Popular Job Portal <br><img src="img/title-border-gray.png"
+								alt=""></h2>
+						<p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+							facilisis. Lorem ipsum dolor sit amet, consectetur. Quis ipsum suspendisse ultrices gravida.
+							Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet,
+							consectetur. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
+							accumsan
+							lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur.</p>
+						<p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+							facilisis. Lorem ipsum dolor sit amet, consectetur.</p>
+						<button class="botoon mt-3">About More</button>
+					</div>
 
-    </section>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Section1 -->
+
+	<!-- Start Section2 -->
+	<section class="section2 ">
+		<div class="container">
+
+			<div class="row ">
+				<div class="col-lg-5 col-md-12 col-sm-12 left-sec">
+					<div class="text">
+						<h2 class="section-titled mb-3">Our Working Process <br><img src="img/title-border-gray.png"
+								alt=""></h2>
+						<p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+							facilisis. Lorem ipsum dolor sit amet, consectetur. Quis ipsum suspendisse ultrices gravida.
+							Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet,
+							consectetur. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
+							accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur. </p>
+						<p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+							facilisis. Lorem ipsum dolor sit amet, consectetur.</p>
+					</div>
+
+				</div>
+				<div class="col-lg-7 col-md-12 col-sm-12 right-sec">
+					<div class="trust-batch"><img src="img/trust-bg.png" alt="">
+						<p>100%<span>Trusted</span></p>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- End Section2 -->
+
+	<!-- Strat Section3 -->
+	<section class="sectionAbout section3">
+		<div class="container">
+			<div class="row ">
+				<div class="col-lg-6 col-md-4 col-sm-12 left-sec">
+					<img src="img/section3-img1.jpg" class="img-fluid" alt="">
+				</div>
+				<div class="col-lg-6 col-md-8 col-sm-12 right-sec">
+					<div class="text mt-5">
+						<h2 class="section-titled mb-3">Why We are Most Popular <br><img
+								src="img/title-border-gray.png" alt=""></h2>
+						<p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+							facilisis. Lorem ipsum dolor sit amet, consectetur. Quis ipsum suspendisse ultrices gravida.
+							Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet,
+							consectetur. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
+							accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur. </p>
+						<p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+							facilisis. Lorem ipsum dolor sit amet, consectetur.</p>
+                        <button class="botoon mt-3">About More</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!-- End Section3 -->
+
+	<!-- Strat Section4 -->
+	<section class="sectionAbout section4">
+		<div class="container">
+
+
+			<div class="row ">
+				<div class="col-lg-6 col-md-8 col-sm-12 left-sec">
+					<div class="text mt-5">
+						<h2 class="section-titled mb-3">Planning & Strategy <br><img src="img/title-border-gray.png"
+								alt=""></h2>
+						<p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+							facilisis. Lorem ipsum dolor sit amet, consectetur. Quis ipsum suspendisse ultrices gravida.
+							Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet,
+							consectetur. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
+							accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur. </p>
+						<p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+							facilisis. Lorem ipsum dolor sit amet, consectetur.</p>
+						<button class="botoon mt-3">About More</button>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-4 col-sm-12 right-sec">
+					<img src="img/section4-img1.jpg" class="img-fluid" alt="">
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- End Section4 -->
+
+	
+
+	<!--jquery js -->
+	<script src="js/jquery-min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<!--jquery js -->
+	<script src="js/bootstrap.min.js"></script>
+	<!--Easing js -->
+	<script src="js/jquery.easing.min.js"></script>
+	<!-- CounterUp JS -->
+	<script src="js/jquery.counterup.min.js"></script>
+	<!-- MagnificPopup JS -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<!--jquery js -->
+	<script src="js/plugins.js"></script>
+	<!--Fontawesome js -->
+	<script src="js/fontawesome.js"></script>
+	<!--jquery js -->
+	<script src="js/custom.js"></script>
 
 
 @endsection

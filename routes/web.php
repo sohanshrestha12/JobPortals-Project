@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JobController;
@@ -17,39 +19,43 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class,'home'])->name('home');
-Route::get('/about', [HomeController::class,'about'])->name('about');
-Route::get('/jobs', [HomeController::class,'jobs'])->name('jobs');
-Route::get('/services', [HomeController::class,'services'])->name('services');
-Route::get('/contact', [HomeController::class,'contact'])->name('contact');
-Route::get('/companyprofile', [HomeController::class,'companyprofile'])->name('CompanyProfile')->middleware('isLoggedIn');
-Route::get('/JobSeekerprofile', [HomeController::class,'JobSeekerprofile'])->name('JobSeekerprofile');
-
-Route::post('/UpdateJobSeekerInformation',[UserController::class,'UpdateJobSeekerInformation'])->name('UpdateJobSeekerInformation');
 
 
-
-Route::get('/RegisterJobSeeker', [UserController::class,'JobSeekerSignUp'])->name('JobSeekerSignUp');
-Route::post('/RegisterJobSeeker',[UserController::class,'RegisterJobSeeker'])->name('RegisterJobSeeker');
-Route::get('auth/google', [UserController::class,'loginWithGoogle'])->name('login_with_google');
-Route::get('auth/google/callback', [UserController::class,'callbackFromGoogle'])->name('callback');
-Route::post('/UpdateProfilePicture',[UserController::class,'UpdateProfilePicture'])->name('UpdateProfilePicture');
-
-
-Route::get('/RegisterCompany', [UserController::class,'CompanySignUp'])->name('CompanySignUp')->middleware('alreadyLoggedIn');
-Route::post('/login',[UserController::class,'login'])->name('login')->middleware('alreadyLoggedIn');
-Route::post('/RegisterCompany',[UserController::class,'RegisterCompany'])->name('RegisterCompany');
-Route::post('/UpdateCompanyInformation',[UserController::class,'UpdateCompanyInformation'])->name('UpdateCompanyInformation');
-Route::post('/UpdateCompanyLogo',[UserController::class,'UpdateCompanyLogo'])->name('UpdateCompanyLogo');
-Route::get('/logout', [UserController::class,'logout'])->name('logout');
-Route::get('/ForgotPassword',[UserController::class,'ForgotPassword'])->name('ForgotPassword');
-Route::post('/ForgotPassword',[UserController::class,'sendResetLink'])->name('ForgotPassword/link');
-Route::get('/Cancel',[UserController::class,'Cancel'])->name('Cancel');
-Route::get('/ResetPassword/{token}',[UserController::class,'resetpasswordform'])->name('UserResetPasswordForm');
-Route::post('/ResetPassword',[UserController::class,'resetpassword'])->name('ForgotResetPassword');
-Route::get('/PasswordResetSuccessful',[UserController::class,'gobackmsg'])->name('ResetGobackPage');
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
+Route::get('/services', [HomeController::class, 'services'])->name('services');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/companyprofile', [HomeController::class, 'companyprofile'])->name('CompanyProfile')->middleware('isLoggedIn');
+Route::get('/JobSeekerprofile', [HomeController::class, 'JobSeekerprofile'])->name('JobSeekerprofile');
 
 
+Route::get('/UpdateJobSeekerInfo',[UserController::class,'UpdateJobSeekerInfo'])->name('UpdateJobSeekerInfo');
+Route::post('/UpdateJobSeekerInformation', [UserController::class, 'UpdateJobSeekerInformation'])->name('UpdateJobSeekerInformation');
+
+
+
+
+Route::get('/RegisterJobSeeker', [UserController::class, 'JobSeekerSignUp'])->name('JobSeekerSignUp');
+Route::post('/RegisterJobSeeker', [UserController::class, 'RegisterJobSeeker'])->name('RegisterJobSeeker');
+Route::get('auth/google', [UserController::class, 'loginWithGoogle'])->name('login_with_google');
+Route::get('auth/google/callback', [UserController::class, 'callbackFromGoogle'])->name('callback');
+Route::post('/UpdateProfilePicture', [UserController::class, 'UpdateProfilePicture'])->name('UpdateProfilePicture');
+
+
+
+Route::get('/RegisterCompany', [UserController::class, 'CompanySignUp'])->name('CompanySignUp')->middleware('alreadyLoggedIn');
+Route::post('/login', [UserController::class, 'login'])->name('login')->middleware('alreadyLoggedIn');
+Route::post('/RegisterCompany', [UserController::class, 'RegisterCompany'])->name('RegisterCompany');
+Route::post('/UpdateCompanyInformation', [UserController::class, 'UpdateCompanyInformation'])->name('UpdateCompanyInformation');
+Route::post('/UpdateCompanyLogo', [UserController::class, 'UpdateCompanyLogo'])->name('UpdateCompanyLogo');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/ForgotPassword', [UserController::class, 'ForgotPassword'])->name('ForgotPassword');
+Route::post('/ForgotPassword', [UserController::class, 'sendResetLink'])->name('ForgotPassword/link');
+Route::get('/Cancel', [UserController::class, 'Cancel'])->name('Cancel');
+Route::get('/ResetPassword/{token}', [UserController::class, 'resetpasswordform'])->name('UserResetPasswordForm');
+Route::post('/ResetPassword', [UserController::class, 'resetpassword'])->name('ForgotResetPassword');
+Route::get('/PasswordResetSuccessful', [UserController::class, 'gobackmsg'])->name('ResetGobackPage');
 
 Route::get('/PostJobs', [JobController::class,'PostJobs'])->name('PostJob')->middleware('isLoggedIn');
 Route::post('/PostJobs',[JobController::class,'PostnewJob'])->name('PostnewJob');
@@ -60,7 +66,10 @@ Route::post('/editJobs', [JobController::class,'JobEditing'])->name('JobEdit');
 // Route::get('/deletejobs/{id}', [JobController::class,'Deletejobs'])->name('deletejobs');
 Route::post('/deletejobs', [JobController::class,'Deletejobs'])->name('deletejobs');
 Route::get('/ChangeCompanyPassword', [JobController::class,'ChangeCompanyPassword'])->name('ChangeCompanyPassword');
+Route::get('/ChangeJobSeekerPassword', [JobController::class,'ChangeJobSeekerPassword'])->name('ChangeJobSeekerPassword');
 Route::post('/ChangePassword', [JobController::class,'ChangePassword'])->name('ChangePassword');
+Route::post('/ChangeUserPassword', [JobController::class,'ChangeUserPassword'])->name('ChangeUserPassword');
+
 
 
 
@@ -71,5 +80,11 @@ Route::post('/ApplyJob/{Jobid}',[JobController::class,'ApplyJob'])->name('ApplyJ
 Route::get('/Applicants/{Jobid}',[JobController::class,'Applicants'])->name('Applicants');
 
 
-
-
+//admin login
+Route::get('/admin', [Admin::class, 'adminhome'])->name('admin');
+Route::get('/admindashboard', [Admin::class, 'admindashboard']);
+Route::get('/adminmail', [Admin::class, 'adminmessage']);
+Route::get('/admincompany', [Admin::class, 'admincompany']);
+Route::get('/adminuser', [Admin::class, 'adminuser']);
+Route::get('/adminpw', [Admin::class, 'adminpw']);
+Route::get('/adminlogout', [Admin::class, 'adminlogout']);

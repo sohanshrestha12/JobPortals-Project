@@ -60,6 +60,17 @@ class UserController extends Controller
     {
         $data = null;
         return view('Auth.RegisterJobSeeker', compact('data'));
+
+
+    }
+    public function UpdateJobSeekerInfo()
+    {
+        $data = null;
+        if (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+            return view('JobSeeker.EditJobseekerProfile', compact('data'));
+        }
+
     }
     public function RegisterJobSeeker(Request $req)
     {
@@ -72,6 +83,7 @@ class UserController extends Controller
             ],
             [
                 'name.required' => 'The company name field is required.',
+
 
             ]
         );
@@ -89,6 +101,7 @@ class UserController extends Controller
     }
     public function callbackFromGoogle()
     {
+
         $user = Socialite::driver('google')->user();
         $is_user = User::where('email', $user->getEmail())->first();
         if (!$is_user) {
@@ -121,6 +134,7 @@ class UserController extends Controller
                 return redirect()->route('home')->with('loginwithgoogle','Company cannot login with google!');
             }
         }
+
     }
 
     public function login(Request $req)
@@ -147,9 +161,7 @@ class UserController extends Controller
                     return back()->with('fail', 'Password not matched.');
                 }
             } elseif ($alluser->role == 'user') {
-
-                if (Hash::check($req->logpassword, $alluser->password)) {
-
+                if (Hash::check($req->logpassword,$alluser->password)) {
                     session()->put('UloginId', $alluser->id);
                     return redirect()->route('JobSeekerprofile');
                 } else {
@@ -196,6 +208,57 @@ class UserController extends Controller
         $update->established = $req->established;
         $update->save();
         return redirect()->route('CompanyProfile');
+    }
+
+    public function UpdateJobSeekerInformation(Request $req)
+    {
+        $req->validate(
+            [
+                'name' => 'required',
+                'phoneno' => 'required|integer',
+                'city' => 'required',
+                'category' => 'required',
+                'AboutMe' => 'required',
+                'Skills' => 'required',
+                'Resume' => 'required',
+                'Gender' => 'required',
+                'Objective' => 'required',
+                'Degree' => 'required',
+                'JobTime' => 'required',
+                'University' => 'required',
+                'Municipality' => 'required',
+                'District' => 'required',
+             
+
+            ]
+        );
+        $update = User::find($req->id);
+        $update->name = $req->name;
+        $update->city = $req->city;
+        $update->category = $req->category;
+        $update->phoneno = $req->phoneno;
+        $update->AboutMe = $req->AboutMe;
+        $update->Skills = $req->Skills;
+        $update->Resume = $req->Resume;
+        $update->Gender = $req->Gender;
+        $update->Roles = $req->Roles;
+        $update->Objective = $req->Objective;
+        $update->Degree = $req->Degree;
+        $update->JobTime = $req->JobTime;
+        $update->Level = $req->Level;
+        $update->District = $req->District;
+        $update->Institution = $req->Institution;
+        $update->Municipality = $req->Municipality;
+        $update->Industry = $req->Industry;
+        $update->University = $req->University;
+        $update->Organization = $req->Organization;
+        $update->Position = $req->Position;
+        $update->Joined_year = $req->Joined_year;
+        $update->Passed_year = $req->Passed_year;
+        $update->DateofBirth = $req->DateofBirth;
+
+        $update->save();
+        return redirect()->route('JobSeekerprofile');
     }
 
     public function UpdateJobSeekerInformation(Request $req)
@@ -283,7 +346,7 @@ class UserController extends Controller
             Storage::disk('local')->delete($oldpath);
             $Savelogo->save();
         }
-        return redirect()->route('JobSeekerprofile');
+        return redirect()->route('EditJobSeekerprofile');
     }
     public function logout()
     {
@@ -328,7 +391,9 @@ class UserController extends Controller
         $body  = "We received a request to reset the password for <b>JobPortal</b> account associated with " . $req->ForgotEmail . " You can reset your password by clicking the link below.";
 
         Mail::send('Auth.ResetPassword', ['actionlink' => $action_link, 'body' => $body], function ($message) use ($req) {
+
             $message->from('sohanshrestha40@gmail.com', 'JobPortal');
+
             $message->to($req->ForgotEmail, 'User');
             $message->subject('JobPortal Reset Password!');
         });
@@ -372,6 +437,6 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 
-    //job seeker ko part
+
 
 }
