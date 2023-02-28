@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/adminDashboard.css">
-     <link rel="stylesheet" href="{{ asset('css/adminDashboard.css') }}">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
-     <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@300;400;900&family=Fira+Sans&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-     {{-- @vite(['resources/js/app.js']) --}}
+    <title>Job Portal || Company Profile</title>
+    <link rel="stylesheet" href="{{ asset('css/adminDashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/adminhome.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+      @vite(['resources/js/app.js'])
 </head>
+
 <body>
     
     <div class="container">
@@ -103,8 +106,6 @@
             }
         }
         </script>
-        {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script> --}}
-        {{-- <script src="{{ asset('js/chart1.js') }}"></script>
-        <script src="{{ asset('js/chart2.js') }}"></script> --}}
+
     @yield('content')
 </body>

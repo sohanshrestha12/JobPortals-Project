@@ -31,16 +31,5 @@
                     </div>
                 </div>
             </div>
-                <div class="charts">
-                    <div class="chart">
-                        <h2>Earnings (past 12 months</h2>
-                        <canvas id="linechart"></canvas>
-                    </div>
-                    <div class="chart" id="doughnut-chart">
-                        <h2>Employees</h2>
-                        <canvas id="doughnut"></canvas>
-                    </div>
-                </div>
-            </div>
 
 @endsection
