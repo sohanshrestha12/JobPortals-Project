@@ -68,7 +68,17 @@ window.onload = () => {
     //filter jobs
     let filter = document.querySelector('.JobFilter');
     let Jfilter = document.querySelector('#Jfilter');
-    filter.addEventListener('click',()=>{
-        Jfilter.classList.toggle('Jactive');
+    if(filter){
+        filter.addEventListener('click',()=>{
+            Jfilter.classList.toggle('Jactive');
+        });
+    }
+
+    //ApplyJobs
+    $('.JobApplyNowBtn').click(function(e){
+        e.preventDefault();
+
+        $('#ApplyJobs').modal('show');
     });
+ 
 }

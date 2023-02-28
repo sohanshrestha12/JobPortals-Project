@@ -46,7 +46,8 @@
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
-                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="{{ route('JobSeekerSignUp') }}">Register as
+                                <li><i class="uil uil-user"></i><a class="dropdown-item"
+                                        href="{{ route('JobSeekerSignUp') }}">Register as
                                         JobSeeker</a></li>
                                 <hr class="mb-2">
                                 <li> <i class="uil uil-building"></i><a class="dropdown-item"
@@ -55,7 +56,10 @@
                             </ul>
                         </div>
                     </div>
-                @elseif(session()->has('AloginId') || session()->has('UloginId') || session()->has('CloginId') || session()->has('GUloginId'))
+                @elseif(session()->has('AloginId') ||
+                        session()->has('UloginId') ||
+                        session()->has('CloginId') ||
+                        session()->has('GUloginId'))
                     <div class="profile">
                         @if ($data->ProfileImg === 'defaultImg.png')
                             <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
@@ -68,14 +72,23 @@
                                 style="background-color:transparent;color:black">
                                 {{ ucfirst($data->name) }}
                             </a>
-
-                            <ul class="dropdown-menu" id="drop-menu" style="width:12rem">
-                                <li><i class="uil uil-user"></i><a class="dropdown-item"
-                                        href="{{ route('CompanyProfile') }}">Profile</a></li>
-                                <hr class="mb-2">
-                                <li> <i class="uil uil-signout"></i><a class="dropdown-item"
-                                        href="{{ route('logout') }}">Logout</a></li>
-                            </ul>
+                            @if (Session::has('CloginId'))
+                                <ul class="dropdown-menu" id="drop-menu" style="width:12rem">
+                                    <li><i class="uil uil-user"></i><a class="dropdown-item"
+                                            href="{{ route('CompanyProfile') }}">Profile</a></li>
+                                    <hr class="mb-2">
+                                    <li> <i class="uil uil-signout"></i><a class="dropdown-item"
+                                            href="{{ route('logout') }}">Logout</a></li>
+                                </ul>
+                            @elseif(Session::has('UloginId') || Session::has('GUloginId'))
+                                <ul class="dropdown-menu" id="drop-menu" style="width:12rem">
+                                    <li><i class="uil uil-user"></i><a class="dropdown-item"
+                                            href="{{ route('JobSeekerprofile') }}">Profile</a></li>
+                                    <hr class="mb-2">
+                                    <li> <i class="uil uil-signout"></i><a class="dropdown-item"
+                                            href="{{ route('logout') }}">Logout</a></li>
+                                </ul>
+                            @endif
                         </div>
                     </div>
                 @else
@@ -88,7 +101,8 @@
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
-                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="{{ route('JobSeekerSignUp') }}">Register as
+                                <li><i class="uil uil-user"></i><a class="dropdown-item"
+                                        href="{{ route('JobSeekerSignUp') }}">Register as
                                         JobSeeker</a></li>
                                 <hr class="mb-2">
                                 <li> <i class="uil uil-building"></i><a class="dropdown-item"
@@ -138,28 +152,32 @@
     {{-- login modal --}}
 
     <div class="row login-modal-background justify-content-center align-items-center" id="login-modal-background">
-        <div class="col-md-4 bg-white shadow">
-            <form class="form-layout" action="{{ route('login') }}" method="POST" >
+        <div class="col-md-4 bg-white shadow" style="margin: 10rem 0 0 0">
+            <form class="form-layout" action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="close-div">
                     <span class="close-modal" title="Close">&times;</span>
                 </div>
-                @if (session()->has('fail') || session()->has('ErrorLogin') || session()->has('role'))
+                <div class="mb-3">
+                    <h1 class="header1 text-center">Login</h1>
+                </div>
+                @if (session()->has('fail') ||
+                        session()->has('ErrorLogin') ||
+                        session()->has('role') ||
+                        session()->has('loginwithgoogle'))
                     <div class="alert alert-danger mb-5" role="alert"
                         style="display: flex;justify-content:center;font-size:1.6rem;">
                         {{ session()->get('fail') }}
                         {{ session()->get('ErrorLogin') }}
                         {{ session()->get('role') }}
+                        {{ session()->get('loginwithgoogle') }}
                     </div>
                 @endif
-                <div class="mb-3">
-                    <h1 class="header1 text-center">Login</h1>
-                </div>
                 <div class="form-grp">
                     <div class="form-input">
                         <i class="uil uil-envelope"></i>
                         <input type="email" name="logemail" aria-describedby="emailHelp"
-                            placeholder="Enter your email" value="{{old('logemail')}}">
+                            placeholder="Enter your email" value="{{ old('logemail') }}">
                     </div>
                     @error('logemail')
                         <div class="show-error">
@@ -169,7 +187,8 @@
                     @enderror
                     <div class="form-input">
                         <i class="uil uil-lock"></i>
-                        <input type="password" name="logpassword" id="register-eye" placeholder="Enter your password">
+                        <input type="password" name="logpassword" id="register-eye"
+                            placeholder="Enter your password">
                         <div id="eyes">
                             <i class="uil uil-eye-slash" id="register-eye-hide"></i>
                             <i class="uil uil-eye" id="register-eye-show"></i>
@@ -194,11 +213,13 @@
             </form>
         </div>
     </div>
-    @if ($errors->has('logemail') ||
-        $errors->has('logpassword') ||
-        session()->has('fail') ||
-        session()->has('ErrorLogin') ||
-        session()->has('role'))
+    @if (
+        $errors->has('logemail') ||
+            $errors->has('logpassword') ||
+            session()->has('fail') ||
+            session()->has('ErrorLogin') ||
+            session()->has('role') ||
+            session()->has('loginwithgoogle'))
         <script>
             let blur = document.querySelector('#blurz');
             let allmodal = document.querySelector('#login-modal-background');
@@ -212,7 +233,17 @@
 
 
     <script src="{{ asset('js/index.js') }}"></script>
-
+    <script src="{{ asset('js/sweetalert.js') }}"></script>
+    <script>
+        @if (Session::has('appliedsuccess'))
+            swal({
+                title: '{{ Session::get('appliedsuccess') }}',
+                // text: "You clicked the button!",
+                icon: "success",
+                button: "OK",
+            });
+        @endif
+    </script>
 </body>
 
 </html>

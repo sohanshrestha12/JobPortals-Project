@@ -1,5 +1,56 @@
 @extends('layouts.app')
 @section('content')
+
+    <!-- Modal -->
+    <div class="modal fade" id="ApplyJobs" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="staticBackdropLabel" style="font-size:1.6rem;">Personal Information</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ url('ApplyJob/' . $Jid->id) }}" method="post" id="Applyform">
+                    <div class="modal-body">
+                        <div style="padding:0.5rem 2rem">
+                            @csrf
+                            <input type="hidden" name="id" @if(Session::has('UloginId')) value="{{ $JobseekerInfo->id }}" @endif>
+                            <div>
+                                <label for="name" style="font-size:1.6rem;font-weight:500">Full name</label>
+                                <input type="text" name="name" style="font-size: 1.6rem;" class="form-control"
+                                @if(Session::has('UloginId')) value="{{ $JobseekerInfo->name }}" @endif>
+                            </div>
+                            <div style="margin-top: 1rem">
+                                <label for="address" style="font-size:1.6rem;font-weight:500">Address</label>
+                                <input type="text" name="address" style="font-size: 1.6rem;" class="form-control">
+                            </div>
+                            <div style="margin-top: 1rem">
+                                <label for="gender" style="font-size:1.6rem;font-weight:500">Gender</label><br>
+                                <div style="margin-top: 1rem">
+                                    <input type="radio" name="gender" style="font-size: 1.6rem;">
+                                    <label for="male" style="font-size:1.6rem;font-weight:500">Male</label>
+                                    <input type="radio" name="gender" style="font-size: 1.6rem;">
+                                    <label for="female" style="font-size:1.6rem;font-weight:500">Female</label>
+                                    <input type="radio" name="gender" style="font-size: 1.6rem;">
+                                    <label for="female" style="font-size:1.6rem;font-weight:500">Other</label>
+                                </div>
+                            </div>
+                            <div style="margin-top: 1rem">
+                                <label for="email" style="font-size:1.6rem;font-weight:500">email</label>
+                                <input type="email" name="email" style="font-size: 1.6rem;" class="form-control"
+                                @if(Session::has('UloginId')) value="{{ $JobseekerInfo->email }}" @endif>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            style="font-size:1.4rem;">Close</button>
+                        <button type="submit" class="btn btn-primary" style="font-size:1.4rem;">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <section class="job">
         <div class="job-text">
             <h2>Jobs</h2>
@@ -212,14 +263,21 @@
                     </div>
                 </div>
                 @if (Session::has('UloginId'))
-                    <div class="d-flex justify-content-end"
-                        style="background: rgba(0,0,0,.03);margin:3rem -3rem -3rem -3rem;padding:2rem 1rem;">
-                        <div class="d-flex">
-                            <button class="JobApplyNowBtn" type="submit"><i class="uil uil-plus-circle"
-                                    style="color:white;font-size: 1.8rem;margin-right:0.6rem;margin-top:0.2rem"></i>Apply
-                                Now</button>
+                    @if ($applied == 1)
+                        <div class="d-flex justify-content-center"
+                            style="background: rgba(0,0,0,.03);margin:3rem -3rem -3rem -3rem;padding:2rem 1rem;">
+                            <p style="margin: 1rem 0 0 0;color:green;">You have already applied for this job.</p>
                         </div>
-                    </div>
+                    @else
+                        <div class="d-flex justify-content-end"
+                            style="background: rgba(0,0,0,.03);margin:3rem -3rem -3rem -3rem;padding:2rem 1rem;">
+                            <div class="d-flex">
+                                <button class="JobApplyNowBtn" type="button"><i class="uil uil-plus-circle"
+                                        style="color:white;font-size: 1.8rem;margin-right:0.6rem;margin-top:0.2rem"></i>Apply
+                                    Now</button>
+                            </div>
+                        </div>
+                    @endif
                 @else
                     <div class="d-flex justify-content-center"
                         style="background: rgba(0,0,0,.03);margin:3rem -3rem -3rem -3rem;padding:2rem 1rem;">

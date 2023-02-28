@@ -54,6 +54,7 @@ Route::get('/PasswordResetSuccessful',[UserController::class,'gobackmsg'])->name
 Route::get('/PostJobs', [JobController::class,'PostJobs'])->name('PostJob')->middleware('isLoggedIn');
 Route::post('/PostJobs',[JobController::class,'PostnewJob'])->name('PostnewJob');
 Route::get('/ListofAllJobs', [JobController::class,'ListJobs'])->name('ListofAllJobs');
+Route::get('/ApplicantsView', [JobController::class,'ApplicantsView'])->name('ApplicantsView');
 Route::get('/editJobs/{id}', [JobController::class,'editJob'])->name('editJobs');
 Route::post('/editJobs', [JobController::class,'JobEditing'])->name('JobEdit');
 // Route::get('/deletejobs/{id}', [JobController::class,'Deletejobs'])->name('deletejobs');
@@ -66,6 +67,8 @@ Route::post('/ChangePassword', [JobController::class,'ChangePassword'])->name('C
 Route::get('/JobProfile/{id}',[HomeController::class,'ShowJobProfile'])->name('JobProfile');
 Route::get('/UserCompanyProfile/{id}',[HomeController::class,'ShowCompanyProfile'])->name('ShowCompanyProfile');
 
+Route::post('/ApplyJob/{Jobid}',[JobController::class,'ApplyJob'])->name('ApplyJob');
+Route::get('/Applicants/{Jobid}',[JobController::class,'Applicants'])->name('Applicants');
 
 
 

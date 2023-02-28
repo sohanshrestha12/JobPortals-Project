@@ -63,7 +63,7 @@
                                                 <tr>
                                                     <td>{{ $item->created_at->format('Y-m-d') }}</td>
                                                     <td>{{ $item->Title }}</td>
-                                                    <td></td>
+                                                    <td><a href="{{url('Applicants/' . $item->id)}}">{{count($item->Jobseeker) }}</a></td>
                                                     <td>{{ $item->ExpiryDate }}</td>
                                                     <td>{{ $item->Type }}</td>
                                                     <td>

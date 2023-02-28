@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\User;
+use App\Models\UserJob;
 use App\Rules\expireDate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -64,8 +65,11 @@ class JobController extends Controller
                     $user->save();
                 }
             }
-
-            $Jobinfo = Job::all();
+       
+            // $user = Job::find(2)->Jobseeker;
+            // dd($user);
+            $Jobinfo = Job::get();
+        
             $Jobactive = Job::where(['company_id' => Session::get('CloginId'),'status' => 1])->get();
             $Jobexpired = Job::where(['company_id' => Session::get('CloginId'),'status' => 0])->get();
             return view('Company.ListofJobs', compact('data', 'Jobinfo','Jobactive','Jobexpired'));
@@ -150,4 +154,24 @@ class JobController extends Controller
             return back()->with('fail','Email not found.');
         }
     } 
+
+    public function ApplyJob(Request $req, $Jobid){
+        $Jobseekerinfo = User::find($req->id);
+        $Jobseekerinfo->email = $req->email;
+        $Jobseekerinfo->name = $req->name;
+        $Jobseekerinfo->save();
+
+        $Jobseekerinfo->Applyjobs()->attach($Jobid);   
+        return back()->with('appliedsuccess','You have successfully applied for this job.');
+    }  
+
+    public function Applicants($Jobid){
+        $data = null;
+        $Jid = Job::find($Jobid);
+        $Jobuser = Job::find($Jobid)->Jobseeker;
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+            return view('Company.Applicants',compact('data','Jobid','Jid','Jobuser'));
+        }
+    }
 }

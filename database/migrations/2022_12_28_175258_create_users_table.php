@@ -30,7 +30,6 @@ return new class extends Migration
             $table->string('ProfileImgPath')->default('public/default/defaultImg.jpg');
             $table->string('Skills',200)->nullable();
             $table->string('AboutMe',500)->nullable();
-
             $table->timestamps();
         });
 
