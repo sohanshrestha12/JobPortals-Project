@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class,'home'])->name('home');
 Route::get('/about', [HomeController::class,'about'])->name('about');
 Route::get('/jobs', [HomeController::class,'jobs'])->name('jobs');
+Route::get('/viewData/{id}', [HomeController::class,'viewData'])->name('viewData');
 Route::get('/services', [HomeController::class,'services'])->name('services');
 Route::get('/contact', [HomeController::class,'contact'])->name('contact');
 Route::get('/companyprofile', [HomeController::class,'companyprofile'])->name('CompanyProfile')->middleware('isLoggedIn');
@@ -27,6 +28,7 @@ Route::get('/JobSeekerprofile', [HomeController::class,'JobSeekerprofile'])->nam
 
 Route::post('/UpdateJobSeekerInformation',[UserController::class,'UpdateJobSeekerInformation'])->name('UpdateJobSeekerInformation');
 
+Route::get('/UpdateJobSeekerInfo',[UserController::class,'UpdateJobSeekerInfo'])->name('UpdateJobSeekerInfo');
 
 
 Route::get('/RegisterJobSeeker', [UserController::class,'JobSeekerSignUp'])->name('JobSeekerSignUp');
@@ -59,7 +61,9 @@ Route::post('/editJobs', [JobController::class,'JobEditing'])->name('JobEdit');
 // Route::get('/deletejobs/{id}', [JobController::class,'Deletejobs'])->name('deletejobs');
 Route::post('/deletejobs', [JobController::class,'Deletejobs'])->name('deletejobs');
 Route::get('/ChangeCompanyPassword', [JobController::class,'ChangeCompanyPassword'])->name('ChangeCompanyPassword');
+Route::get('/ChangeJobSeekerPassword', [JobController::class,'ChangeJobSeekerPassword'])->name('ChangeJobSeekerPassword');
 Route::post('/ChangePassword', [JobController::class,'ChangePassword'])->name('ChangePassword');
+Route::post('/ChangeUserPassword', [JobController::class,'ChangeUserPassword'])->name('ChangeUserPassword');
 
 
 

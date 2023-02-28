@@ -61,6 +61,14 @@ class UserController extends Controller
         $data = null;
         return view('Auth.RegisterJobSeeker',compact('data'));
     }
+    public function UpdateJobSeekerInfo()
+    {
+        $data = null;
+        if (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+            return view('JobSeeker.EditJobseekerProfile', compact('data'));
+        }
+    }
     public function RegisterJobSeeker(Request $req)
     {
         $req->validate(
@@ -206,21 +214,48 @@ class UserController extends Controller
         $req->validate(
             [
                 'name' => 'required',
-                'location' => 'required',
-                'phoneno' => 'required|integer'
-            ],
-            [
-                'name.required' => 'The company name field is required.',
-                'phoneno.required' => 'The phone number field is required.'
+                'phoneno' => 'required|integer',
+                'city' => 'required',
+                'category' => 'required',
+                'AboutMe' => 'required',
+                'Skills' => 'required',
+                'Resume' => 'required',
+                'Gender' => 'required',
+                'Objective' => 'required',
+                'Degree' => 'required',
+                'JobTime' => 'required',
+                'University' => 'required',
+                'Municipality' => 'required',
+                'District' => 'required',
+             
+
             ]
         );
         $update = User::find($req->id);
         $update->name = $req->name;
-        $update->location = $req->location;
         $update->city = $req->city;
+        $update->category = $req->category;
         $update->phoneno = $req->phoneno;
         $update->AboutMe = $req->AboutMe;
         $update->Skills = $req->Skills;
+        $update->Resume = $req->Resume;
+        $update->Gender = $req->Gender;
+        $update->Roles = $req->Roles;
+        $update->Objective = $req->Objective;
+        $update->Degree = $req->Degree;
+        $update->JobTime = $req->JobTime;
+        $update->Level = $req->Level;
+        $update->District = $req->District;
+        $update->Institution = $req->Institution;
+        $update->Municipality = $req->Municipality;
+        $update->Industry = $req->Industry;
+        $update->University = $req->University;
+        $update->Organization = $req->Organization;
+        $update->Position = $req->Position;
+        $update->Joined_year = $req->Joined_year;
+        $update->Passed_year = $req->Passed_year;
+        $update->DateofBirth = $req->DateofBirth;
+
         $update->save();
         return redirect()->route('JobSeekerprofile');
     }
@@ -286,7 +321,7 @@ class UserController extends Controller
             Storage::disk('local')->delete($oldpath);
             $Savelogo->save();
         }
-        return redirect()->route('JobSeekerprofile');
+        return redirect()->route('EditJobSeekerprofile');
     }
     public function logout()
     {

@@ -1033,6 +1033,15 @@ p {
     transition: 0.4s;
     color: #3c2064;
 }
+.fa-user-plus:before {
+    content: "\f234";
+}
+.fa-search:before {
+    content: "\f002";
+}
+.fa-file:before {
+    content: "\f15b";
+}
 .how-work-area .single-feature:hover .single-feature-icon i {
     background: #573883;
     color: #fff;
@@ -1045,6 +1054,7 @@ p {
     margin-bottom: 15px;
     text-transform: capitalize;
     transition: 0.4s;
+    font-size: 24px;
     color: #ff6158;
 }
 .how-work-area .single-feature .angle-icon i {

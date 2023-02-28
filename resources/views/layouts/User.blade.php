@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Portal || Company Profile</title>
+    <title>Job Portal || JobSeeker Profile</title>
     <link rel="stylesheet" href="{{ asset('css/companydashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -95,13 +95,19 @@
                         <span class="title">Profile</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li @if (Request::is('Updateprofile')) class="Company-sidebar-active" @endif>
+                    <a href="{{ route('UpdateJobSeekerInfo') }}">
+                        <span class="icon"><i class="uil uil-user-circle"></i></span>
+                        <span class="title">Update Profile</span>
+                    </a>
+                </li>
+                <li @if (Request::is('ChangePassword')) class="Company-sidebar-active" @endif>
+                    <a href="{{ route('ChangeJobSeekerPassword') }}">
                         <span class="icon"><i class="uil uil-key-skeleton"></i></span>
                         <span class="title">Change Password</span>
                     </a>
                 </li>
-                <li>
+                <li @if (Request::is('logout')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('logout') }}">
                         <span class="icon"><i class="uil uil-sign-out-alt"></i></span>
                         <span class="title">Logout</span>
