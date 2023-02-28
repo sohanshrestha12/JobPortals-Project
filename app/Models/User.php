@@ -14,4 +14,8 @@ class User extends Model
     public function Job(){
         return $this->hasMany(Job::class);
     }
+
+    public function Applyjobs(){
+        return $this->belongsToMany(Job::class,'user_jobs');
+    }
 }

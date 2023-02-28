@@ -46,8 +46,6 @@ return new class extends Migration
             $table->string('Gender')->nullable();
             $table->string('Roles',500)->nullable();
             $table->string('Objective',500)->nullable();
-
-
             $table->timestamps();
         });
 

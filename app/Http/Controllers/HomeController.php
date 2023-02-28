@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\User;
+use App\Models\UserJob;
 use Faker\Provider\ar_EG\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -194,13 +195,26 @@ class HomeController extends Controller
 
     public function ShowJobProfile($id)
     {
+        
         $data = null;
+        $JobseekerInfo = null;
+        $applied =0;
         $Jid = Job::find($id);
         $relatedjobs = Job::where([['Category', $Jid->Category], ['id','!=',$Jid->id],['status','1']])->latest()->take(6)->get();
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
         }
-        return view('Job.JobProfile', compact('data','Jid','relatedjobs'));
+
+        if (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+            $JobseekerInfo = User::find(Session::get('UloginId'));  
+       
+            if(UserJob::where([['job_id',$Jid->id],['user_id',$data->id]])->get()->count()>0){
+                $applied =1;
+            }
+        }
+        
+        return view('Job.JobProfile', compact('data','Jid','relatedjobs','JobseekerInfo','applied'));
 
     }
     public function ShowCompanyProfile($id)
