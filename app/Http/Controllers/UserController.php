@@ -59,7 +59,9 @@ class UserController extends Controller
     public function JobSeekerSignUp()
     {
         $data = null;
+
         return view('Auth.RegisterJobSeeker', compact('data'));
+
     }
     public function RegisterJobSeeker(Request $req)
     {
@@ -72,6 +74,7 @@ class UserController extends Controller
             ],
             [
                 'name.required' => 'The company name field is required.',
+
 
             ]
         );
@@ -89,38 +92,43 @@ class UserController extends Controller
     }
     public function callbackFromGoogle()
     {
-        try {
-            $user = Socialite::driver('google')->user();
-            $is_user = User::where('email', $user->getEmail())->first();
-            if (!$is_user) {
-                $SaveUser = User::updateOrCreate(
-                    [
-                        'google_id' => $user->getId()
-                    ],
-                    [
-                        'name' =>  $user->getName(),
-                        'email' =>  $user->getEmail(),
-                        //password generate
-                        'password' => Hash::make($user->getName() . '@' . $user->getId()),
-                        'role' => 'user'
-                    ],
-                );
-                Session::put('GUloginId', $user->getEmail());
-            } else {
-                $SaveUser = User::where('email', $user->getEmail())->update(
-                    [
-                        'google_id' => $user->getId(),
-                    ]
-                );
-                $SaveUser = User::where('email', $user->getEmail())->first();
-                Session::put('GUloginId', $user->getEmail());
-            }
 
-            //   Auth::loginUsingId($SaveUser->id);
-            return redirect()->route('JobSeekerprofile');
-        } catch (\Throwable $th) {
-            throw $th;
+      try {
+        $user = Socialite::driver('google')->user();    
+        $is_user = User::where('email',$user->getEmail())->first();
+        if(!$is_user){
+            $SaveUser = User::updateOrCreate(
+                [
+                    'google_id' => $user->getId()
+                ],
+                [
+                    'name' =>  $user->getName(),
+                    'email' =>  $user->getEmail(),
+                    //password generate
+                    'password' => Hash::make($user->getName().'@'.$user->getId()),
+                    'role' => 'user'
+                ],
+            );
+            Session::put('GUloginId',$user->getEmail());
         }
+        else{
+            $SaveUser = User::where('email',$user->getEmail())->update(
+                [
+                    'google_id' => $user->getId(),
+                ]
+            );
+            $SaveUser = User::where('email',$user->getEmail())->first();
+            Session::put('GUloginId',$user->getEmail());
+
+        }
+        
+    //   Auth::loginUsingId($SaveUser->id);
+      return redirect()->route('JobSeekerprofile');
+
+      } catch (\Throwable $th) {
+        throw $th;
+      }
+
     }
 
     public function login(Request $req)
@@ -148,8 +156,8 @@ class UserController extends Controller
                 }
             } elseif ($alluser->role == 'user') {
 
-                if (Hash::check($req->logpassword, $alluser->password)) {
 
+                if (Hash::check($req->logpassword,$alluser->password)) {
                     session()->put('UloginId', $alluser->id);
                     return redirect()->route('JobSeekerprofile');
                 } else {
@@ -196,6 +204,30 @@ class UserController extends Controller
         $update->established = $req->established;
         $update->save();
         return redirect()->route('CompanyProfile');
+    } 
+    
+    public function UpdateJobSeekerInformation(Request $req)
+    {
+        $req->validate(
+            [
+                'name' => 'required',
+                'location' => 'required',
+                'phoneno' => 'required|integer'
+            ],
+            [
+                'name.required' => 'The company name field is required.',
+                'phoneno.required' => 'The phone number field is required.'
+            ]
+        );
+        $update = User::find($req->id);
+        $update->name = $req->name;
+        $update->location = $req->location;
+        $update->city = $req->city;
+        $update->phoneno = $req->phoneno;
+        $update->AboutMe = $req->AboutMe;
+        $update->Skills = $req->Skills;
+        $update->save();
+        return redirect()->route('JobSeekerprofile');
     }
 
     public function UpdateJobSeekerInformation(Request $req)
@@ -328,7 +360,8 @@ class UserController extends Controller
         $body  = "We received a request to reset the password for <b>JobPortal</b> account associated with " . $req->ForgotEmail . " You can reset your password by clicking the link below.";
 
         Mail::send('Auth.ResetPassword', ['actionlink' => $action_link, 'body' => $body], function ($message) use ($req) {
-            $message->from('psunuwar100@gmail.com', 'JobPortal');
+
+            $message->from('ujwalshakha@gmail.com', 'JobPortal');
             $message->to($req->ForgotEmail, 'User');
             $message->subject('JobPortal Reset Password!');
         });
@@ -372,6 +405,5 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 
-    //job seeker ko part
 
 }

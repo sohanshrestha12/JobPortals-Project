@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
@@ -38,6 +39,7 @@ Route::get('auth/google/callback', [UserController::class, 'callbackFromGoogle']
 Route::post('/UpdateProfilePicture', [UserController::class, 'UpdateProfilePicture'])->name('UpdateProfilePicture');
 
 
+
 Route::get('/RegisterCompany', [UserController::class, 'CompanySignUp'])->name('CompanySignUp')->middleware('alreadyLoggedIn');
 Route::post('/login', [UserController::class, 'login'])->name('login')->middleware('alreadyLoggedIn');
 Route::post('/RegisterCompany', [UserController::class, 'RegisterCompany'])->name('RegisterCompany');
@@ -51,22 +53,23 @@ Route::get('/ResetPassword/{token}', [UserController::class, 'resetpasswordform'
 Route::post('/ResetPassword', [UserController::class, 'resetpassword'])->name('ForgotResetPassword');
 Route::get('/PasswordResetSuccessful', [UserController::class, 'gobackmsg'])->name('ResetGobackPage');
 
-
-
-Route::get('/PostJobs', [JobController::class, 'PostJobs'])->name('PostJob')->middleware('isLoggedIn');
-Route::post('/PostJobs', [JobController::class, 'PostnewJob'])->name('PostnewJob');
-Route::get('/ListofAllJobs', [JobController::class, 'ListJobs'])->name('ListofAllJobs');
-Route::get('/editJobs/{id}', [JobController::class, 'editJob'])->name('editJobs');
-Route::post('/editJobs', [JobController::class, 'JobEditing'])->name('JobEdit');
+Route::get('/PostJobs', [JobController::class,'PostJobs'])->name('PostJob')->middleware('isLoggedIn');
+Route::post('/PostJobs',[JobController::class,'PostnewJob'])->name('PostnewJob');
+Route::get('/ListofAllJobs', [JobController::class,'ListJobs'])->name('ListofAllJobs');
+Route::get('/editJobs/{id}', [JobController::class,'editJob'])->name('editJobs');
+Route::post('/editJobs', [JobController::class,'JobEditing'])->name('JobEdit');
 // Route::get('/deletejobs/{id}', [JobController::class,'Deletejobs'])->name('deletejobs');
-Route::post('/deletejobs', [JobController::class, 'Deletejobs'])->name('deletejobs');
-Route::get('/ChangeCompanyPassword', [JobController::class, 'ChangeCompanyPassword'])->name('ChangeCompanyPassword');
-Route::post('/ChangePassword', [JobController::class, 'ChangePassword'])->name('ChangePassword');
+Route::post('/deletejobs', [JobController::class,'Deletejobs'])->name('deletejobs');
+Route::get('/ChangeCompanyPassword', [JobController::class,'ChangeCompanyPassword'])->name('ChangeCompanyPassword');
+Route::post('/ChangePassword', [JobController::class,'ChangePassword'])->name('ChangePassword');
 
 
 
-Route::get('/JobProfile/{id}', [HomeController::class, 'ShowJobProfile'])->name('JobProfile');
-Route::get('/UserCompanyProfile/{id}', [HomeController::class, 'ShowCompanyProfile'])->name('ShowCompanyProfile');
+
+Route::get('/JobProfile/{id}',[HomeController::class,'ShowJobProfile'])->name('JobProfile');
+Route::get('/UserCompanyProfile/{id}',[HomeController::class,'ShowCompanyProfile'])->name('ShowCompanyProfile');
+
+
 
 //admin login
 Route::get('/admin', [Admin::class, 'adminhome'])->name('admin');
