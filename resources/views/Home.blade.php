@@ -24,6 +24,7 @@
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
             </p>
             <a href="job-list.html" style="color: white" class="btn">Know More</a>
+        </div>
     </section>
     <!-- End Banner Section -->
 
@@ -136,159 +137,57 @@
     {{-- Recent Jobs Starts here  --}}
     <section class="inner-content-wrapper section current-job-sec">
         <div class="container">
-            <h2 class="section-title mb-0">Recent Jobs<br> <img src="img/title-border.png" alt="">
-                <div class="row w-100 m-0">
-                    @foreach ($latestJobs as $jobs)
-                        <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter new">
-                            <div class="box1 d-flex">
-                                <div class="icon-sec">
-                                    @if ($jobs->company->ProfileImg == 'defaultImg.png')
-                                        <img src="../img/job-icon1.png" alt="" style="object-fit: cover;">
-                                    @else
-                                        <img src="{{ asset('storage/Company Logo/' . $jobs->company->ProfileImg) }}"
-                                            alt=""
-                                            style="height:90px;width:90px;border-radius:50%;object-fit: cover;">
-                                    @endif
+            <h2 class="section-title mb-0">Recent Jobs</h2><br> <img src="img/title-border.png" alt="">
+            <div class="row w-100 m-0">
+                @foreach ($latestJobs as $jobs)
+                    <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter new">
+                        <div class="box1 d-flex">
+                            <div class="icon-sec">
+                                @if ($jobs->company->ProfileImg == 'defaultImg.png')
+                                    <img src="../img/job-icon1.png" alt="" style="object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('storage/Company Logo/' . $jobs->company->ProfileImg) }}"
+                                        alt="" style="height:90px;width:90px;border-radius:50%;object-fit: cover;">
+                                @endif
+                            </div>
+                            <div class="text-sec">
+                                <a href="{{ url('JobProfile/' . $jobs->id) }}">
+                                    <h4>{{ ucfirst($jobs->Title) }}</h4>
+                                </a>
+                                <a href="job-details.html" style="margin-left: .5rem!important"
+                                    target="_blank">{{ ucfirst($jobs->company->name) }}</a>
+                                <div class="Jobiconprofile">
+                                    <i class="uil uil-rupee-sign"></i>
+                                    <p>{{ 'Rs. ' . $jobs->Salary }}</p>
                                 </div>
-                                <div class="text-sec">
-                                    <a href="{{ url('JobProfile/' . $jobs->id) }}">
-                                        <h4>{{ ucfirst($jobs->Title) }}</h4>
-                                    </a>
-                                    <a href="job-details.html" style="margin-left: .5rem!important"
-                                        target="_blank">{{ ucfirst($jobs->company->name) }}</a>
-                                    <div class="Jobiconprofile">
-                                        <i class="uil uil-rupee-sign"></i>
-                                        <p>{{ 'Rs. ' . $jobs->Salary }}</p>
-                                    </div>
-                                    <div class="Jobiconprofile">
-                                        <i class="uil uil-map-marker"></i>
-                                        <p>{{ 'Location ' . $jobs->company->city . ', ' . $jobs->company->location }}</p>
-                                    </div>
-                                    <div class="JobProfileType">
-                                        <p>{{ $jobs->Skills }}</p>
-                                        <div>
-                                            <p
-                                                @if ($jobs->Type == 'Freelance') style="background-color: #28a745" 
+                                <div class="Jobiconprofile">
+                                    <i class="uil uil-map-marker"></i>
+                                    <p>{{ 'Location ' . $jobs->company->city . ', ' . $jobs->company->location }}</p>
+                                </div>
+                                <div class="JobProfileType">
+                                    <p>{{ $jobs->Skills }}</p>
+                                    <div>
+                                        <p
+                                            @if ($jobs->Type == 'Freelance') style="background-color: #28a745" 
                                         @elseif($jobs->Type == 'Full Time') style="background-color: orange" 
                                         @else style="background-color:red" @endif>
-                                                {{ $jobs->Type }}</p>
-                                        </div>
+                                            {{ $jobs->Type }}</p>
                                     </div>
-                                    {{-- <h4>UI / UX Designer</h4>
+                                </div>
+                                {{-- <h4>UI / UX Designer</h4>
                                 <a href="job-details.html" target="_blank">job-details.html</a>
                                 <p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
                                 <p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
                                     Victoria Canada</p> --}}
-                                </div>
-                                <div class="JobTypehome">
-                                    <a href="{{ url('JobProfile/' . $jobs->id) }}">View Details</a>
+                            </div>
+                            <div class="JobTypehome">
+                                <a href="{{ url('JobProfile/' . $jobs->id) }}">View Details</a>
 
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                    {{-- <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter featured">
-                        <div class="box1 d-flex">
-                            <div class="icon-sec">
-                                <img src="../img/job-icon1.png" alt="">
-                            </div>
-                            <div class="text-sec">
-                                <h4>UI / UX Designer</h4>
-                                <a href="job-details.html" target="_blank">job-details.html</a>
-                                <p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
-                                <p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
-                                    Victoria Canada</p>
                             </div>
                         </div>
                     </div>
-                    <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter featured">
-                        <div class="box1 d-flex">
-                            <div class="icon-sec">
-                                <img src="../img/job-icon1.png" alt="">
-                            </div>
-                            <div class="text-sec">
-                                <h4>UI / UX Designer</h4>
-                                <a href="job-details.html" target="_blank">job-details.html</a>
-                                <p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
-                                <p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
-                                    Victoria Canada</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter full-time">
-                        <div class="box1 d-flex">
-                            <div class="icon-sec">
-                                <img src="../img/job-icon1.png" alt="">
-                            </div>
-                            <div class="text-sec">
-                                <h4>UI / UX Designer</h4>
-                                <a href="job-details.html" target="_blank">job-details.html</a>
-                                <p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
-                                <p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
-                                    Victoria Canada</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter full-time">
-                        <div class="box1 d-flex">
-                            <div class="icon-sec">
-                                <img src="../img/job-icon1.png" alt="">
-                            </div>
-                            <div class="text-sec">
-                                <h4>UI / UX Designer</h4>
-                                <a href="job-details.html" target="_blank">job-details.html</a>
-                                <p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
-                                <p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
-                                    Victoria Canada</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter recent">
-                        <div class="box1 d-flex">
-                            <div class="icon-sec">
-                                <img src="../img/job-icon1.png" alt="">
-                            </div>
-                            <div class="text-sec">
-                                <h4>UI / UX Designer</h4>
-                                <a href="job-details.html" target="_blank">job-details.html</a>
-                                <p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
-                                <p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
-                                    Victoria Canada</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter part-time">
-                        <div class="box1 d-flex">
-                            <div class="icon-sec">
-                                <img src="../img/job-icon1.png" alt="">
-                            </div>
-                            <div class="text-sec">
-                                <h4>UI / UX Designer</h4>
-                                <a href="job-details.html" target="_blank">job-details.html</a>
-                                <p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
-                                <p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
-                                    Victoria Canada</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter recent">
-                        <div class="box1 d-flex">
-                            <div class="icon-sec">
-                                <img src="../img/job-icon1.png" alt="">
-                            </div>
-                            <div class="text-sec">
-                                <h4>UI / UX Designer</h4>
-                                <a href="job-details.html" target="_blank">job-details.html</a>
-                                <p><img src="../img/money-bag-icon.png" alt=""> $20k - $25K</p>
-                                <p><img src="../img/map-icon.png" alt=""> Location 210-27 Quadra, Market Street,
-                                    Victoria Canada</p>
-                            </div>
-                        </div>
-                    </div> --}}
-                </div>
-
-
-        </div>
+                @endforeach
+            </div>
         </div>
     </section>
 

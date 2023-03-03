@@ -15,9 +15,10 @@ class Admin extends Controller
     }
     public function admindashboard()
     {
+        $Jobs = Job::get();
         $Jobseeker = User::where('role','user')->get();
         $Company = User::where('role','company')->get();
-        return view('Admin.adminDashboard',compact('Jobseeker','Company'));
+        return view('Admin.adminDashboard',compact('Jobseeker','Company','Jobs'));
     }
     public function adminmessage()
     {

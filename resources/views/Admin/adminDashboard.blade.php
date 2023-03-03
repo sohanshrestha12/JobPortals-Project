@@ -5,7 +5,7 @@
             <div class="cards">
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">{{count($Jobseeker)}}</div>
+                        <div class="number">{{count($Jobs)}}</div>
                         <div class="card-name">Total Jobs</div>
                     </div>
                     <div class="icon-box">
