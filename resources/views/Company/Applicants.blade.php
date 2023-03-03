@@ -24,7 +24,7 @@
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Gender</th>
-                                            <th scope="col">Experience</th>
+                                            <th scope="col">Level</th>
                                             <th scope="col">Phoneno.</th>
                                             <th scope="col">Actions</th>
                                         </tr>
@@ -44,10 +44,10 @@
                                                 </td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td><a href="" class="btn btn-primary">View details</a></td>
+                                                <td>{{$user->Gender}}</td>
+                                                <td>{{$user->Level}}</td>
+                                                <td>{{$user->phoneno}}</td>
+                                                <td><a style="font-size:1.4rem" href="{{url('ApplicantsDetails/' . $user->id)}}" class="btn btn-primary">View details</a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>

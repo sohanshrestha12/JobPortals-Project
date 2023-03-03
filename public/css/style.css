@@ -1516,3 +1516,29 @@ p {
     height: 10rem !important;
     visibility: visible!important;
 }
+
+/* Apply Job Form  */
+#Applyform h5{
+    font-size: 1.8rem!important;
+}
+#Applyform label{
+    font-size: 1.4rem!important;
+}
+#Applyform input{
+    font-size: 1.4rem!important;
+}
+#Applyform textarea{
+    font-size: 1.4rem!important;
+}
+#Applyform select, #Applyform select option{
+    font-size: 1.4rem!important;
+}
+
+
+/* Applicants_Information */
+.Applicants_Information h3,.Applicants_Information p{
+    margin: 0;
+}
+.Applicants_Information h3,.Applicants_Information h2{
+    color: black!important;;
+}

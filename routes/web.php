@@ -56,11 +56,11 @@ Route::get('/Cancel', [UserController::class, 'Cancel'])->name('Cancel');
 Route::get('/ResetPassword/{token}', [UserController::class, 'resetpasswordform'])->name('UserResetPasswordForm');
 Route::post('/ResetPassword', [UserController::class, 'resetpassword'])->name('ForgotResetPassword');
 Route::get('/PasswordResetSuccessful', [UserController::class, 'gobackmsg'])->name('ResetGobackPage');
+Route::get('/ApplicantsDetails/{userid}', [UserController::class, 'ApplicantsDetails'])->name('ApplicantsDetails');
 
 Route::get('/PostJobs', [JobController::class,'PostJobs'])->name('PostJob')->middleware('isLoggedIn');
 Route::post('/PostJobs',[JobController::class,'PostnewJob'])->name('PostnewJob');
 Route::get('/ListofAllJobs', [JobController::class,'ListJobs'])->name('ListofAllJobs');
-Route::get('/ApplicantsView', [JobController::class,'ApplicantsView'])->name('ApplicantsView');
 Route::get('/editJobs/{id}', [JobController::class,'editJob'])->name('editJobs');
 Route::post('/editJobs', [JobController::class,'JobEditing'])->name('JobEdit');
 // Route::get('/deletejobs/{id}', [JobController::class,'Deletejobs'])->name('deletejobs');
@@ -82,7 +82,7 @@ Route::get('/Applicants/{Jobid}',[JobController::class,'Applicants'])->name('App
 
 //admin login
 Route::get('/admin', [Admin::class, 'adminhome'])->name('admin');
-Route::get('/admindashboard', [Admin::class, 'admindashboard']);
+Route::get('/admindashboard', [Admin::class, 'admindashboard'])->name('admindashboard');
 Route::get('/adminmail', [Admin::class, 'adminmessage']);
 Route::get('/admincompany', [Admin::class, 'admincompany']);
 Route::get('/adminuser', [Admin::class, 'adminuser']);

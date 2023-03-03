@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session as Session;
 
 class Admin extends Controller
 {
@@ -12,7 +15,9 @@ class Admin extends Controller
     }
     public function admindashboard()
     {
-        return view('Admin.adminDashboard');
+        $Jobseeker = User::where('role','user')->get();
+        $Company = User::where('role','company')->get();
+        return view('Admin.adminDashboard',compact('Jobseeker','Company'));
     }
     public function adminmessage()
     {
@@ -32,6 +37,7 @@ class Admin extends Controller
     }
     public function adminlogout()
     {
-        return view('Admin.adminLogout');
+        Session::pull('AloginId');
+        return redirect()->route('home');
     }
 }
