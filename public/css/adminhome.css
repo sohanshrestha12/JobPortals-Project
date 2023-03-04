@@ -1,12 +1,29 @@
-
 .main
 {
     position: absolute;
-    width: calc(100% - 300px); 
+    width: calc(100% - 375px); 
     left: 300px;
     min-height:100vh ;
     background: var(--white);
     transition: 0.5s;
+}
+.main table{
+    vertical-align: middle;
+}
+.notify{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(100% - 30px);
+    font-size: 0.7rem;
+    background-color: red;
+    height: 20px;
+    width: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
 }
 .main.active
 {

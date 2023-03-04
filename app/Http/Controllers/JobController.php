@@ -16,6 +16,7 @@ class JobController extends Controller
     public function PostJobs()
     {
         $data = null;
+
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
             return view('Company.PostJobs', compact('data'));
@@ -157,9 +158,51 @@ class JobController extends Controller
 
 
     public function ApplyJob(Request $req, $Jobid){
+        $req->validate([
+            'name' => 'required',
+            'city' => 'required',
+            'phoneno' => 'required|integer',
+            'Skills' => 'required',
+            'Gender' => 'required',
+            'Roles' => 'required',
+            'Objective' => 'required',
+            'Degree' => 'required',
+            'JobTime' => 'required',
+            'Level' => 'required',
+            'District' => 'required',
+            'Institution' => 'required',
+            'Municipality' => 'required',
+            'Industry' => 'required',
+            'University' => 'required', 
+            'Organization' => 'required', 
+            'Position' => 'required', 
+            'Joined_year' => 'required', 
+            'Passed_year' => 'required', 
+            'DateofBirth' => 'required'
+        ]);
+
+
         $Jobseekerinfo = User::find($req->id);
-        $Jobseekerinfo->email = $req->email;
         $Jobseekerinfo->name = $req->name;
+        $Jobseekerinfo->city = $req->city;
+        $Jobseekerinfo->phoneno = $req->phoneno;
+        $Jobseekerinfo->Skills = $req->Skills;
+        $Jobseekerinfo->Gender = $req->Gender;
+        $Jobseekerinfo->Roles = $req->Roles;
+        $Jobseekerinfo->Objective = $req->Objective;
+        $Jobseekerinfo->Degree = $req->Degree;
+        $Jobseekerinfo->JobTime = $req->JobTime;
+        $Jobseekerinfo->Level = $req->Level;
+        $Jobseekerinfo->District = $req->District;
+        $Jobseekerinfo->Institution = $req->Institution;
+        $Jobseekerinfo->Municipality = $req->Municipality;
+        $Jobseekerinfo->Industry = $req->Industry;
+        $Jobseekerinfo->University = $req->University;
+        $Jobseekerinfo->Organization = $req->Organization;
+        $Jobseekerinfo->Position = $req->Position;
+        $Jobseekerinfo->Joined_year = $req->Joined_year;
+        $Jobseekerinfo->Passed_year = $req->Passed_year;
+        $Jobseekerinfo->DateofBirth = $req->DateofBirth;
         $Jobseekerinfo->save();
 
         $Jobseekerinfo->Applyjobs()->attach($Jobid);   
@@ -169,6 +212,7 @@ class JobController extends Controller
     public function Applicants($Jobid){
         $data = null;
         $Jid = Job::find($Jobid);
+        Session::put('ApplicantJobid',$Jobid); 
         $Jobuser = Job::find($Jobid)->Jobseeker;
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));

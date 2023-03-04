@@ -63,7 +63,7 @@
                                                 <tr>
                                                     <td>{{ $item->created_at->format('Y-m-d') }}</td>
                                                     <td>{{ $item->Title }}</td>
-                                                    <td><a href="{{url('Applicants/' . $item->id)}}">{{count($item->Jobseeker) }}</a></td>
+                                                    <td><a style="font-size:1.4rem" href="{{url('Applicants/' . $item->id)}}">{{count($item->Jobseeker) . ' Candidate'}}</a></td>
                                                     <td>{{ $item->ExpiryDate }}</td>
                                                     <td>{{ $item->Type }}</td>
                                                     <td>
@@ -103,7 +103,6 @@
                                 <tr>
                                     <th scope="col">Posted date</th>
                                     <th scope="col">Title</th>
-                                    <th scope="col">Applicants</th>
                                     <th scope="col">Job Type</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Actions</th>
@@ -120,7 +119,6 @@
                                                 <tr>
                                                     <td>{{ $item->created_at->format('Y-m-d') }}</td>
                                                     <td>{{ $item->Title }}</td>
-                                                    <td></td>
                                                     <td>{{ $item->Type }}</td>
                                                     <td>
 

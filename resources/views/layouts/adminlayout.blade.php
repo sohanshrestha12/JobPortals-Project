@@ -33,9 +33,16 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('/admincompany')}}">
+                    <a href="{{route('Verifycompany')}}">
+                        <div class="notify">{{count($Verifycompany)}}</div>
                         <span class="icon"><ion-icon name="people-circle-outline"></ion-icon></span>
-                        <span class="title">Company</span>
+                        <span class="title">Verify Company</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('Verifiedcompany')}}">
+                        <span class="icon"><i class="uil uil-comment-verify" style="font-size: 1.6rem"></i></span>
+                        <span class="title">Verified Company</span>
                     </a>
                 </li>
                 <li>

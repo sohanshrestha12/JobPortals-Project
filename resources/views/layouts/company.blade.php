@@ -103,7 +103,7 @@
                         <span class="title">Post Jobs</span>
                     </a>
                 </li>
-                <li @if (Request::is('ListofAllJobs') || Request::is('editJobs/' . ($id = $id ?? 0)) || Request::is('Applicants/' . ($Jobid = $Jobid ?? 0))) class="Company-sidebar-active" @endif>
+                <li @if (Request::is('ListofAllJobs') || Request::is('editJobs/' . ($id = $id ?? 0)) || Request::is('Applicants/' . ($Jobid = $Jobid ?? 0)) || Request::is('ApplicantsDetails/*')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('ListofAllJobs') }}">
                         <span class="icon"><i class="uil uil-list-ul"></i></span>
                         <span class="title">Lists of Jobs</span>

@@ -160,23 +160,7 @@ class HomeController extends Controller
         
         return view('Company.CompanyProfile', compact('data'));
     } 
- 
-    public function JobSeekerprofile()
-    {
-        if (Session::has('GUloginId')) {
-            $data = User::where('email','=',Session::get('GUloginId'))->first();         
-        }
-        elseif(Session::has('UloginId')) {
-            $data = User::find(Session::get('UloginId'));
-        }
-        elseif(Session::has('CloginId')){
-            $data = User::find(Session::get('CloginId'));
-        }
-        else{
-            $data = null;
-        }
-        return view('JobSeeker.JobSeekerProfile', compact('data'));
-    }
+
 
     public function JobSeekerprofile()
     {

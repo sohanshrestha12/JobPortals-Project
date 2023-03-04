@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('location')->nullable();
             $table->string('role');
+            $table->string('Verify')->nullable();
             $table->string('link')->nullable();
             $table->bigInteger('phoneno')->nullable();
             $table->string('description',500)->nullable();
@@ -29,9 +30,9 @@ return new class extends Migration
             $table->string('ProfileImgPath')->default('public/default/defaultImg.jpg');
             $table->string('Skills',200)->nullable();
             $table->string('Resume')->nullable();
-            $table->date('Joined_year')->nullable();
-            $table->date('Passed_year')->nullable();
-            $table->date('DateofBirth')->nullable();
+            $table->string('Joined_year')->nullable();
+            $table->string('Passed_year')->nullable();
+            $table->string('DateofBirth')->nullable();
             $table->string('AboutMe',500)->nullable();
             $table->string('Position')->nullable();
             $table->string('Organization')->nullable();
