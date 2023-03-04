@@ -9,36 +9,57 @@ use Illuminate\Support\Facades\Session as Session;
 
 class Admin extends Controller
 {
-    public function adminhome()
-    {
-        return view('layouts.adminlayout');
-    }
     public function admindashboard()
     {
         $Jobs = Job::get();
         $Jobseeker = User::where('role','user')->get();
         $Company = User::where('role','company')->get();
-        return view('Admin.adminDashboard',compact('Jobseeker','Company','Jobs'));
+        $Verifycompany = User::where(['role'=>'company','Verify'=>'0'])->get();
+
+        return view('Admin.adminDashboard',compact('Jobseeker','Company','Jobs','Verifycompany'));
     }
     public function adminmessage()
     {
-        return view('Admin.adminMessage');
+        $Verifycompany = User::where(['role'=>'company','Verify'=>'0'])->get();
+        return view('Admin.adminMessage',compact('Verifycompany'));
     }
-    public function admincompany()
+    public function Verifycompany()
     {
-        return view('Admin.adminCompany');
+        $Verifycompany = User::where(['role'=>'company','Verify'=>'0'])->get();
+        return view('Admin.VerifyCompany',compact('Verifycompany'));
+    }
+    public function Verifiedcompany()
+    {
+        $Verifycompany = User::where(['role'=>'company','Verify'=>'0'])->get();
+        $Verifiedcompany = User::where(['role'=>'company','Verify'=>'1'])->get();
+        return view('Admin.VerifiedCompany',compact('Verifiedcompany','Verifycompany'));
     }
     public function adminuser()
     {
-        return view('Admin.adminUser');
+        $Verifycompany = User::where(['role'=>'company','Verify'=>'0'])->get();
+        return view('Admin.adminUser',compact('Verifycompany'));
     }
     public function adminpw()
     {
-        return view('Admin.adminPassword');
+        $Verifycompany = User::where(['role'=>'company','Verify'=>'0'])->get();
+        return view('Admin.adminPassword',compact('Verifycompany'));
     }
     public function adminlogout()
     {
         Session::pull('AloginId');
         return redirect()->route('home');
+    }
+    public function verify($comid)
+    {
+        $companyVerify = User::find($comid);
+        if($companyVerify->Verify == 1){
+            $companyVerify->Verify = 0;
+            $companyVerify->save();
+        }
+        else{
+            $companyVerify->Verify = 1;
+            $companyVerify->save();
+        }
+        return back();
     }
 }

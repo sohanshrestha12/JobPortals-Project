@@ -9,7 +9,7 @@ class User extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['email','password','name','category','city','phoneno','location','role','ProfileImg','google_id'];
+    protected $fillable = ['email','password','name','category','city','phoneno','location','role','ProfileImg','google_id','Verify'];
 
     public function Job(){
         return $this->hasMany(Job::class);

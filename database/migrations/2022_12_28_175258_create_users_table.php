@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('location')->nullable();
             $table->string('role');
+            $table->string('Verify')->nullable();
             $table->string('link')->nullable();
             $table->bigInteger('phoneno')->nullable();
             $table->string('description',500)->nullable();

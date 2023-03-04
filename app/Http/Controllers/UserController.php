@@ -53,7 +53,8 @@ class UserController extends Controller
             'city' => $req->city,
             'phoneno' => $req->phoneno,
             'location' => $req->location,
-            'role' => 'company'
+            'role' => 'company',
+            'Verify' => 0
         ]);
         return back()->with('success', 'Your form has been successfully registered.');
     }

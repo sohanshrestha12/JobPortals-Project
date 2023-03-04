@@ -16,6 +16,7 @@ class JobController extends Controller
     public function PostJobs()
     {
         $data = null;
+
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
             return view('Company.PostJobs', compact('data'));
@@ -160,7 +161,7 @@ class JobController extends Controller
         $req->validate([
             'name' => 'required',
             'city' => 'required',
-            'phoneno' => 'required,integer',
+            'phoneno' => 'required|integer',
             'Skills' => 'required',
             'Gender' => 'required',
             'Roles' => 'required',
