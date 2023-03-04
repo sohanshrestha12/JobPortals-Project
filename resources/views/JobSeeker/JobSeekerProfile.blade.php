@@ -72,8 +72,7 @@
     <div class="backcover w-100 bg-primary position-relative" style="height: 180px; ">
         <img style="height: 180px;width:100%; " src="{{ asset('storage/JobSeekerImg/pexels-aleksandar-pasaric-3629227.jpg') }}" alt="NOt found">
     </div>
-   
-<div class="header position-absolute d-flex" style="top: 174px;left: 33px;">
+    <div class="header position-absolute d-flex" style="top: 174px;left: 33px;">
         <div class="profileImg  bg-secondary rounded-circle" style="width: 180px; height: 180px;
         border: 4px solid #dabdbd;
         top: 156px;
@@ -93,6 +92,7 @@
                 </div>
             </form>
 
+        </div>
         <div class="User_name font font_size">
             <h1>{{ $data->name }}</h1>
             <h4>{{ $data->category }}</h4>
