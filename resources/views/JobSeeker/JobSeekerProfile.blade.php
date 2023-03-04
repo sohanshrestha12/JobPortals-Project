@@ -31,7 +31,7 @@
     }
 
     .right_part{
-        border-left: 1px solid #a39e9e;
+        border-left:2.4px solid #c8c8c8;
     }
     .font span,.font h1,.font li,.font h4 , .font strong ,.font p {
         font-family: 'Josefin Sans', sans-serif;
@@ -39,6 +39,19 @@
     }
     hr{
         margin: 25px 0px;
+        border: 1px solid;
+        color: #a39e9e !important;
+        height: 1px;
+        opacity: 1;
+    }
+    .right_padding{
+        padding: 11px 42px;
+    }
+    .left_part{
+        padding-right: 45px;
+    }
+    h4{
+        font-weight: 600;
     }
 </style>
 <section class="header_section" style="height: 330px; ">
@@ -63,7 +76,6 @@
     </div>
 </section>
 <section class="body_section">
-
     <div class="body_partition row ">
         <div class="left_part col">
         
@@ -75,37 +87,44 @@
                     <li><span><i class="uil uil-globe"></i>Portfolio</span></li>
                 </ul>
             </div>
-            <hr style="color: #a39e9e !important;height:2px;opacity:1;">
+            <hr>
 
             <div class="skills font">
                 <h1>SKILLS</h1>
-                <li>{{ $data->category }}</li>
+                <li>{{ $data->skills }}</li>
             </div>
-            <hr style="color: #a39e9e !important;height:2px;opacity:1;">
+            <hr>
+            <div class="Language font">
+                <h1>LANGUAGE</h1>
+            </div>
 
-            <div class="EDUCATION font">
-                <h4>Institution:</h4>
-                <strong>{{ $data->Institution }}</strong>
-                
-                <h4 class="mt-2 font">University</h4>
-                <strong>{{ $data->University }}</strong>
-            </div>
-            <hr style="color: #a39e9e !important;height:2px;opacity:1;">
+         
 
         </div>
-        <div class="right_part col-8">
-            <div class="about_user font">
-                <h1>PROFILE</h1>
+        <div class="right_part col-8 right_padding">
+            <div class="about_user font ">
+                <h1>OBJECTIVE</h1>
                 <p>{{$data->AboutMe}}</p>
             </div>
-            <hr style="color: #a39e9e !important;height:2px;opacity:1;">
+            <hr >
 
-            <div class="experience font">
+            <div class="experience font ">
                 <h1>EXPERIENCE</h1>
                 <p style="margin-top:20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam ipsum rerum itaque laboriosam cupiditate, maxime recusandae, fugiat hic beatae in officiis quam sit reiciendis soluta temporibus nemo. Possimus, voluptatem. maxime recusandae, fugiat hic ..</p>
                 <p style="margin-top:17px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam ipsum rerum itaque laboriosam cupiditate, maxime recusandae, fugiat hic beatae in officiis quam sit reiciendis soluta temporibus nemo. Possimus, voluptatem.Lorem ipsum do .</p>
                 <p style="margin-top:15px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam ipsum rerum itaque laboriosam cupiditate, maxime recusandae, fugiat hic beatae in officiis quam sit reiciendis soluta temporibus nemo. Possimus, voluptatem.</p>
             
+            </div>
+            <hr >
+
+            <div class="EDUCATION font ">
+                <h1>EDUCATION</h1>
+
+                <h4 >Institution:</h4>
+                <strong >{{ $data->Institution }}</strong>
+                
+                <h4 class="mt-2 font">University</h4>
+                <strong>{{ $data->University }}</strong>
             </div>
         </div>
     </div>
