@@ -53,22 +53,46 @@
     h4{
         font-weight: 600;
     }
+    
+    .choose_pic {
+        width: 31px;
+        position: absolute;
+        height: 31px;
+        top: 144px;
+        right: 102px;
+        border-radius: 50%;
+        background-color: #b3b3b8;
+    }
+    .choose_pic label .uil{
+        margin-right: 10px;
+        font-size: 23px;
+    }
 </style>
 <section class="header_section" style="height: 330px; ">
     <div class="backcover w-100 bg-primary position-relative" style="height: 180px; ">
         <img style="height: 180px;width:100%; " src="{{ asset('storage/JobSeekerImg/pexels-aleksandar-pasaric-3629227.jpg') }}" alt="NOt found">
     </div>
-    <div class="header position-absolute d-flex" style="top: 174px;left: 33px;">
-        <div class="profileImg  bg-secondary rounded-circle"  style="width: 180px; height: 180px;
+   
+<div class="header position-absolute d-flex" style="top: 174px;left: 33px;">
+        <div class="profileImg  bg-secondary rounded-circle" style="width: 180px; height: 180px;
         border: 4px solid #dabdbd;
         top: 156px;
         left: 33px;">
-                @if ($data->ProfileImg === 'defaultImg.png')
-                        <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
-                @else
-                        <img src="{{ asset('storage/JobSeekerImg/' . $data->ProfileImg) }}" alt="404 not found">
-                @endif
-        </div>
+            @if ($data->ProfileImg === 'defaultImg.png')
+            <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
+            @else
+            <img style="border-radius: 50%;"src="{{ asset('storage/JobSeekerImg/' . $data->ProfileImg) }}" alt="404 not found">
+            @endif
+            <form action="{{route('UpdateProfilePicture')}}" enctype="multipart/form-data" method="post" id="form">
+                <div class="choose_pic">
+                     @csrf
+                     <input type="hidden" name="id" value="{{ $data->id }}">
+                     <label for="change" style="position: absolute;top:-2px;right:-6px;"><i class="uil uil-camera"></i></label>
+                    <input type="file" accept="image/x-png,image/gif,image/jpeg" style="width: 13px;height: 13px;border-radius: 50%; display:none" id="change" name="logo">
+                    <input type="submit" value="submit" hidden>
+                </div>
+            </form>
+
         <div class="User_name font font_size">
             <h1>{{ $data->name }}</h1>
             <h4>{{ $data->category }}</h4>
