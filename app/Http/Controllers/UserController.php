@@ -308,7 +308,7 @@ class UserController extends Controller
             Storage::disk('local')->delete($oldpath);
             $Savelogo->save();
         }
-        return redirect()->route('EditJobSeekerprofile');
+        return redirect()->route('JobSeekerprofile');
     }
     public function logout()
     {

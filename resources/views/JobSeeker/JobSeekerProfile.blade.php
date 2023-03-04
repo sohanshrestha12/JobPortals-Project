@@ -153,6 +153,12 @@
         </div>
     </div>
 </section>
-       
+<script>
+    var fileInput=document.querySelector("#change");
+    fileInput.addEventListener("change",function(){
+        var form = document.querySelector("#form");
+        form.submit();
+    });
+</script>
   
 @endsection
