@@ -103,3 +103,10 @@ body
     text-align: start;
     white-space:nowrap;
 }
+#myChart{
+    height: 350px!important;
+}
+#myPie{
+    height: 350px!important;
+
+} 

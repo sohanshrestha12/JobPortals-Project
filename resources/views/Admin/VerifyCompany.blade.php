@@ -10,6 +10,7 @@
                     <th scope="col">Category</th>
                     <th scope="col">Location</th>
                     <th scope="col">Phone No.</th>
+                    <th scope="col">Official link</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -31,6 +32,7 @@
                         <td>{{ $com->category }}</td>
                         <td>{{ $com->city . ', ' . $com->location }}</td>
                         <td>{{ $com->phoneno }}</td>
+                        <td>{{ $com->link }}</td>
                         <td>
                             <a href="{{ url('verify/' . $com->id) }}" class="btn btn-danger">
                                 Pending</a>

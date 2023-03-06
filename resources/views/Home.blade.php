@@ -139,6 +139,7 @@
         <div class="container">
             <h2 class="section-title mb-0">Recent Jobs</h2><br> <img src="img/title-border.png" alt="">
             <div class="row w-100 m-0">
+                
                 @foreach ($latestJobs as $jobs)
                     <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter new">
                         <div class="box1 d-flex">
@@ -187,6 +188,11 @@
                         </div>
                     </div>
                 @endforeach
+                @if(count($latestJobs) >= 6)
+                    <div class="d-flex justify-content-center">
+                        <a href="{{route('jobs')}}" class="btn btn-primary" style="font-size:1.6rem;width:fit-content;">View More</a>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
