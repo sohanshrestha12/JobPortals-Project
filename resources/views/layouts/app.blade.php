@@ -73,10 +73,18 @@
                                 style="background-color:transparent;color:black">
                                 {{ ucfirst($data->name) }}
                             </a>
-                            @if (Session::has('CloginId') || Session::has('UloginId') || Session::has('GUloginId'))
+                            @if (Session::has('CloginId'))
                                 <ul class="dropdown-menu" id="drop-menu" style="width:12rem">
                                     <li><i class="uil uil-user"></i><a class="dropdown-item"
                                             href="{{ route('CompanyProfile') }}">Profile</a></li>
+                                    <hr class="mb-2">
+                                    <li> <i class="uil uil-signout"></i><a class="dropdown-item"
+                                            href="{{ route('logout') }}">Logout</a></li>
+                                </ul>
+                                @elseif(Session::has('UloginId') || Session::has('GUloginId'))
+                                <ul class="dropdown-menu" id="drop-menu" style="width:12rem">
+                                    <li><i class="uil uil-user"></i><a class="dropdown-item"
+                                            href="{{ route('JobSeekerprofile') }}">Profile</a></li>
                                     <hr class="mb-2">
                                     <li> <i class="uil uil-signout"></i><a class="dropdown-item"
                                             href="{{ route('logout') }}">Logout</a></li>

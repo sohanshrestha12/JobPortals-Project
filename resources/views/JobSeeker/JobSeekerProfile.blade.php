@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.User')
 @section('content')
 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet"><title>Document</title>
@@ -29,11 +29,14 @@
         font-size:16px;
 
     }
+    .font_size span{
+        font-size: 11px;
+    }
 
     .right_part{
         border-left:2.4px solid #c8c8c8;
     }
-    .font span,.font h1,.font li,.font h4 , .font strong ,.font p {
+    .font span,.font h1,.font button,.font li,.font h4 , .font strong ,.font p ,.font label ,.font a{
         font-family: 'Josefin Sans', sans-serif;
         
     }
@@ -50,7 +53,7 @@
     .left_part{
         padding-right: 45px;
     }
-    h4{
+    h4 , h1{
         font-weight: 600;
     }
     
@@ -58,8 +61,8 @@
         width: 31px;
         position: absolute;
         height: 31px;
-        top: 144px;
-        right: 102px;
+        top: 9px;
+        right: 245px;
         border-radius: 50%;
         background-color: #b3b3b8;
     }
@@ -67,7 +70,16 @@
         margin-right: 10px;
         font-size: 23px;
     }
+    .visible{
+        display: block;
+    }
+    .Frame{
+        display: none;
+
+    }
 </style>
+<body>
+    
 <section class="header_section" style="height: 330px; ">
     <div class="backcover w-100 bg-primary position-relative" style="height: 180px; ">
         <img style="height: 180px;width:100%; " src="{{ asset('storage/JobSeekerImg/pexels-aleksandar-pasaric-3629227.jpg') }}" alt="NOt found">
@@ -103,7 +115,7 @@
     <div class="body_partition row ">
         <div class="left_part col">
         
-            <div class="Contact_details font ">
+            <div class="Contact_details font font_size ">
                 <ul >
                     <li><span><i class="uil uil-phone-volume"></i>{{ $data->phoneno }}</span></li>
                     <li><span><i class="uil uil-envelope-check"></i>{{ $data->email }}</span></li>
@@ -115,12 +127,33 @@
 
             <div class="skills font">
                 <h1>SKILLS</h1>
-                <li>{{ $data->skills }}</li>
+                <ul>
+                    <li>{{ $data->Skills }}</li>
+                </ul>
             </div>
             <hr>
             <div class="Language font">
                 <h1>LANGUAGE</h1>
             </div>
+            <!-- <hr>
+
+            <div class="resume_part font">
+           
+                <form action="{{route('resume_upload')}}" method="post" enctype="multipart/form-data" >
+                    <div class="mb-3 font">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$data->id}}"  >
+                    <label for="formFileLg" class="form-label font ">Upload Your Resume:</label>
+                    <input class="form-control form-control-lg" type="file" id="file-upload"  name="Resume" value="{{$data->Resume}}" >
+                    <div id="file-upload-filename"></div>
+                    <button class="btn btn-danger"> <a href="{{url('/view',$data->id)}}"class="font" style="text-decoration: none; color:white" >view</a></button>
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                </form>
+
+               
+            </div> -->
+            
 
          
 
@@ -128,37 +161,38 @@
         <div class="right_part col-8 right_padding">
             <div class="about_user font ">
                 <h1>OBJECTIVE</h1>
-                <p>{{$data->AboutMe}}</p>
+                <li><p>{{$data->Objective}}</p></li>
             </div>
             <hr >
 
             <div class="experience font ">
                 <h1>EXPERIENCE</h1>
                 <p style="margin-top:20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam ipsum rerum itaque laboriosam cupiditate, maxime recusandae, fugiat hic beatae in officiis quam sit reiciendis soluta temporibus nemo. Possimus, voluptatem. maxime recusandae, fugiat hic ..</p>
-                <p style="margin-top:17px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam ipsum rerum itaque laboriosam cupiditate, maxime recusandae, fugiat hic beatae in officiis quam sit reiciendis soluta temporibus nemo. Possimus, voluptatem.Lorem ipsum do .</p>
-                <p style="margin-top:15px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam ipsum rerum itaque laboriosam cupiditate, maxime recusandae, fugiat hic beatae in officiis quam sit reiciendis soluta temporibus nemo. Possimus, voluptatem.</p>
             
             </div>
             <hr >
 
             <div class="EDUCATION font ">
                 <h1>EDUCATION</h1>
-
+                <h4 class="mt-2 font"><i class="uil uil-university"></i>University</h4>
+                <p>{{ $data->University }}</p>
                 <h4 >Institution:</h4>
-                <strong >{{ $data->Institution }}</strong>
-                
-                <h4 class="mt-2 font">University</h4>
-                <strong>{{ $data->University }}</strong>
+                <p >{{ $data->Institution }}</p>
             </div>
         </div>
     </div>
 </section>
+</body>
+
 <script>
     var fileInput=document.querySelector("#change");
     fileInput.addEventListener("change",function(){
         var form = document.querySelector("#form");
         form.submit();
     });
-</script>
+
+    
   
+</script>
+
 @endsection
