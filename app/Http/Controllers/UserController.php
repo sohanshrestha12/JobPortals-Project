@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Mews\Purifier\Facades\Purifier;
 use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
@@ -69,10 +70,14 @@ class UserController extends Controller
     public function UpdateJobSeekerInfo()
     {
         $data = null;
-        if (Session::has('UloginId')) {
+        if (Session::has('UloginId') ) {
             $data = User::find(Session::get('UloginId'));
-            return view('JobSeeker.EditJobseekerProfile', compact('data'));
         }
+        if ( Session::has('GUloginId')) {
+            $data = User::where('email',Session::get('GUloginId'))->first();
+        }
+        return view('JobSeeker.EditJobseekerProfile', compact('data'));
+
 
     }
     public function RegisterJobSeeker(Request $req)
@@ -253,7 +258,9 @@ class UserController extends Controller
         $update->category = $req->category;
         $update->phoneno = $req->phoneno;
         $update->AboutMe = $req->AboutMe;
-        $update->Skills = $req->Skills;
+
+        $update->Skills = Purifier::clean($req->Skills);
+
         $update->Gender = $req->Gender;
         $update->Roles = $req->Roles;
         $update->Objective = $req->Objective;
@@ -270,22 +277,15 @@ class UserController extends Controller
         $update->Joined_year = $req->Joined_year;
         $update->Passed_year = $req->Passed_year;
         $update->DateofBirth = $req->DateofBirth;
-
-            $add_resume = $req->file('Resume');
-            $Resume_name = $req->id . $add_resume->getClientOriginalName();
-            $Resume_path = $add_resume->storeAs('public/Resume', $Resume_name);
-            $SaveResume = User::find($req->id);
-            $SaveResume->Resume = $Resume_name;
-            $SaveResume->ResumePath = $Resume_path;
-
-        if( $SaveResume->save()){
-            return response()->json(['success' => true]);
-        }else{
-            return response()->json(['success' => false]);
-        }
-     
-       
-
+            if($req->file('Resume')){
+                $add_resume = $req->file('Resume');
+                $Resume_name = $req->id . $add_resume->getClientOriginalName();
+                $Resume_path = $add_resume->storeAs('public/Resume', $Resume_name);
+                $SaveResume = User::find($req->id);
+                $SaveResume->Resume = $Resume_name;
+                $SaveResume->ResumePath = $Resume_path;
+                $SaveResume->save();
+            }
         $update->save();
         return redirect()->route('JobSeekerprofile');
     }

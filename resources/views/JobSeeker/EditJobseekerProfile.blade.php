@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <link rel="stylesheet" href="{{ asset('css/formatterBox.css') }}">
@@ -441,52 +442,57 @@ h1 {
 
                     <h1 >Upload Your Resume</h1>
 
-                    <div class="resume_part shadow-sm p-4 mb-5 bg-white rounded ">
-                            <div class="wrapper">
-                                <div class="container-resume">
-                                    <div class="upload-container">
-                                    @if(empty($data->Resume))
-                                    <div id="when_not_uploaded">
-                                    <h2>Upload a file</h2>
-                                    <div class="border-container">
-                                            <div class="icons fa-4x">
-                                                <i class="fas fa-file-image"
-                                                    data-fa-transform="shrink-3 down-2 left-6 rotate--45"></i>
-                                                <i class="fas fa-file-alt" data-fa-transform="shrink-2 up-4"></i>
-                                                <i class="fas fa-file-pdf"
-                                                    data-fa-transform="shrink-3 down-2 right-6 rotate-45"></i>
-                                            </div>
-                                            <input type="file" id="file-upload"  name="Resume">
-                                            <p>Drag and drop files here, or
-                                                <a href="#" id="file-browser">browse</a> your computer.
-                                            </p>
-                                        </div>
+                <div class="resume_part shadow-sm p-4 mb-5 bg-white rounded ">
+                    <div class="wrapper">
+                        <div class="container-resume">
+                            <div class="upload-container">
+                            @if(empty($data->Resume))
+                            <div id="when_not_uploaded">
+                            <h2>Upload a file</h2>
+                            <div class="border-container">
+                                    <div class="icons fa-4x">
+                                        <i class="fas fa-file-image"
+                                            data-fa-transform="shrink-3 down-2 left-6 rotate--45"></i>
+                                        <i class="fas fa-file-alt" data-fa-transform="shrink-2 up-4"></i>
+                                        <i class="fas fa-file-pdf"
+                                            data-fa-transform="shrink-3 down-2 right-6 rotate-45"></i>
                                     </div>
-                                    @else
-                                    <div id="FileInfo" >
-                                        <a href="{{url('/view',$data->id)}}" >
-                                            <div class="resume_img">
-                                                <img src="{{ asset('storage/default/pdf.png') }}" alt="" style="height:56px">
-                                            </div>
-                                        </a>
-                                        <div class="delete_resume" >
-                                            <a href="{{url('/deleteResume',$data->id)}}" id="delete-file-btn">Delete</a>
-                                        </div>
-                                    </div>
-                                  
-                                     @endif
-                                    </div>
+                                    <input type="file" id="file-upload"  name="Resume">
+                                    <p>Drag and drop files here, or
+                                        <a href="#" id="file-browser">browse</a> your computer.
+                                    </p>
                                 </div>
                             </div>
+                            @else
+                            <div id="FileInfo" >
+                                <a href="{{url('/view',$data->id)}}" >
+                                    <div class="resume_img">
+                                        <img src="{{ asset('storage/default/pdf.png') }}" alt="" style="height:56px">
+                                    </div>
+                                </a>
+                                <div class="delete_resume" >
+                                    <a href="{{url('/deleteResume',$data->id)}}" id="delete-file-btn">Delete</a>
+                                </div>
+                            </div>
+                            </div>
+                            
+                                @endif
+                        </div>
                     </div>
-            </div>
-        </div>
+                </div>
+                   
+                </div>
+                </div>
+                </div>
 
-        <div class="botton text-center">
-            <button type="submit" style="margin-bottom:60px" class="btn btn-warning btn-lg step_btn">Submit</button>
-        </div>
+                <div class="botton text-center">
+                    <button type="submit" style="margin-bottom:60px" class="btn btn-warning btn-lg step_btn">Submit</button>
+                </div>
         </form>
 
+        </div>
+        </div>
+        </div>
 
 </body>
 <script src="{{ asset('js/formatter.js') }}"></script>
@@ -540,6 +546,11 @@ $(document).ready(function() {
  });
 
 
+
+
+      
+
 </script>
+<script src="{{ asset('js/trumbowyg.min.js') }}"></script>
 @endsection
 
