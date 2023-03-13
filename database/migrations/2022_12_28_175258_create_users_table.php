@@ -30,8 +30,9 @@ return new class extends Migration
             $table->string('ProfileImgPath')->default('public/default/defaultImg.jpg');
             $table->string('Skills',200)->nullable();
             $table->string('Resume')->nullable();
-            $table->string('Joined_year')->nullable();
-            $table->string('Passed_year')->nullable();
+            $table->string('ResumePath')->nullable();
+            $table->integer('Joined_year')->nullable();
+            $table->integer('Passed_year')->nullable();
             $table->string('DateofBirth')->nullable();
             $table->string('AboutMe',500)->nullable();
             $table->string('Position')->nullable();

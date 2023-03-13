@@ -34,6 +34,9 @@ Route::get('/UpdateJobSeekerInfo',[UserController::class,'UpdateJobSeekerInfo'])
 Route::post('/UpdateJobSeekerInformation', [UserController::class, 'UpdateJobSeekerInformation'])->name('UpdateJobSeekerInformation');
 
 
+Route::post('/resume_upload',[UserController::class,'resume_upload'])->name('resume_upload');
+Route::get('/view/{id}', [HomeController::class, 'viewResume']);
+Route::get('/deleteResume/{id}',[UserController::class,'DeleteResume']);
 
 
 Route::get('/RegisterJobSeeker', [UserController::class, 'JobSeekerSignUp'])->name('JobSeekerSignUp');
@@ -90,3 +93,4 @@ Route::get('/adminpw', [Admin::class, 'adminpw']);
 Route::get('/adminlogout', [Admin::class, 'adminlogout']);
 
 Route::get('/verify/{comid}', [Admin::class,'verify'])->name('VerifyComapany');
+?>
