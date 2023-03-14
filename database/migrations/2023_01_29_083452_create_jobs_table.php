@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('Type');
             $table->string('experience');
             $table->integer('status');
+            $table->integer('isdeleted');
+            $table->string('message',300)->nullable();
             $table->string('EducationDegree');
             $table->string('Education');
             $table->unsignedBigInteger('company_id');

@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="{{ asset('css/adminhome.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
     @vite(['resources/js/app.js'])
+
 </head>
 
 <body>
@@ -50,11 +52,11 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/adminuser') }}">
+                    <a href="{{ url('/adminJobs') }}">
                         <span class="icon">
-                            <ion-icon name="person-outline"></ion-icon>
+                            <ion-icon name="medkit-outline"></ion-icon>
                         </span>
-                        <span class="title">User</span>
+                        <span class="title">All Jobs</span>
                     </a>
                 </li>
                 <li>
@@ -66,7 +68,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/adminpw') }}">
+                    <a href="{{ route('adminpw') }}">
 
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
@@ -102,7 +104,7 @@
 
 
     @yield('content')
-
+    <script src="{{ asset('js/index.js') }}"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>

@@ -4,7 +4,7 @@
         <div class="job-text">
             <h2>Jobs</h2>
             <ul>
-                <li><a href="{{route('home')}}">Home</a> </li>
+                <li><a href="{{ route('home') }}">Home</a> </li>
                 <li>Job </li>
             </ul>
         </div>
@@ -135,7 +135,8 @@
                                     </div>
                                 </div>
                                 <div class="JobTypehome">
-                                    <a href="{{ url('JobProfile/' . $jobs->id) }}" style="padding:1rem 1rem!important;">View
+                                    <a href="{{ url('JobProfile/' . $jobs->id) }}"
+                                        style="padding:1rem 1rem!important;">View
                                         Details</a>
                                 </div>
                             </div>
@@ -148,4 +149,5 @@
             </div>
         </div>
     </section>
+
 @endsection

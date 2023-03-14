@@ -119,6 +119,12 @@
                         <span class="title">Applicants</span>
                     </a>
                 </li> --}}
+                <li @if (Request::is('CompanyMessage')) class="Company-sidebar-active" @endif>
+                    <a href="{{ route('CompanyMessage') }}">
+                        <span class="icon"><i class="uil uil-envelope-times"></i></span>
+                        <span class="title">Message</span>
+                    </a>
+                </li>
                 <li @if (Request::is('ChangeCompanyPassword')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('ChangeCompanyPassword') }}">
                         <span class="icon"><i class="uil uil-edit"></i></span>

@@ -1487,7 +1487,7 @@ p {
 .JobTypehome a {
     font-size: 1.6rem;
     text-decoration: none;
-    padding: 0.1rem 1.2rem;
+    padding: 1.1rem 1.2rem;
     border-radius: 5px;
     color: white;
     background-color: var(--main-color);
@@ -1678,4 +1678,32 @@ p {
 .Applicants_Information h2 {
     color: black !important;
     ;
+}
+
+
+/* Posted Jobs UserCompanyProfile  */
+.PostedJobs_wrapper{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit,minmax(600px,1fr));
+}
+.UserCompany_view{
+    display: flex;
+    gap:1rem;
+    align-items: center;
+}
+.UserCompany_view a{
+    all:unset;
+    font-size:1.4rem;
+    padding:0.3rem 1rem;
+    font-weight:500;
+    border:2px solid var(--main-color);
+    color:var(--main-color);
+    border-radius:20px;
+    transition: 0.3s ease;
+}
+.UserCompany_view a:hover{
+    color: white;
+    background-color: var(--main-color);
+    cursor: pointer;
 }

@@ -111,8 +111,7 @@
                             <div class="company-form-grp">
                                 <label for="description">Description </label>
                                 <textarea name="description" rows="5" style="padding: 0.5rem 1rem">@if ($data->description == ''){{ 'Write about your company.' }}
-                                    @else
-                                    {{ $data->description }}
+                                    @else{{ $data->description }}
                                     @endif
                                 </textarea>
                             </div>

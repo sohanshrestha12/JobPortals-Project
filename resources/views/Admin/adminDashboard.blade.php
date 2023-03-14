@@ -1,5 +1,6 @@
 @extends('layouts.adminlayout')
 @section('content')
+
     <!-- main -->
     <div class="main">
         <div class="cards">

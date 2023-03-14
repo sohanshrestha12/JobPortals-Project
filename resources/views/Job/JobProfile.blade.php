@@ -552,6 +552,9 @@
                                 </div>
                                 <p class="paragraph">{{ 'Rs. ' . $Jid->Salary }}</p>
                             </div>
+                            <div>
+                                <p>{{$Jid->Skills}}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-5 d-flex flex-column align-items-end">

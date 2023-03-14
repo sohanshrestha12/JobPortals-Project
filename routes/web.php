@@ -57,6 +57,9 @@ Route::get('/ResetPassword/{token}', [UserController::class, 'resetpasswordform'
 Route::post('/ResetPassword', [UserController::class, 'resetpassword'])->name('ForgotResetPassword');
 Route::get('/PasswordResetSuccessful', [UserController::class, 'gobackmsg'])->name('ResetGobackPage');
 Route::get('/ApplicantsDetails/{userid}', [UserController::class, 'ApplicantsDetails'])->name('ApplicantsDetails');
+Route::get('/CompanyMessage', [UserController::class,'CompanyMessage'])->name('CompanyMessage');
+
+
 
 Route::get('/PostJobs', [JobController::class,'PostJobs'])->name('PostJob')->middleware('isLoggedIn');
 Route::post('/PostJobs',[JobController::class,'PostnewJob'])->name('PostnewJob');
@@ -82,11 +85,16 @@ Route::get('/Applicants/{Jobid}',[JobController::class,'Applicants'])->name('App
 
 //admin login
 Route::get('/admindashboard', [Admin::class, 'admindashboard'])->name('admindashboard');
-Route::get('/adminmail', [Admin::class, 'adminmessage']);
+Route::get('/adminmail', [Admin::class, 'adminmessage'])->name('adminmessage');
 Route::get('/Verifycompany', [Admin::class, 'Verifycompany'])->name('Verifycompany');
 Route::get('/Verifiedcompany', [Admin::class, 'Verifiedcompany'])->name('Verifiedcompany');
-Route::get('/adminuser', [Admin::class, 'adminuser']);
-Route::get('/adminpw', [Admin::class, 'adminpw']);
+Route::get('/adminJobs', [Admin::class, 'adminJobs'])->name('adminJobs');
+Route::post('/Admindeletejobs', [Admin::class, 'Admindeletejobs'])->name('Admindeletejobs');
+Route::post('/AdmindeletejobsPermanently', [Admin::class, 'AdmindeletejobsPermanently'])->name('AdmindeletejobsPermanently');
+Route::get('/adminChangePassword', [Admin::class, 'adminpw'])->name('adminpw');
 Route::get('/adminlogout', [Admin::class, 'adminlogout']);
+Route::post('/ContactAdmin', [Admin::class, 'ContactAdmin'])->name('ContactAdmin');
+Route::post('/AdmindeleteContact', [Admin::class, 'AdmindeleteContact'])->name('AdmindeleteContact'); 
+Route::post('/AdminChangePassword', [Admin::class, 'AdminChangePassword'])->name('AdminChangePassword'); 
 
 Route::get('/verify/{comid}', [Admin::class,'verify'])->name('VerifyComapany');

@@ -156,6 +156,9 @@
 .cards .h:hover .number {
     color: #fff;
 }
+.cards .h:hover .card-name {
+    color: #fff;
+}
 
 .cards .h:hover .h-name {
     color: #fff;
