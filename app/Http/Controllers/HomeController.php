@@ -130,6 +130,12 @@ class HomeController extends Controller
         }
         return view('About', compact('data'));
     }
+    public function viewResume($id)
+    {
+        $data = User::find($id);
+        return view('JobSeeker.viewData',compact('data'));
+
+    }
     public function contact()
     {
         $data = null;

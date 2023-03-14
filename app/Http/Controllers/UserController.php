@@ -12,8 +12,10 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Mews\Purifier\Facades\Purifier;
 use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
@@ -68,10 +70,14 @@ class UserController extends Controller
     public function UpdateJobSeekerInfo()
     {
         $data = null;
-        if (Session::has('UloginId')) {
+        if (Session::has('UloginId') ) {
             $data = User::find(Session::get('UloginId'));
-            return view('JobSeeker.EditJobseekerProfile', compact('data'));
         }
+        if ( Session::has('GUloginId')) {
+            $data = User::where('email',Session::get('GUloginId'))->first();
+        }
+        return view('JobSeeker.EditJobseekerProfile', compact('data'));
+
 
     }
     public function RegisterJobSeeker(Request $req)
@@ -214,16 +220,45 @@ class UserController extends Controller
 
     public function UpdateJobSeekerInformation(Request $req)
     {
+        // $req->validate(
+        // [
+        //     'name' => 'required',
+        //     'city' => 'required',
+        //     'phoneno' => 'required|integer',
+        //     'AboutMe' => 'required',
+        //     'Skills' => 'required',
+        //     'Gender' => 'required',
+        //     'Roles' => 'required',
+        //     'Objective' => 'required',
+        //     'Degree' => 'required',
+        //     'JobTime' => 'required',
+        //     'Level' => 'required',
+        //     'District' => 'required',
+        //     'Institution' => 'required',
+        //     'Municipality' => 'required',
+        //     'Industry' => 'required',
+        //     'University' => 'required',
+        //     'Organization' => 'required',
+        //     'Position' => 'required',
+        //     'Joined_year' => 'required|integer',
+        //     'Passed_year' => 'required|integer',
+        //     'DateofBirth' => 'required',
+
+        // ]
+
+        // );
   
-   
+       
+
         $update = User::find($req->id);
         $update->name = $req->name;
         $update->city = $req->city;
         $update->category = $req->category;
         $update->phoneno = $req->phoneno;
         $update->AboutMe = $req->AboutMe;
-        $update->Skills = $req->Skills;
-        $update->Resume = $req->Resume;
+
+        $update->Skills = Purifier::clean($req->Skills);
+
         $update->Gender = $req->Gender;
         $update->Roles = $req->Roles;
         $update->Objective = $req->Objective;
@@ -240,10 +275,19 @@ class UserController extends Controller
         $update->Joined_year = $req->Joined_year;
         $update->Passed_year = $req->Passed_year;
         $update->DateofBirth = $req->DateofBirth;
-
+            if($req->file('Resume')){
+                $add_resume = $req->file('Resume');
+                $Resume_name = $req->id . $add_resume->getClientOriginalName();
+                $Resume_path = $add_resume->storeAs('public/Resume', $Resume_name);
+                $SaveResume = User::find($req->id);
+                $SaveResume->Resume = $Resume_name;
+                $SaveResume->ResumePath = $Resume_path;
+                $SaveResume->save();
+            }
         $update->save();
         return redirect()->route('JobSeekerprofile');
     }
+
     public function UpdateCompanyLogo(Request $req)
     {
         $req->validate(
@@ -291,7 +335,7 @@ class UserController extends Controller
         // dd($logoname);
         // uniqid() to name uniquely
         // $logopath = $image->storeAs('public/Company Logo', $logoname . $req->id);
-        $logopath = $image->storeAs('public/Company Logo', $logoname);
+        $logopath = $image->storeAs('public/JobSeekerImg', $logoname);
         $Savelogo = User::find($req->id);
         $Savelogo->ProfileImg = $logoname;
         $Savelogo->ProfileImgPath = $logopath;
@@ -306,8 +350,41 @@ class UserController extends Controller
             Storage::disk('local')->delete($oldpath);
             $Savelogo->save();
         }
-        return redirect()->route('EditJobSeekerprofile');
+        return redirect()->route('JobSeekerprofile');
     }
+    public function deleteResume($id)
+    {
+       
+        $user = User::find($id);
+    
+       
+            $resumePath = 'public/Resume/'.$user->Resume;
+    
+            if (Storage::disk('local')->exists($resumePath) ){ 
+
+                Storage::disk('local')->delete($resumePath);
+                $user->Resume = null;
+                $user->save();
+
+                // Resume file deleted successfully
+
+                return redirect()->route('UpdateJobSeekerInfo');
+            } 
+            
+     
+    }
+
+
+
+        //         return response()->json(['success' => true]);
+        //     } else {
+        //         error_log('Error deleting file: ' . $ResumePath);
+        //         return response()->json(['success' => false]);
+        //     }
+        // } else{
+        //     error_log('File not found: ' . $ResumePath);
+        //     return response()->json(['success' => false]);
+        // }
     public function logout()
     {
         if (Session::has('CloginId')) {

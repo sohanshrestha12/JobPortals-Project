@@ -91,7 +91,7 @@
                         <span class="title">DashBoard</span>
                     </a>
                 </li>
-                <li @if (Request::is('companyprofile')) class="Company-sidebar-active" @endif>
+                <li @if (Request::is('JobSeekerprofile')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('JobSeekerprofile') }}">
                         <span class="icon"><i class="uil uil-user-circle"></i></span>
                         <span class="title">Profile</span>

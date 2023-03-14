@@ -14,6 +14,17 @@
                         <div class="modal-body">
                             <div style="padding:0.5rem 2rem">
                                 @csrf
+                                <div class="cv_section">
+                                    <h1>RESUME</h1>
+                                    <div class="file_img">
+                                        @if($data->Resume == 'null')
+                                        <img src="" alt="NOfile has been uploaded" style="height:50px">
+                                        @else
+                                            <img src="{{ asset('storage/default/pdf.png') }}" alt="" style="height:50px">
+                                        @endif
+                                    </div>
+                                    <input type="file" value="$JobseekerInfo->Resume">
+                                </div>
                                 <h5 style="font-size: 2.375rem;">Add Your Personal Details</h5>
                                 <div class="sub_form shadow-sm p-4 mb-5 bg-white rounded">
                                     <div class="mb-3 ">
