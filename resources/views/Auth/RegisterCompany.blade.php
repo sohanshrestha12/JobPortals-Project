@@ -3,10 +3,10 @@
     <div class="container mb-5">
         <div class="row justify-content-center bg-light">
             <div class="col-md-6 p-5 shadow">
-                @if (session()->has('success'))
+                @if (session()->has('Registersuccess'))
                     <div class="alert alert-success" role="alert"
                         style="display: flex;justify-content:center;font-size:1.6rem;">
-                        {{ session()->get('success') }} &nbsp; <a class="paragraph login" style="text-decoration: none"
+                        {{ session()->get('Registersuccess') }} &nbsp; <a class="paragraph login" style="text-decoration: none"
                             href="javascript:void(0)"> Please login</a>
                     </div>
                 @endif

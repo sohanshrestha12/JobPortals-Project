@@ -20,6 +20,23 @@
 </head>
 
 <body>
+    @php
+        use App\Models\User;
+        use Illuminate\Support\Facades\Hash;
+        
+        $admin = User::where('role', 'admin')->first();
+    @endphp
+    @if ($admin == null)
+        @php
+            $addAdmin = new User();
+            
+            $addAdmin->name = 'Admin';
+            $addAdmin->email = 'SuperAdmin@gmail.com';
+            $addAdmin->password = Hash::make('root123');
+            $addAdmin->role = 'admin';
+            $addAdmin->save();
+        @endphp
+    @endif
     <header>
         <div class="container">
             <nav id="navbar">

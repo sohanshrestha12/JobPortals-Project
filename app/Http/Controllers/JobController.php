@@ -48,7 +48,8 @@ class JobController extends Controller
             'Education' => $req->Education,
             'EducationDegree' => $req->EducationDegree,
             'company_id' => $req->companyId,
-            'status' => '1'
+            'status' => '1',
+            'isdeleted' => '0'
         ]);
         return back()->with('JobPostedSuccessfully', 'Your Job advertise have been posted successfully');
     }
@@ -69,10 +70,10 @@ class JobController extends Controller
        
             // $user = Job::find(2)->Jobseeker;
             // dd($user);
-            $Jobinfo = Job::get();
+            $Jobinfo = Job::where('isdeleted',0)->get();
         
-            $Jobactive = Job::where(['company_id' => Session::get('CloginId'),'status' => 1])->get();
-            $Jobexpired = Job::where(['company_id' => Session::get('CloginId'),'status' => 0])->get();
+            $Jobactive = Job::where(['company_id' => Session::get('CloginId'),'status' => 1,'isdeleted' => 0])->get();
+            $Jobexpired = Job::where(['company_id' => Session::get('CloginId'),'status' => 0,'isdeleted' => 0])->get();
             return view('Company.ListofJobs', compact('data', 'Jobinfo','Jobactive','Jobexpired'));
         }
     }

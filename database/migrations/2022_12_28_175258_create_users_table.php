@@ -47,6 +47,7 @@ return new class extends Migration
             $table->string('Degree')->nullable();
             $table->string('Gender')->nullable();
             $table->string('Roles',500)->nullable();
+            $table->string('established',500)->nullable();
             $table->string('Objective',500)->nullable();
             $table->timestamps();
         });

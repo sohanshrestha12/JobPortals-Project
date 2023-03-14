@@ -58,7 +58,7 @@ class UserController extends Controller
             'role' => 'company',
             'Verify' => 0
         ]);
-        return back()->with('success', 'Your form has been successfully registered.');
+        return back()->with('Registersuccess', 'Your form has been successfully registered.');
     }
     public function JobSeekerSignUp()
     {
@@ -101,7 +101,7 @@ class UserController extends Controller
             'name' => $req->name,
             'role' => 'user'
         ]);
-        return back()->with('success', 'Your form has been successfully registered.');
+        return back()->with('Registersuccess', 'Your form has been successfully registered.');
     }
     public function loginWithGoogle()
     {
@@ -162,8 +162,6 @@ class UserController extends Controller
         $alluser = User::where('email', '=', $req->logemail)->first();
         if ($alluser) {
             if ($alluser->role == 'admin') {
-                $alluser->password = Hash::make('root123');
-                $alluser->save();
                 if (Hash::check($req->logpassword,$alluser->password)) {
                     session()->put('AloginId', $alluser->id);
                     return redirect('admindashboard');
@@ -486,6 +484,13 @@ class UserController extends Controller
         }
         return view('Company.ApplicantsDetails',compact('userInfo','data','ApplicantJobid'));
     }
-
+    public function CompanyMessage(){
+        $data = null;
+        $deletedJobs = Job::where([['isdeleted',1],['company_id',Session::get('CloginId')]])->latest()->take(6)->get();
+        if (Session::has('CloginId')) {
+            $data = User::find(Session::get('CloginId'));
+        }
+        return view('Company.Message',compact('data','deletedJobs'));
+    }
 
 }

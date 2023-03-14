@@ -30,7 +30,8 @@ body
     border-left: 10px solid var(--purple) ;
     transition: 0.5s;
     overflow: hidden;
-    margin-left:-120px ;
+    /* margin-left:-120px ; */
+    left: 0;
 }
 .navigation.active
 {
@@ -102,4 +103,34 @@ body
     line-height: 60px;
     text-align: start;
     white-space:nowrap;
+}
+#myChart{
+    height: 350px!important;
+}
+#myPie{
+    height: 350px!important;
+
+} 
+
+/* pagination  */
+.pagination nav {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination nav ul li span,
+.pagination nav ul li a {
+    font-size: 16px;
+    padding: 7px 15px;
+}
+
+.page-link.active,
+.active>.page-link {
+    background-color: #ff6158 !important;
+    border-color: #ff6158 !important;
+    color: white !important;
+}
+
+.page-link {
+    color: #ff6158 !important;
 }
