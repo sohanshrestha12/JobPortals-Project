@@ -8,7 +8,7 @@
             <hr style="height: 3px;width:90%;color: black !important;margin: 0.7rem 0 3rem 8rem;">
         </div>
         <div class="row" style="padding: 0 8rem">
-            <div class="col-md-8 shadow rounded" style="background-color: rgb(252, 252, 252);padding:1rem 0.5rem">
+            <div class="col-md-8 shadow rounded mb-5" style="background-color: rgb(252, 252, 252);padding:1.3rem 2rem">
                 @if ($data->Verify == 0)
                     <p style="text-align: center">Your Company is not verified yet. Please wait until your company is verified to post jobs.</p>
                     <form action="{{ route('PostnewJob') }}" method="post" id="PostJob">

@@ -24,23 +24,23 @@ window.onload = () => {
     });
 
     // show and hide password 
-    if(register_closeeye){
+    if (register_closeeye) {
         register_closeeye.style.fontSize = "0";
     }
-    if(eyes){
+    if (eyes) {
         eyes.addEventListener('click', () => {
             if (register_password.type == "text") {
                 register_password.type = "password";
                 register_openeye.style.fontSize = "2.2rem";
                 register_closeeye.style.fontSize = "0";
-    
+
             }
             else {
                 register_password.type = "text";
                 register_closeeye.style.fontSize = "2.2rem";
                 register_openeye.style.fontSize = "0";
             }
-    
+
         });
     }
 
@@ -48,37 +48,60 @@ window.onload = () => {
     let toggle = document.querySelector('.toggle');
     let navigation = document.querySelector('.navigation');
     let main = document.querySelector('.main');
-    if(toggle)
-    {
-        toggle.onclick = function(){
+    if (toggle) {
+        toggle.onclick = function () {
             navigation.classList.toggle('Company-sidebar-toggle');
             main.classList.toggle('active');
         }
     }
 
-    // deletejobs jquery 
-    $('.DeleteJobs').click(function(e){
+    //filter jobs
+    let filter = document.querySelector('.JobFilter');
+    let Jfilter = document.querySelector('#Jfilter');
+    if (filter) {
+        filter.addEventListener('click', () => {
+            Jfilter.classList.toggle('Jactive');
+        });
+    }
+
+
+}
+jQuery.noConflict();
+jQuery(document).ready(function ($) {
+    //ApplyJobs
+    $('.JobApplyNowBtn').click(function (e) {
         e.preventDefault();
-    
+
+        $('#ApplyJobs').modal('show');
+    });
+
+
+
+    // deletejobs jquery 
+    $('.DeleteJobs').click(function (e) {
+        e.preventDefault();
+
         var Jobid = $(this).data("value");
         $('#Jobid').val(Jobid);
         $('#deleteModal').modal('show');
     });
 
-    //filter jobs
-    let filter = document.querySelector('.JobFilter');
-    let Jfilter = document.querySelector('#Jfilter');
-    if(filter){
-        filter.addEventListener('click',()=>{
-            Jfilter.classList.toggle('Jactive');
-        });
-    }
 
-    //ApplyJobs
-    $('.JobApplyNowBtn').click(function(e){
+    //adminMessageDelete
+    $('.AdminDeleteContact').click(function (e) {
         e.preventDefault();
 
-        $('#ApplyJobs').modal('show');
+        var Messageid = $(this).data("value");
+        $('#AdminMessageid').val(Messageid);
+        $('#AdmindeleteMessageModal').modal('show');
     });
- 
-}
+
+    //adminMessageDeletePermanent
+    $('.AdminDeleteJobsPermanent').click(function (e) {
+        e.preventDefault();
+
+        var Messageid = $(this).data("value");
+        $('#PermanentAdminJobid').val(Messageid);
+        $('#AdmindeletePermanentModal').modal('show');
+    });
+});

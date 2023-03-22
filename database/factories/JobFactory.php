@@ -28,7 +28,8 @@ class JobFactory extends Factory
             'status' => 1,
             'EducationDegree' => 'Doctoral Degree',
             'Education' => 'BIT',
-            'Company_id' => $this->faker->numberBetween(1, 2)
+            'Company_id' => $this->faker->numberBetween(1, 2),
+            'isdeleted' => 0
         ];
     }
 }

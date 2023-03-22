@@ -69,7 +69,8 @@
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
-                                <li><i class="uil uil-user"></i><a class="dropdown-item" href="{{ route('JobSeekerSignUp') }}">Register as
+                                <li><i class="uil uil-user"></i><a class="dropdown-item"
+                                        href="{{ route('JobSeekerSignUp') }}">Register as
                                         JobSeeker</a></li>
                                 <hr class="mb-2">
                                 <li> <i class="uil uil-building"></i><a class="dropdown-item"
@@ -103,22 +104,37 @@
                         <span class="title">Post Jobs</span>
                     </a>
                 </li>
-                <li @if (Request::is('ListofAllJobs') || Request::is('editJobs/' . ($id = $id ?? 0)) || Request::is('Applicants/' . ($Jobid = $Jobid ?? 0)) || Request::is('ApplicantsDetails/*')) class="Company-sidebar-active" @endif>
+                <li @if (Request::is('ListofAllJobs') ||
+                        Request::is('editJobs/' . ($id = $id ?? 0)) ||
+                        Request::is('Applicants/' . ($Jobid = $Jobid ?? 0)) ||
+                        Request::is('ApplicantsDetails/*')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('ListofAllJobs') }}">
                         <span class="icon"><i class="uil uil-list-ul"></i></span>
                         <span class="title">Lists of Jobs</span>
                     </a>
                 </li>
-                {{-- <li @if(Request::is('ApplicantsView')) class="Company-sidebar-active" @endif>
+                {{-- <li @if (Request::is('ApplicantsView')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('ApplicantsView') }}">
                         <span class="icon"><i class="uil uil-edit"></i></span>
                         <span class="title">Applicants</span>
                     </a>
                 </li> --}}
-                <li @if(Request::is('ChangeCompanyPassword')) class="Company-sidebar-active" @endif>
+                <li @if (Request::is('CompanyMessage')) class="Company-sidebar-active" @endif>
+                    <a href="{{ route('CompanyMessage') }}">
+                        <span class="icon"><i class="uil uil-envelope-times"></i></span>
+                        <span class="title">Message</span>
+                    </a>
+                </li>
+                <li @if (Request::is('ChangeCompanyPassword')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('ChangeCompanyPassword') }}">
                         <span class="icon"><i class="uil uil-edit"></i></span>
                         <span class="title">Change Password</span>
+                    </a>
+                </li>
+                <li @if (Request::is('logout')) class="Company-sidebar-active" @endif>
+                    <a href="{{ route('logout') }}">
+                        <span class="icon"><i class="uil uil-signout"></i></span>
+                        <span class="title">Logout</span>
                     </a>
                 </li>
             </ul>
