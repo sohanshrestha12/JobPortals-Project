@@ -197,7 +197,6 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
 
 
-        Mews\Purifier\PurifierServiceProvider::class,
 
     ],
 
@@ -216,6 +215,5 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
-    'Purifier' => Mews\Purifier\Facades\Purifier::class,
 
 ];
