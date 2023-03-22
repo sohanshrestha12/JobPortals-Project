@@ -433,6 +433,7 @@
             "time": "2023-01-14T14:17:03+00:00"
         },
         {
+
             "name": "ezyang/htmlpurifier",
             "version": "v4.16.0",
             "source": {
@@ -494,6 +495,7 @@
             "time": "2022-09-18T07:06:19+00:00"
         },
         {
+
             "name": "fruitcake/php-cors",
             "version": "v1.2.0",
             "source": {
@@ -1975,6 +1977,7 @@
             "time": "2022-04-15T14:02:14+00:00"
         },
         {
+
             "name": "mews/purifier",
             "version": "3.4.0",
             "source": {

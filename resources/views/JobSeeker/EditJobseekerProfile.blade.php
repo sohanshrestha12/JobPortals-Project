@@ -274,7 +274,7 @@ h1 {
                         </div>
                         <div class="mb-3">
                             <label for="Objective">Your Career Objective:</label>
-                            <textarea class="js--trumbowyg form-control"
+                            <textarea class=" form-control editor"
                                 name="Objective">{{ $data->Objective }}</textarea>
                             @error('Objective')
                             <span class="invalid-feedback"
@@ -330,8 +330,10 @@ h1 {
 
                         </div>
                         <div class="mb-3">
-                            <label for="Skills">Your Skills:</label>
-                            <textarea class="js--trumbowyg form-control" name="Skills">{{ $data->Skills }}</textarea>
+                            <l for="Skills">Your Skills:</l
+                            
+                            abel>
+                            <textarea class="form-control editor" name="Skills" >{{ $data->Skills }}</textarea>
                             @error('Skills')
                             <span class="invalid-feedback"
                                 style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
@@ -430,7 +432,7 @@ h1 {
 
                         <div class="mb-3">
                             <label for="Roles">Roles And Responsibility:</label>
-                            <textarea class="js--trumbowyg form-control " id="Exp-js"
+                            <textarea class="form-control editor " id="Exp-js"
                                 name="Roles">{{ $data->Roles }}</textarea>
 
                             @error('Roles')
@@ -495,6 +497,7 @@ h1 {
         </div>
 
 </body>
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 <script src="{{ asset('js/formatter.js') }}"></script>
 <script>
 $(function() {
@@ -544,13 +547,21 @@ $(document).ready(function() {
         }
     });
  });
+ //editor box script
 
+ const editors = document.querySelectorAll('.editor');
+editors.forEach(editor => {
+  ClassicEditor
+    .create(editor)
+    .catch(error => {
+      console.error(error);
+    });
+});
 
 
 
       
 
 </script>
-<script src="{{ asset('js/trumbowyg.min.js') }}"></script>
 @endsection
 
