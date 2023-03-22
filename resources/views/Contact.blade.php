@@ -4,7 +4,7 @@
         <div class="contact-text">
             <h2>Contact US</h2>
             <ul>
-                <li><a href="index.html">Home</a> </li>
+                <li><a href="{{route('home')}}">Home</a> </li>
                 <li>Contact Us </li>
             </ul>
         </div>
@@ -107,35 +107,35 @@
                                 <ul>
                                     <li>
                                         <div class="icon">
-                                            <img src="../img/placeholder.png" alt="" style="width: 40px">
+                                            <img src="../img/placeholder.png" alt="" style="width: 30px">
                                         </div>
-                                        <div class="info">
+                                        <div class="info" style="padding-left: 37px">
                                             <p>
                                                 Our Location
-                                                <span>Kathmandu, Nepal
+                                                <span style="font-size:18px;">Kathmandu, Nepal
                                                 </span>
                                             </p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="icon">
-                                            <img src="../img/gmail.png" alt="" style="width: 40px">
+                                            <img src="../img/gmail.png" alt="" style="width: 30px">
                                         </div>
-                                        <div class="info">
+                                        <div class="info" style="padding-left: 37px">
                                             <p>
                                                 Send Us Mail
-                                                <span>Info@test.com</span>
+                                                <span style="font-size:18px;">Info@test.com</span>
                                             </p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="icon">
-                                            <img src="../img/phone-call.png" alt="" style="width: 40px">
+                                            <img src="../img/phone-call.png" alt="" style="width: 30px">
                                         </div>
-                                        <div class="info">
+                                        <div class="info" style="padding-left: 37px">
                                             <p>
                                                 Call Us
-                                                <span>+012 345 6789</span>
+                                                <span style="font-size:18px;">+977 9861900236</span>
                                             </p>
                                         </div>
                                     </li>

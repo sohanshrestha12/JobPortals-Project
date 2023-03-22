@@ -1,6 +1,19 @@
 @extends('layouts.adminlayout')
+
+@section('search')
+    <div class="search">
+        <label for="">
+            <input class="adminsearch" type="text" placeholder="Search Here">
+            <ion-icon name="search-outline" style="font-size:24px;"></ion-icon>
+        </label>
+    </div>
+@endsection
+
 @section('content')
-    <div class="main">
+    @if (Request::is('Verifycompany'))
+        <input type="hidden" id="verify" name="verify" value="verify">
+    @endif
+    <div class="main" id="VerifySearch">
         <table class="table">
             <thead>
                 <tr>
@@ -28,7 +41,7 @@
                                     alt="404 not found">
                             @endif
                         </td>
-                        <td>{{ $com->name }}</td>
+                        <td>{{ ucfirst($com->name) }}</td>
                         <td>{{ $com->category }}</td>
                         <td>{{ $com->city . ', ' . $com->location }}</td>
                         <td>{{ $com->phoneno }}</td>

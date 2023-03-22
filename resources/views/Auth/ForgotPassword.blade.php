@@ -44,9 +44,9 @@
                 <div class="col-md-4 overflow-hidden shadow bg-white rounded p-4">
                     <form action="{{ route('ForgotPassword/link') }}" method="post">
                         @csrf
-                        @if (Session::has('success'))
+                        @if (Session::has('Mailsuccess'))
                             <div class="alert alert-success" role="alert">
-                                <p class="paragraph m-0">{{Session::get('success')}}</p>
+                                <p class="paragraph m-0 text-center">{{Session::get('Mailsuccess')}}</p>
                             </div>
                         @endif
                         <h2 class="header2" style="color:var(--main-color);">Find Your Account</h2>

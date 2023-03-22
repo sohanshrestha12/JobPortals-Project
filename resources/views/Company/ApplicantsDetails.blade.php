@@ -16,7 +16,7 @@
                                 <img style="width:150px" src="{{ asset('storage/default/defaultImg.png') }}"
                                     alt="404 not found">
                             @else
-                                <img style="width:150px" src="{{ asset('storage/Company Logo/' . $userInfo->ProfileImg) }}"
+                                <img style="width:150px;object-fit:contain;" src="{{ asset('storage/JobSeekerImg/' . $userInfo->ProfileImg) }}"
                                     alt="404 not found">
                             @endif
                         </div>
@@ -67,28 +67,28 @@
                 <h2>Job Description</h2>
                 <hr style="height: 3px;width:100%;color: black !important; margin-top:-1px">
                 <div class="d-flex align-items-center gap-3 flex-wrap text-break">
-                    <h3 style="letter-spacing: 1px">Job Title: </h3>      
-                    <p>{{ $ApplicantJobid->Title}}</p>
+                    <h3 style="letter-spacing: 1px">Job Title: </h3>
+                    <p>{{ $ApplicantJobid->Title }}</p>
                 </div>
                 <div class="d-flex align-items-center gap-3 flex-wrap text-break">
-                    <h3 style="letter-spacing: 1px">Category:</h3>      
-                    <p>{{ $ApplicantJobid->Category}}</p>
+                    <h3 style="letter-spacing: 1px">Category:</h3>
+                    <p>{{ $ApplicantJobid->Category }}</p>
                 </div>
                 <div class="d-flex align-items-center gap-3 flex-wrap text-break">
-                    <h3 style="letter-spacing: 1px">Type:</h3>      
-                    <p>{{ $ApplicantJobid->Type}}</p>
+                    <h3 style="letter-spacing: 1px">Type:</h3>
+                    <p>{{ $ApplicantJobid->Type }}</p>
                 </div>
                 <div class="d-flex align-items-center gap-3 flex-wrap text-break">
-                    <h3 style="letter-spacing: 1px">Experience:</h3>      
-                    <p>{{ $ApplicantJobid->experience}}</p>
+                    <h3 style="letter-spacing: 1px">Experience:</h3>
+                    <p>{{ $ApplicantJobid->experience }}</p>
                 </div>
                 <div class="d-flex align-items-center gap-3 flex-wrap text-break">
-                    <h3 style="letter-spacing: 1px">Education:</h3>      
-                    <p>{{ $ApplicantJobid->Education}}</p>
+                    <h3 style="letter-spacing: 1px">Education:</h3>
+                    <p>{{ $ApplicantJobid->Education }}</p>
                 </div>
                 <div class="d-flex align-items-center gap-3 flex-wrap text-break">
-                    <h3 style="letter-spacing: 1px">Salary:</h3>      
-                    <p>{{ $ApplicantJobid->Salary}}</p>
+                    <h3 style="letter-spacing: 1px">Salary:</h3>
+                    <p>{{ $ApplicantJobid->Salary }}</p>
                 </div>
             </div>
 
@@ -145,5 +145,15 @@
                 </div>
             </div>
         </div>
+        @if ($user->status == 1)
+            <p>accepted</p>
+        @elseif($user->status == 0)
+            <p>rejected</p>
+        @else
+            <div class="col">
+                <a href="{{ url('Jobaccepted/' . $userInfo->id) }}" class="btn btn-success">Accept</a>
+                <a href="{{ url('Jobrejected/' . $userInfo->id) }}" class="btn btn-danger">Reject</a>
+            </div>
+        @endif
     </div>
 @endsection

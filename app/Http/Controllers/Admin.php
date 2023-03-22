@@ -40,7 +40,7 @@ class Admin extends Controller
     public function adminJobs()
     {
         $Verifycompany = User::where(['role' => 'company', 'Verify' => '0'])->get();
-        $AllJobs = Job::where('isdeleted', 0)->paginate(15, ['*'], 'page_a')->appends(request()->except('page_a'));
+        $AllJobs = Job::where('isdeleted', 0)->latest()->paginate(15, ['*'], 'page_a')->appends(request()->except('page_a'));
         $AllDeletedJobs = Job::where('isdeleted', 1)->paginate(15, ['*'], 'page_b')->appends(request()->except('page_b'));
         return view('Admin.adminJobs', compact('Verifycompany', 'AllJobs', 'AllDeletedJobs'));
     }
@@ -119,5 +119,14 @@ class Admin extends Controller
         else{
             return back()->with('AdminPasswordfail','Current Password did not matched!!!');
         }
+    }
+
+    public function AdminVerifiedsearch(Request $req){
+        $search = User::where([['role','company'],['Verify',1],['name','LIKE',"%$req->value%"]])->get();
+        return view('Admin.VerifiedSearch',compact('search'));
+    }
+    public function AdminVerifysearch(Request $req){
+        $search = User::where([['role','company'],['Verify',0],['name','LIKE',"%$req->value%"]])->get();
+        return view('Admin.VerifySearch',compact('search'));
     }
 }

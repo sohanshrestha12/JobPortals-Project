@@ -20,10 +20,10 @@
     <section class="banner-sec">
         <div class="banner-text">
             <h2>Find The Job That Fits Your Life</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+            <p>Welcome to our job portal! We are dedicated to helping job seekers find their perfect career match. Our
+                platform provides access to a wide range of job opportunities from various industries and companies.
             </p>
-            <a href="job-list.html" style="color: white" class="btn">Know More</a>
+            <a href="{{route('jobs')}}" style="color: white" class="btn">Know More</a>
         </div>
     </section>
     <!-- End Banner Section -->
@@ -33,29 +33,27 @@
     <section class="section how-work-area pb-0">
         <div class="container">
             <h3 class="section-title mb-0">
-                Our Works Process<br> <img src="img/title-border.png" alt=""></h3>
+                Our Works Process<br> <img style="opacity:0.3" src="img/title-border.png" alt=""></h3>
             <div class="row">
                 <div class="col-md-6 col-lg-4">
                     <div class="single-feature">
-                        <div class="single-feature-icon"><i class="fas fa-user-plus"></i></div>
+                        <div class="single-feature-icon"><i style="color:#3c206;font-size:45px" class="uil uil-user-plus"></i></div>
                         <h4>Create Account</h4>
-                        <p>Lorem ipsum dolor sit amet, a arcu justo eget, placerat suspendisse ornare accumsan et fringilla
-                            consectetuer </p>
+                        <p>Creating an account on the webpage is a quick and easy process that can be done in just a few simple steps.</p>
                         <a class="angle-icon" href="#"><i class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="single-feature">
-                        <div class="single-feature-icon"><i class="fas fa-search"></i></div>
+                        <div class="single-feature-icon"><i class="uil uil-search"></i></i></div>
                         <h4>Serach Job</h4>
-                        <p>Lorem ipsum dolor sit amet, a arcu justo eget, placerat suspendisse ornare accumsan et fringilla
-                            consectetuer </p>
-                        <a class="angle-icon" href="#"><i class="fas fa-angle-right"></i></a>
+                        <p>Find your dream job with just a few clicks by using our easy-to-use job search feature on our webpage. Easy-to-use.</p>
+                        <a class="angle-icon" href="#"><i style="color:#3c206;font-size:45px" class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="single-feature">
-                        <div class="single-feature-icon"><i class="far fa-file"></i></div>
+                        <div class="single-feature-icon"><i style="color:#3c206;font-size:45px" class="uil uil-file-info-alt"></i></div>
                         <h4>Submit Resume</h4>
                         <p>Lorem ipsum dolor sit amet, a arcu justo eget, placerat suspendisse ornare accumsan et fringilla
                             consectetuer </p>
@@ -137,9 +135,10 @@
     {{-- Recent Jobs Starts here  --}}
     <section class="inner-content-wrapper section current-job-sec">
         <div class="container">
-            <h2 class="section-title mb-0">Recent Jobs</h2><br> <img src="img/title-border.png" alt="">
+            <h2 class="section-title mb-0">Recent Jobs</h2><br> 
+            <img style="display: block;margin:auto;margin-bottom:20px;opacity:0.3;margin-top:10px;" src="img/title-border.png" alt="">
             <div class="row w-100 m-0">
-                
+
                 @foreach ($latestJobs as $jobs)
                     <div class="current-job_product col-lg-6 col-md-6 col-sm-12 filter new">
                         <div class="box1 d-flex">
@@ -188,9 +187,10 @@
                         </div>
                     </div>
                 @endforeach
-                @if(count($latestJobs) >= 6)
+                @if (count($latestJobs) >= 6)
                     <div class="d-flex justify-content-center">
-                        <a href="{{route('jobs')}}" class="btn btn-primary" style="font-size:1.6rem;width:fit-content;">View More</a>
+                        <a href="{{ route('jobs') }}"
+                            style="font-size:1.6rem;width:fit-content;background-color:var(--main-color);padding:8px 12px;border-radius:5px;color:white;text-decoration:none;">View More</a>
                     </div>
                 @endif
             </div>

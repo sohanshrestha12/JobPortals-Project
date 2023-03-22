@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use App\Models\User;
 use App\Models\UserJob;
+use Carbon\Carbon;
 use Faker\Provider\ar_EG\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -190,6 +191,9 @@ class HomeController extends Controller
         $JobseekerInfo = null;
         $applied =0;
         $Jid = Job::find($id);
+        $now = Carbon::now()->format('Y-m-d');
+        $expdate = Carbon::parse($Jid->ExpiryDate);
+        $difindays = $expdate->DIFFINDAYS($now);
         $relatedjobs = Job::where([['Category', $Jid->Category], ['id','!=',$Jid->id],['status','1']])->latest()->take(6)->get();
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
@@ -204,7 +208,7 @@ class HomeController extends Controller
             }
         }
         
-        return view('Job.JobProfile', compact('data','Jid','relatedjobs','JobseekerInfo','applied'));
+        return view('Job.JobProfile', compact('data','Jid','relatedjobs','JobseekerInfo','applied','difindays'));
 
     }
     public function ShowCompanyProfile($id)

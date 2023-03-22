@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/solid.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">
 
@@ -56,14 +57,14 @@
                 </ul>
                 @if ($data == null)
                     <div class="butn">
-                        <a href="javascript:void(0)" id="login" class="login btn">Login</a>
+                        <a href="javascript:void(0)" id="login" class="login btn" style="padding:4px 15px">Login</a>
                         <div class="dropdown" id="signup-dropdown">
                             <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown">
+                                data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown" style="padding:5px 15px">
                                 SignUp
                             </a>
 
-                            <ul class="dropdown-menu dropdown-menu-end" id="drop-menu">
+                            <ul class="dropdown-menu dropdown" id="drop-menu">
                                 <li><i class="uil uil-user"></i><a class="dropdown-item"
                                         href="{{ route('JobSeekerSignUp') }}">Register as
                                         JobSeeker</a></li>
@@ -148,7 +149,7 @@
                     <div class="box-2-1">
                         <h2 class="header2">Need Help?</h2>
                         <i class="uil uil-phone"></i>
-                        <span class="paragraph">Call Us: 98********</span>
+                        <span class="paragraph">Call Us: 9861900236</span>
                     </div>
                     <div class="box-2-2">
                         <h2 class="header2">Email:</h2>
@@ -222,8 +223,13 @@
                         <a href="{{ route('ForgotPassword') }}" class="paragraph">Forgot Password?</a>
                     </div>
 
-                    <div class="Google_login">
-                        <a href="{{ route('login_with_google') }}" class="paragraph">Login With Google</a>
+                    <div class="Google_login shadow-sm">
+                        <ul>
+                            <li>
+                                <img src="{{asset('img/google-logo.png')}}" alt="404 image not found">
+                                <a href="{{ route('login_with_google') }}" class="paragraph">Login With Google</a>
+                            </li>
+                        </ul>
                     </div>
 
                     <button type="submit" class="Cbtn">Login</button>

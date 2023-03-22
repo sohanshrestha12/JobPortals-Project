@@ -48,6 +48,7 @@ body
 .navigation ul li{
     position: relative;
     width: 100%;
+    margin-bottom: 10px;
     list-style: none;
     border-top-left-radius:30px;
     border-bottom-left-radius:30px;
@@ -69,11 +70,19 @@ body
 .navigation ul li a
 {
     position: relative;
-    display: block;
     width: 100%;
     display: flex;
     text-decoration: none;
     color: var(--white);
+}
+.adminactive{
+    background: var(--white);
+}
+.navigation ul li a span
+{
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
 }
 .navigation ul li:hover a,
 .navigation ul li.hovered a

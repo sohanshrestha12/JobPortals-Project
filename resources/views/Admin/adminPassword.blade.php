@@ -28,7 +28,7 @@
                     @endif
                     <input type="hidden" value="{{Session::get('AloginId')}}" name="id">
                     <div class="company-form-grp" style="padding:1rem 0;">
-                        <label for="CurrentPassword">Current Password</label>
+                        <label for="CurrentPassword" style="font-weight:bold;margin-bottom:5px">Current Password</label>
                         <input type="password" name="CurrentPassword"
                             class="form-control @error('CurrentPassword') is-invalid @enderror">
                         @error('CurrentPassword')
@@ -36,7 +36,7 @@
                         @enderror
                     </div>
                     <div class="company-form-grp" style="padding:1rem 0;">
-                        <label for="NewPassword">New Password</label>
+                        <label for="NewPassword" style="font-weight:bold;margin-bottom:5px">New Password</label>
                         <input type="password" name="NewPassword"
                             class="form-control @error('NewPassword') is-invalid @enderror">
                         @error('NewPassword')
@@ -44,7 +44,7 @@
                         @enderror
                     </div>
                     <div class="company-form-grp" style="padding:1rem 0;">
-                        <label for="NewPassword_confirmation">Confirm New Password</label>
+                        <label for="NewPassword_confirmation" style="font-weight:bold;margin-bottom:5px">Confirm New Password</label>
                         <input type="password" name="NewPassword_confirmation"
                             class="form-control @error('NewPassword_confirmation') is-invalid @enderror">
                         @error('NewPassword_confirmation')

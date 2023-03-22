@@ -29,7 +29,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-6 d-flex justify-content-center">
+                <div class="col-md-6 d-flex justify-content-center mb-5">
                     <div class="company-update-information shadow">
                         <h2 class="header2">Update Your Company Information</h2>
                         <hr style="height: 3px;width:90%;color: black !important;margin: 0.2rem 0 1rem 0;opacity:1;">

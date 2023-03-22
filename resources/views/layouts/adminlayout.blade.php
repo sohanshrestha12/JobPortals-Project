@@ -8,6 +8,8 @@
     <title>Job Portal || Company Profile</title>
     <link rel="stylesheet" href="{{ asset('css/adminDashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/adminhome.css') }}">
+    <script src="{{ asset('js/index.js') }}"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -28,16 +30,16 @@
                         <span class="title">JobPortal </span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ url('/admindashboard') }}">
+                <li @if(Request::is('admindashboard')) class="adminactive" @endif>
+                    <a href="{{ url('/admindashboard') }}" @if(Request::is('admindashboard')) style="color:var(--purple)" @endif>
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
                         <span class="title">Home</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('Verifycompany') }}">
+                <li @if(Request::is('Verifycompany')) class="adminactive" @endif>
+                    <a href="{{ route('Verifycompany') }}" @if(Request::is('Verifycompany')) style="color:var(--purple)" @endif>
                         <div class="notify">{{ count($Verifycompany) }}</div>
                         <span class="icon">
                             <ion-icon name="people-circle-outline"></ion-icon>
@@ -45,31 +47,30 @@
                         <span class="title">Verify Company</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('Verifiedcompany') }}">
+                <li @if(Request::is('Verifiedcompany')) class="adminactive" @endif>
+                    <a href="{{ route('Verifiedcompany') }}" @if(Request::is('Verifiedcompany')) style="color:var(--purple)" @endif>
                         <span class="icon"><i class="uil uil-comment-verify" style="font-size: 1.6rem"></i></span>
                         <span class="title">Verified Company</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ url('/adminJobs') }}">
+                <li @if(Request::is('adminJobs')) class="adminactive" @endif>
+                    <a href="{{ url('/adminJobs') }}" @if(Request::is('adminJobs')) style="color:var(--purple)" @endif>
                         <span class="icon">
                             <ion-icon name="medkit-outline"></ion-icon>
                         </span>
                         <span class="title">All Jobs</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ url('/adminmail') }}">
+                <li @if(Request::is('adminmail')) class="adminactive" @endif>
+                    <a href="{{ url('/adminmail') }}" @if(Request::is('adminmail')) style="color:var(--purple)" @endif>
                         <span class="icon">
                             <ion-icon name="mail-outline"></ion-icon>
                         </span>
                         <span class="title">Messages</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('adminpw') }}">
-
+                <li @if(Request::is('adminChangePassword')) class="adminactive" @endif>
+                    <a href="{{ route('adminpw') }}" @if(Request::is('adminChangePassword')) style="color:var(--purple)" @endif>
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>
@@ -77,9 +78,8 @@
 
                     </a>
                 </li>
-                <li>
-                    <a href="{{ url('/adminlogout') }}">
-
+                <li @if(Request::is('adminlogout')) class="adminactive" @endif>
+                    <a href="{{ url('/adminlogout') }}" @if(Request::is('adminlogout')) style="color:var(--purple)" @endif>
                         <span class="icon">
                             <ion-icon name="exit-outline"></ion-icon>
                         </span>
@@ -94,12 +94,7 @@
         <div class="toggle">
             <ion-icon name="menu-outline"></ion-icon>
         </div>
-        <div class="search">
-            <label for="">
-                <input type="text" placeholder="Search Here">
-                <ion-icon name="search-outline"></ion-icon>
-            </label>
-        </div>
+        @yield('search')
     </div>
 
 

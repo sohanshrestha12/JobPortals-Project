@@ -1,6 +1,20 @@
 @extends('layouts.adminlayout')
+
+@section('search')
+    <div class="search">
+        <label for="">
+            <input class="adminsearch" type="text" placeholder="Search Here">
+            <ion-icon name="search-outline" style="font-size:24px;"></ion-icon>
+        </label>
+    </div>
+@endsection
+
+
 @section('content')
-    <div class="main">
+    @if (Request::is('Verifiedcompany'))
+        <input type="hidden" id="verified" name="verifiedsearch" value="verifiedsearch">
+    @endif
+    <div class="main" id="Verifiedsearch">
         <table class="table">
             <thead>
                 <tr>
@@ -27,7 +41,7 @@
                                     alt="404 not found">
                             @endif
                         </td>
-                        <td>{{ $com->name }}</td>
+                        <td>{{ ucfirst($com->name) }}</td>
                         <td>{{ $com->category }}</td>
                         <td>{{ $com->city . ', ' . $com->location }}</td>
                         <td>{{ $com->phoneno }}</td>
@@ -35,7 +49,7 @@
                             <a href="{{ url('verify/' . $com->id) }}" class="btn btn-primary">
                                 Verified</a>
                         </td>
-                        <td>okay</td>
+                        <td><a href="{{url('UserCompanyProfile/' . $com->id )}}" class="btn" style="padding:5px 10px;color:white;background-color:#ff6158">View Details</a></td>
                     </tr>
                 @endforeach
             </tbody>
