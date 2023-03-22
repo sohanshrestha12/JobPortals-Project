@@ -74,7 +74,7 @@
                             </div>
                             <div class="company-form-grp" style="flex: 1">
                                 <label for="expiredDate">Closing Date</label>
-                                <input type="datetime-local"
+                                <input type="date"
                                     class="form-control @error('expiredDate') is-invalid @enderror" name="expiredDate"
                                     class="form-control" value="{{ old('expiredDate') }}" disabled>
                                 @error('expiredDate')
@@ -257,7 +257,7 @@
                             </div>
                             <div class="company-form-grp" style="flex: 1">
                                 <label for="expiredDate">Closing Date</label>
-                                <input type="datetime-local"
+                                <input type="date"
                                     class="form-control @error('expiredDate') is-invalid @enderror" name="expiredDate"
                                     class="form-control" value="{{ old('expiredDate') }}">
                                 @error('expiredDate')

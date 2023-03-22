@@ -625,8 +625,12 @@
                 @endif
             </div>
             <div class="col-md-7 bg-white shadow p-5" style="overflow: hidden">
-                <div style="background: rgba(0,0,0,.03);margin:-3rem;padding:2rem 1rem;">
+                <div style="background: rgba(0,0,0,.03);margin:-3rem;padding:2rem 1rem;display:flex;justify-content:space-between">
                     <h2 class="header2" style="margin-left:3rem;margin-bottom: 0">{{ ucfirst($Jid->Title) }}</h2>
+                    <div class="d-flex gap-2 justify-content-center align-items-center">
+                        <i class="uis uis-history" style="font-size:1.6rem;color:red;"></i>
+                        <h3 style="margin:0;height:fit-content;color:red">{{$difindays . ' days remaining'}}</h3>
+                    </div>
                 </div>
                 <hr style="height: 3px;width:110%;color: black !important;margin: 3rem -3rem 1rem -3rem">
                 <div class="JobHeader" style="margin-top: 4rem">
@@ -693,8 +697,12 @@
                         <div class="col-md-5">
                             <p class="paragraph">Apply Before(Deadline)</p>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 d-flex justify-content-between">
                             <p class="paragraph">:&nbsp;&nbsp;&nbsp; {{ $Jid->ExpiryDate }}</p>
+                            <div class="d-flex gap-2 justify-content-center align-items-center">
+                                <i class="uis uis-history" style="font-size:1.6rem;color:red;"></i>
+                                <h3 style="margin:0;height:fit-content;color:red">{{$difindays . ' days remaining'}}</h3>
+                            </div>
                         </div>
                     </div>
                     <hr style="height: 3px;width:100%;color: black !important;margin: -1.2rem 0 1rem 0">

@@ -7,7 +7,7 @@
 		<div class="breadcrumbs-text">
 			<h2>Our Team</h2>
 			<ul>
-				<li><a href="index.html">Home</a> </li>
+				<li><a href="{{route('home')}}">Home</a> </li>
 				<li>Team</li>
 			  </ul>
 		</div>

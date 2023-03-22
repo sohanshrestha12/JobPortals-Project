@@ -44,6 +44,7 @@ Route::post('/RegisterJobSeeker', [UserController::class, 'RegisterJobSeeker'])-
 Route::get('auth/google', [UserController::class, 'loginWithGoogle'])->name('login_with_google');
 Route::get('auth/google/callback', [UserController::class, 'callbackFromGoogle'])->name('callback');
 Route::post('/UpdateProfilePicture', [UserController::class, 'UpdateProfilePicture'])->name('UpdateProfilePicture');
+Route::get('/AppliedJobs', [UserController::class, 'AppliedJobs'])->name('AppliedJobs');
 
 
 
@@ -60,6 +61,8 @@ Route::get('/ResetPassword/{token}', [UserController::class, 'resetpasswordform'
 Route::post('/ResetPassword', [UserController::class, 'resetpassword'])->name('ForgotResetPassword');
 Route::get('/PasswordResetSuccessful', [UserController::class, 'gobackmsg'])->name('ResetGobackPage');
 Route::get('/ApplicantsDetails/{userid}', [UserController::class, 'ApplicantsDetails'])->name('ApplicantsDetails');
+Route::get('/Jobaccepted/{usid}', [UserController::class, 'Jobaccepted'])->name('Jobaccepted');
+Route::get('/Jobrejected/{usid}', [UserController::class, 'Jobrejected'])->name('Jobrejected');
 Route::get('/CompanyMessage', [UserController::class,'CompanyMessage'])->name('CompanyMessage');
 
 
@@ -99,6 +102,9 @@ Route::get('/adminlogout', [Admin::class, 'adminlogout']);
 Route::post('/ContactAdmin', [Admin::class, 'ContactAdmin'])->name('ContactAdmin');
 Route::post('/AdmindeleteContact', [Admin::class, 'AdmindeleteContact'])->name('AdmindeleteContact'); 
 Route::post('/AdminChangePassword', [Admin::class, 'AdminChangePassword'])->name('AdminChangePassword'); 
+
+Route::get('/AdminVerifiedsearch', [Admin::class,'AdminVerifiedsearch'])->name('AdminVerifiedsearch');
+Route::get('/AdminVerifysearch', [Admin::class,'AdminVerifysearch'])->name('AdminVerifysearch');
 
 Route::get('/verify/{comid}', [Admin::class,'verify'])->name('VerifyComapany');
 ?>

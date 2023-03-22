@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
         
     @vite(['resources/js/app.js'])
@@ -41,7 +40,7 @@
                         @if ($data->ProfileImg === 'defaultImg.png')
                             <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
                         @else
-                            <img src="{{ asset('storage/Company Logo/' . $data->ProfileImg) }}" alt="404 not found">
+                            <img src="{{ asset('storage/JobSeekerImg/' . $data->ProfileImg) }}" alt="404 not found">
                         @endif
                         <div class="dropdown" id="signup-dropdown">
                             <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
@@ -97,13 +96,19 @@
                         <span class="title">Profile</span>
                     </a>
                 </li>
-                <li @if (Request::is('Updateprofile')) class="Company-sidebar-active" @endif>
+                <li @if (Request::is('UpdateJobSeekerInfo')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('UpdateJobSeekerInfo') }}">
                         <span class="icon"><i class="uil uil-user-circle"></i></span>
                         <span class="title">Update Profile</span>
                     </a>
                 </li>
-                <li @if (Request::is('ChangePassword')) class="Company-sidebar-active" @endif>
+                <li @if (Request::is('AppliedJobs')) class="Company-sidebar-active" @endif>
+                    <a href="{{ route('AppliedJobs') }}">
+                        <span class="icon"><i class="uil uil-briefcase-alt"></i></span>
+                        <span class="title">My Jobs</span>
+                    </a>
+                </li>
+                <li @if (Request::is('ChangeJobSeekerPassword')) class="Company-sidebar-active" @endif>
                     <a href="{{ route('ChangeJobSeekerPassword') }}">
                         <span class="icon"><i class="uil uil-key-skeleton"></i></span>
                         <span class="title">Change Password</span>
@@ -126,8 +131,8 @@
         </div>
         @yield('content')
     </div>
-    <script src="{{ asset('js/index.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
 </body>
 
 </html>

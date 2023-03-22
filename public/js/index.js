@@ -1,3 +1,4 @@
+
 window.onload = () => {
     let login_button = document.querySelectorAll('.login');
     let allmodal = document.querySelector('#login-modal-background');
@@ -63,9 +64,9 @@ window.onload = () => {
             Jfilter.classList.toggle('Jactive');
         });
     }
-
-
 }
+
+
 jQuery.noConflict();
 jQuery(document).ready(function ($) {
     //ApplyJobs
@@ -104,4 +105,38 @@ jQuery(document).ready(function ($) {
         $('#PermanentAdminJobid').val(Messageid);
         $('#AdmindeletePermanentModal').modal('show');
     });
+
 });
+//search
+jQuery(document).ready(function ($) {
+    $(document).on("input", ".adminsearch", function () {
+        var value = $(this).val();
+        var verified = $('#verified').val();
+        var verify = $('#verify').val();
+        var url;
+        if(verified){
+            url = '/AdminVerifiedsearch';
+        }else if(verify){
+            url = '/AdminVerifysearch';
+        }else{
+            url = '';
+        }
+        $.ajax({
+            type:"GET",
+            url: url,
+            dataType:"html",
+            data: {
+                value:value,
+            },
+            success:function(t){
+                console.log(t);
+                if(url === '/AdminVerifiedsearch'){
+                    $("#Verifiedsearch").html(t);
+                }
+                if(url === '/AdminVerifysearch'){
+                    $("#VerifySearch").html(t);
+                }
+            }
+        }); 
+    });
+});  

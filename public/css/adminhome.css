@@ -71,7 +71,7 @@
     height: 40px;
     border-radius: 40px;
     padding: 5px 20px;
-    padding-left: 35px;
+    padding-left: 40px;
     font-size: 18px;
     outline: none;
     border: 1px solid var(--black2);
@@ -79,7 +79,9 @@
 
 .search label ion-icon {
     position: absolute;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.6;
     left: 10px;
     font-size: 1.2em;
 }
