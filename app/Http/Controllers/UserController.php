@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Mews\Purifier\Facades\Purifier;
 use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
@@ -247,6 +246,7 @@ class UserController extends Controller
         // ]
 
         // );
+     
   
        
 
@@ -257,7 +257,8 @@ class UserController extends Controller
         $update->phoneno = $req->phoneno;
         $update->AboutMe = $req->AboutMe;
 
-        $update->Skills = Purifier::clean($req->Skills);
+        $update->Skills = $req->Skills;
+
 
         $update->Gender = $req->Gender;
         $update->Roles = $req->Roles;
@@ -376,15 +377,6 @@ class UserController extends Controller
 
 
 
-        //         return response()->json(['success' => true]);
-        //     } else {
-        //         error_log('Error deleting file: ' . $ResumePath);
-        //         return response()->json(['success' => false]);
-        //     }
-        // } else{
-        //     error_log('File not found: ' . $ResumePath);
-        //     return response()->json(['success' => false]);
-        // }
     public function logout()
     {
         if (Session::has('CloginId')) {
