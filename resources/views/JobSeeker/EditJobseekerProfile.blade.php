@@ -379,7 +379,8 @@
                         </div>
                         <h5 style="font-size: 2.375rem;">Add Experience</h5>
                         <div class="form-check" style="padding-left: 2.5em;">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                            <input class="form-check-input" name="Fresher" type="checkbox" value="true" @if($data->Checked == 1) checked @endif
+                                id="flexCheckIndeterminate">
                             <label class="form-check-label" for="flexCheckIndeterminate">
                                 Mark, If you are a Fresher.
                             </label>
@@ -545,6 +546,15 @@
     <script src="{{ asset('js/formatter.js') }}"></script>
     <script>
         $(function() {
+            if ($('#flexCheckIndeterminate').is(":checked")) {
+
+                $('.Exp').prop('disabled', true);
+                $('#Exp-js').prop('disabled', true);
+            } else {
+                $('.Exp').prop('disabled', false);
+                $('#Exp-js').prop('disabled', false);
+            }
+
             $('#flexCheckIndeterminate').click(function() {
                 if ($(this).is(':checked')) {
                     $('.Exp').prop('disabled', true);

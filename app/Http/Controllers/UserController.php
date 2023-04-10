@@ -241,9 +241,12 @@ class UserController extends Controller
 
     public function UpdateJobSeekerInformation(Request $req)
     {
-        // dd($req->all());
+
         $update = User::find($req->id);
-        if ($update->Resume == null) {
+        if ($update->Resume == null && !isset($req->Fresher)) {
+
+            $update->Checked = 0;
+            $update->save();
             $req->validate(
                 [
                     'name' => 'required',
@@ -269,7 +272,33 @@ class UserController extends Controller
                     'Resume' => 'required'
                 ]
             );
-        } else {
+        } elseif($update->Resume && isset($req->Fresher)) {
+ 
+            $update->checked = 1;
+            $update->save();
+            $req->validate(
+                [
+                    'name' => 'required',
+                    'city' => 'required',
+                    'phoneno' => 'required|integer',
+                    'Skills' => 'required',
+                    'Gender' => 'required',
+                    'Objective' => 'required',
+                    'Degree' => 'required',
+                    'JobTime' => 'required',
+                    'District' => 'required',
+                    'Institution' => 'required',
+                    'Municipality' => 'required',
+                    'University' => 'required',
+                    'Joined_year' => 'required|integer',
+                    'Passed_year' => 'required|integer',
+                    'DateofBirth' => 'required'
+                ]
+            );
+        }elseif($update->Resume && !isset($req->Fresher)){
+  
+            $update->checked = 0;
+            $update->save();
             $req->validate(
                 [
                     'name' => 'required',
@@ -294,8 +323,34 @@ class UserController extends Controller
                     'DateofBirth' => 'required'
                 ]
             );
+        }elseif($update->Resume == null && isset($req->Fresher)){
+        
+            $update->checked = 1;
+            $update->save();
+            $req->validate(
+                [
+                    'name' => 'required',
+                    'city' => 'required',
+                    'phoneno' => 'required|integer',
+                    'Skills' => 'required',
+                    'Gender' => 'required',
+                    'Objective' => 'required',
+                    'Degree' => 'required',
+                    'JobTime' => 'required',
+                    'District' => 'required',
+                    'Institution' => 'required',
+                    'Municipality' => 'required',
+                    'University' => 'required',
+                    'Joined_year' => 'required|integer',
+                    'Passed_year' => 'required|integer',
+                    'DateofBirth' => 'required',
+                    'Resume' => 'required'
+                ]
+            );
         }
-
+        else{
+            dd('else');
+        }
 
         $update->name = $req->name;
         $update->city = $req->city;

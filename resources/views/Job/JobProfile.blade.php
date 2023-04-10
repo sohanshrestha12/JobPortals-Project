@@ -136,8 +136,9 @@
                                     <div class="mb-3 d-flex ">
                                         <div class="mb-3" style="width: 30%;">
                                             <label for="DateofBirth">Date Of Birth:</label>
-                                            <input type="date" class="form-control @error('DateofBirth') is-invalid @enderror" name="DateofBirth"
-                                                value="{{ $JobseekerInfo->DateofBirth }}">
+                                            <input type="date"
+                                                class="form-control @error('DateofBirth') is-invalid @enderror"
+                                                name="DateofBirth" value="{{ $JobseekerInfo->DateofBirth }}">
                                             @error('DateofBirth')
                                                 <span class="invalid-feedback"
                                                     style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
@@ -239,156 +240,25 @@
 
                                         <div class="mb-3 " style="width: 50%;">
                                             <label for="Joined_year">Joined Year:</label>
-                                            {{-- <input type="date"> --}}
-                                            <select class="form-select " name="Joined_year">
-                                                <option hidden disabled selected value> Select</option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2001') selected @endif value="2001">
-                                                    2001
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2002') selected @endif value="2002">
-                                                    2002
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2003') selected @endif value="2003">
-                                                    2003
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2004') selected @endif value="2004">
-                                                    2004
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2005') selected @endif value="2005">
-                                                    2005
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2006') selected @endif value="2006">
-                                                    2006
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2007') selected @endif value="2007">
-                                                    2007
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2008') selected @endif value="2008">
-                                                    2008
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2009') selected @endif value="2009">
-                                                    2009
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2010') selected @endif value="2010">
-                                                    2010
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2011') selected @endif value="2011">
-                                                    2011
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2012') selected @endif value="2012">
-                                                    2012
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2013') selected @endif value="2013">
-                                                    2013
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2014') selected @endif value="2014">
-                                                    2014
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2015') selected @endif value="2015">
-                                                    2015
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2016') selected @endif value="2016">
-                                                    2016
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2017') selected @endif value="2017">
-                                                    2017
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2018') selected @endif value="2018">
-                                                    2018
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2019') selected @endif value="2019">
-                                                    2019
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2020') selected @endif value="2020">
-                                                    2020
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2021') selected @endif value="2021">
-                                                    2021
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2022') selected @endif value="2022">
-                                                    2022
-                                                </option>
-                                                <option @if ($JobseekerInfo->Joined_year == '2023') selected @endif value="2023">
-                                                    2023
-                                                </option>
-                                            </select>
+                                            <input type="number"
+                                                class="form-control @error('Joined_year') is-invalid @enderror"
+                                                placeholder="YYYY" min="1999" max="2020" name="Joined_year"
+                                                value="{{ $JobseekerInfo->Joined_year }}">
+                                            @error('Joined_year')
+                                                <span class="invalid-feedback"
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-3 " style="width: 50%;margin-left: 46px;">
                                             <label for="Passed_year">Passed Year:</label>
-                                            <select class="form-select " name="Passed_year">
-                                                <option hidden disabled selected value> Select</option>
-                                                <option @if ($JobseekerInfo->Passed_year == 'Currently Reading') selected @endif
-                                                    value="Currently Reading">Currently Reading</option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2001') selected @endif value="2001">
-                                                    2001
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2002') selected @endif value="2002">
-                                                    2002
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2003') selected @endif value="2003">
-                                                    2003
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2004') selected @endif value="2004">
-                                                    2004
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2005') selected @endif value="2005">
-                                                    2005
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2006') selected @endif value="2006">
-                                                    2006
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2007') selected @endif value="2007">
-                                                    2007
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2008') selected @endif value="2008">
-                                                    2008
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2009') selected @endif value="2009">
-                                                    2009
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2010') selected @endif value="2010">
-                                                    2010
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2011') selected @endif value="2011">
-                                                    2011
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2012') selected @endif value="2012">
-                                                    2012
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2013') selected @endif value="2013">
-                                                    2013
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2014') selected @endif value="2014">
-                                                    2014
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2015') selected @endif value="2015">
-                                                    2015
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2016') selected @endif value="2016">
-                                                    2016
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2017') selected @endif value="2017">
-                                                    2017
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2018') selected @endif value="2018">
-                                                    2018
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2019') selected @endif value="2019">
-                                                    2019
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2020') selected @endif value="2020">
-                                                    2020
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2021') selected @endif value="2021">
-                                                    2021
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2022') selected @endif value="2022">
-                                                    2022
-                                                </option>
-                                                <option @if ($JobseekerInfo->Passed_year == '2023') selected @endif value="2023">
-                                                    2023
-                                                </option>
-                                            </select>
+                                            <input type="number"
+                                                class="form-control @error('Passed_year') is-invalid @enderror"
+                                                placeholder="YYYY" min="1999" max="2020" name="Passed_year"
+                                                value="{{ $JobseekerInfo->Passed_year }}">
+                                            @error('Passed_year')
+                                                <span class="invalid-feedback"
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
                                     </div>
@@ -403,8 +273,8 @@
                                 </div>
                                 <h5 style="font-size: 2.375rem;">Add Experience</h5>
                                 <div class="form-check" style="padding-left: 2.5em;">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckIndeterminate">
+                                    <input class="form-check-input" name="Fresher" type="checkbox" value="true"
+                                        @if ($JobseekerInfo->Checked == 1) checked @endif id="flexCheckIndeterminate">
                                     <label class="form-check-label" for="flexCheckIndeterminate">
                                         Mark, If you are a Fresher.
                                     </label>
@@ -413,21 +283,23 @@
                                     <div class="mb-3 d-flex w-100 ">
                                         <div class="mb-3 " style="width: 50%;">
                                             <label for="Position">Position:</label>
-                                            <input type="text" class="form-control Exp" name="Position"
-                                                value="{{ $JobseekerInfo->Position }}">
+                                            <input type="text"
+                                                class="form-control Exp @error('Position') is-invalid @enderror"
+                                                name="Position" value="{{ $JobseekerInfo->Position }}">
                                             @error('Position')
                                                 <span class="invalid-feedback"
-                                                    style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
                                             @enderror
 
                                         </div>
                                         <div class="mb-3 " style="width: 50%;margin-left: 46px;">
                                             <label for="Organization">Organization:</label>
-                                            <input type="text" class="Exp form-control" name="Organization"
-                                                value="{{ $JobseekerInfo->Organization }}">
+                                            <input type="text"
+                                                class="Exp form-control @error('Organization') is-invalid @enderror"
+                                                name="Organization" value="{{ $JobseekerInfo->Organization }}">
                                             @error('Organization')
                                                 <span class="invalid-feedback"
-                                                    style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
                                             @enderror
 
                                         </div>
@@ -438,12 +310,12 @@
                                             <select
                                                 class=" Exp category form-select @error('Industry') is-invalid @enderror"
                                                 name="Industry">
-                                                <option hidden disabled selected value> Select</option>
                                                 <option @if ($JobseekerInfo->Industry == 'Accounting & Consulting') selected @endif
                                                     value="Accounting & Consulting">
                                                     Accounting and Consulting</option>
                                                 <option @if ($JobseekerInfo->Industry == 'Admin Support') selected @endif
-                                                    value="Admin Support">
+                                                    value="Admin
+                                                Support">
                                                     Admin
                                                     Support</option>
                                                 <option @if ($JobseekerInfo->Industry == 'Data Science & Analysis') selected @endif
@@ -471,12 +343,13 @@
                                             </select>
                                             @error('jobCategory')
                                                 <span class="invalid-feedback"
-                                                    style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3 " style="width: 50%;margin-left: 46px;">
                                             <label for="Level">Job Level:</label>
-                                            <select class="form-select Exp" name="Level">
+                                            <select class="form-select Exp @error('Level') is-invalid @enderror"
+                                                name="Level">
                                                 <option hidden disabled selected value> Select</option>
                                                 <option @if ($JobseekerInfo->Level == 'Entry Level') selected @endif
                                                     value="Entry Level">
@@ -488,27 +361,26 @@
                                                     value="Senior Level">
                                                     Senior Level</option>
                                                 <option @if ($JobseekerInfo->Level == 'Top Level') selected @endif
-                                                    value="Top Level">
-                                                    Top
+                                                    value="Top Level">Top
                                                     Level</option>
                                                 <option @if ($JobseekerInfo->Level == 'Top Level') selected @endif
-                                                    value="Top Level">
-                                                    Top
+                                                    value="Top Level">Top
                                                     Level</option>
                                             </select>
                                             @error('Level')
                                                 <span class="invalid-feedback"
-                                                    style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="Roles">Roles And Responsibility:</label>
-                                        <textarea class="form-control Exp" name="Roles">{{ $JobseekerInfo->Roles }}</textarea>
+                                        <textarea class="form-control @error('Roles') is-invalid @enderror" id="Exp-js" name="Roles">{{ $JobseekerInfo->Roles }}</textarea>
+
                                         @error('Roles')
                                             <span class="invalid-feedback"
-                                                style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
+                                                style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
@@ -781,4 +653,27 @@
             </div>
         </div>
     </div>
+    <script>
+        jQuery.noConflict();
+        jQuery(document).ready(function($) {
+            if ($('#flexCheckIndeterminate').is(":checked")) {
+
+                $('.Exp').prop('disabled', true);
+                $('#Exp-js').prop('disabled', true);
+            } else {
+                $('.Exp').prop('disabled', false);
+                $('#Exp-js').prop('disabled', false);
+            }
+
+            $('#flexCheckIndeterminate').click(function() {
+                if ($(this).is(':checked')) {
+                    $('.Exp').prop('disabled', true);
+                    $('#Exp-js').prop('disabled', true);
+                } else {
+                    $('.Exp').prop('disabled', false);
+                    $('#Exp-js').prop('disabled', false);
+                }
+            });
+        });
+    </script>
 @endsection
