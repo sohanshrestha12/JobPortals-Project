@@ -159,6 +159,8 @@ class JobController extends Controller
 
 
     public function ApplyJob(Request $req, $Jobid){
+// dd($req->all());
+
         $req->validate([
             'name' => 'required',
             'city' => 'required',
@@ -174,14 +176,13 @@ class JobController extends Controller
             'Institution' => 'required',
             'Municipality' => 'required',
             'Industry' => 'required',
-            'University' => 'required', 
-            'Organization' => 'required', 
+            'University' => 'required',
+            'Organization' => 'required',
             'Position' => 'required', 
-            'Joined_year' => 'required', 
+            'Joined_year' => 'required',
             'Passed_year' => 'required', 
             'DateofBirth' => 'required'
         ]);
-
 
         $Jobseekerinfo = User::find($req->id);
         $Jobseekerinfo->name = $req->name;
@@ -205,7 +206,7 @@ class JobController extends Controller
         $Jobseekerinfo->Passed_year = $req->Passed_year;
         $Jobseekerinfo->DateofBirth = $req->DateofBirth;
         $Jobseekerinfo->save();
-
+        
         $Jobseekerinfo->Applyjobs()->attach($Jobid);   
         return back()->with('appliedsuccess','You have successfully applied for this job.');
     }  

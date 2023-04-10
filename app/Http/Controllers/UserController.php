@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
@@ -67,6 +68,8 @@ class UserController extends Controller
     }
     public function UpdateJobSeekerInfo()
     {
+        $usr = User::find(Session::get('UloginId'));
+        $storagePath = $usr->Resume;
         $data = null;
         if (Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
@@ -74,7 +77,7 @@ class UserController extends Controller
         if (Session::has('GUloginId')) {
             $data = User::where('email', Session::get('GUloginId'))->first();
         }
-        return view('JobSeeker.EditJobseekerProfile', compact('data'));
+        return view('JobSeeker.EditJobseekerProfile', compact('data', 'storagePath'));
     }
     public function RegisterJobSeeker(Request $req)
     {
@@ -212,48 +215,93 @@ class UserController extends Controller
         $update->save();
         return redirect()->route('CompanyProfile');
     }
+    public function UpdateCv(Request $req)
+    {
+        if ($req->hasFile('Resume')) {
+            $file = $req->file('Resume');
+            $Resume_name = Session::get('UloginId') . $file->getClientOriginalName();
+            $path = $file->storeAS('public/Resume', $Resume_name);
+            $storagePath = str_replace('public', 'storage', $path);
+            $SaveResume = User::find(Session::get('UloginId'));
+            $SaveResume->Resume = $storagePath;
+            $SaveResume->save();
+            return response()->json(['storagePath' => $storagePath, 'resumeName' => $Resume_name]);
+        }
+
+        $data = null;
+        if (Session::has('UloginId')) {
+            $data = User::find(Session::get('UloginId'));
+        }
+        if (Session::has('GUloginId')) {
+            $data = User::where('email', Session::get('GUloginId'))->first();
+        }
+
+        return view('JobSeeker.EditJobseekerProfile', compact('cv', 'data', 'storagePath'));
+    }
 
     public function UpdateJobSeekerInformation(Request $req)
     {
-        // $req->validate(
-        // [
-        //     'name' => 'required',
-        //     'city' => 'required',
-        //     'phoneno' => 'required|integer',
-        //     'AboutMe' => 'required',
-        //     'Skills' => 'required',
-        //     'Gender' => 'required',
-        //     'Roles' => 'required',
-        //     'Objective' => 'required',
-        //     'Degree' => 'required',
-        //     'JobTime' => 'required',
-        //     'Level' => 'required',
-        //     'District' => 'required',
-        //     'Institution' => 'required',
-        //     'Municipality' => 'required',
-        //     'Industry' => 'required',
-        //     'University' => 'required',
-        //     'Organization' => 'required',
-        //     'Position' => 'required',
-        //     'Joined_year' => 'required|integer',
-        //     'Passed_year' => 'required|integer',
-        //     'DateofBirth' => 'required',
-
-        // ]
-
-        // );
-
-
+        // dd($req->all());
         $update = User::find($req->id);
+        if ($update->Resume == null) {
+            $req->validate(
+                [
+                    'name' => 'required',
+                    'city' => 'required',
+                    'phoneno' => 'required|integer',
+                    'Skills' => 'required',
+                    'Gender' => 'required',
+                    'Roles' => 'required',
+                    'Objective' => 'required',
+                    'Degree' => 'required',
+                    'JobTime' => 'required',
+                    'Level' => 'required',
+                    'District' => 'required',
+                    'Institution' => 'required',
+                    'Municipality' => 'required',
+                    'Industry' => 'required',
+                    'University' => 'required',
+                    'Organization' => 'required',
+                    'Position' => 'required',
+                    'Joined_year' => 'required|integer',
+                    'Passed_year' => 'required|integer',
+                    'DateofBirth' => 'required',
+                    'Resume' => 'required'
+                ]
+            );
+        } else {
+            $req->validate(
+                [
+                    'name' => 'required',
+                    'city' => 'required',
+                    'phoneno' => 'required|integer',
+                    'Skills' => 'required',
+                    'Gender' => 'required',
+                    'Roles' => 'required',
+                    'Objective' => 'required',
+                    'Degree' => 'required',
+                    'JobTime' => 'required',
+                    'Level' => 'required',
+                    'District' => 'required',
+                    'Institution' => 'required',
+                    'Municipality' => 'required',
+                    'Industry' => 'required',
+                    'University' => 'required',
+                    'Organization' => 'required',
+                    'Position' => 'required',
+                    'Joined_year' => 'required|integer',
+                    'Passed_year' => 'required|integer',
+                    'DateofBirth' => 'required'
+                ]
+            );
+        }
+
+
         $update->name = $req->name;
         $update->city = $req->city;
         $update->category = $req->category;
         $update->phoneno = $req->phoneno;
-        $update->AboutMe = $req->AboutMe;
-
         $update->Skills = $req->Skills;
-
-
         $update->Gender = $req->Gender;
         $update->Roles = $req->Roles;
         $update->Objective = $req->Objective;
@@ -270,15 +318,6 @@ class UserController extends Controller
         $update->Joined_year = $req->Joined_year;
         $update->Passed_year = $req->Passed_year;
         $update->DateofBirth = $req->DateofBirth;
-        if ($req->file('Resume')) {
-            $add_resume = $req->file('Resume');
-            $Resume_name = $req->id . $add_resume->getClientOriginalName();
-            $Resume_path = $add_resume->storeAs('public/Resume', $Resume_name);
-            $SaveResume = User::find($req->id);
-            $SaveResume->Resume = $Resume_name;
-            $SaveResume->ResumePath = $Resume_path;
-            $SaveResume->save();
-        }
         $update->save();
         return redirect()->route('JobSeekerprofile');
     }
@@ -351,20 +390,12 @@ class UserController extends Controller
     {
 
         $user = User::find($id);
+        $user->Resume = null;
+        $user->save();
 
+        // Resume file deleted successfully
 
-        $resumePath = 'public/Resume/' . $user->Resume;
-
-        if (Storage::disk('local')->exists($resumePath)) {
-
-            Storage::disk('local')->delete($resumePath);
-            $user->Resume = null;
-            $user->save();
-
-            // Resume file deleted successfully
-
-            return redirect()->route('UpdateJobSeekerInfo');
-        }
+        return redirect()->route('UpdateJobSeekerInfo');
     }
 
 
@@ -459,7 +490,7 @@ class UserController extends Controller
     {
         $data = null;
         $userInfo = User::find($userid);
-        $user = UserJob::where([['job_id',Session::get('ApplicantJobid')],['user_id',$userid]])->first();
+        $user = UserJob::where([['job_id', Session::get('ApplicantJobid')], ['user_id', $userid]])->first();
 
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
@@ -467,7 +498,7 @@ class UserController extends Controller
         if (Session::has('ApplicantJobid')) {
             $ApplicantJobid = Job::find(Session::get('ApplicantJobid'));
         }
-        return view('Company.ApplicantsDetails', compact('userInfo', 'data', 'ApplicantJobid','user'));
+        return view('Company.ApplicantsDetails', compact('userInfo', 'data', 'ApplicantJobid', 'user'));
     }
     public function CompanyMessage()
     {
@@ -479,26 +510,29 @@ class UserController extends Controller
         return view('Company.Message', compact('data', 'deletedJobs'));
     }
 
-    public function AppliedJobs(){
+    public function AppliedJobs()
+    {
         $data = null;
         if (Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
         }
         $appliedJobs = User::find(Session::get('UloginId'))->Applyjobs;
-       
-        return view("JobSeeker.MyJobs",compact('data','appliedJobs'));
+
+        return view("JobSeeker.MyJobs", compact('data', 'appliedJobs'));
     }
 
-    public function Jobaccepted($usid){
-        $user = UserJob::where([['job_id',Session::get('ApplicantJobid')],['user_id',$usid]])->first();
+    public function Jobaccepted($usid)
+    {
+        $user = UserJob::where([['job_id', Session::get('ApplicantJobid')], ['user_id', $usid]])->first();
         $user->status = 1;
         $user->save();
-        return back()->with('accepted','Applicants accepted.');
+        return back()->with('accepted', 'Applicants accepted.');
     }
-    public function Jobrejected($usid){
-        $user = UserJob::where([['job_id',Session::get('ApplicantJobid')],['user_id',$usid]])->first();
+    public function Jobrejected($usid)
+    {
+        $user = UserJob::where([['job_id', Session::get('ApplicantJobid')], ['user_id', $usid]])->first();
         $user->status = 0;
         $user->save();
-        return back()->with('accepted','Applicants accepted.');
+        return back()->with('accepted', 'Applicants accepted.');
     }
 }

@@ -45,6 +45,25 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+#navbar .links li::before{
+    content: '';
+    position: absolute;
+    bottom: 17px;
+    left: 50%;
+    width: 0;
+    height: 2.5px;
+    background-color: var(--main-color);
+    visibility: hidden;
+
+}
+#navbar .links li:hover::before{
+    width: 80%;
+    left:50%;
+    transform: translateX(-50%);
+    visibility: visible;
+    transition: 0.3s ease-in;
+
+}
 
 #navbar .links {
     display: flex;
@@ -53,8 +72,10 @@ header {
 }
 
 #navbar .links li {
+    position: relative;
     padding: 1.5rem;
     list-style: none;
+
 }
 
 #navbar .links li a {
@@ -64,13 +85,23 @@ header {
     font-weight: 500;
 }
 
-#navbar .links li a:hover {
+#navbar .links li:hover a{
     color: var(--main-color);
-    transition: 0.3s ease-out;
+    transition: 0.2s ease-out;
 }
 
-.active {
+#navbar .active {
     color: var(--main-color) !important;
+}
+#navbar .active::before{
+    content: '';
+    position: absolute;
+    bottom: 17px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2.5px;
+    background-color: var(--main-color);
 }
 
 #login {
@@ -515,6 +546,7 @@ hr {
 
 /* contact */
 .contact {
+    position: relative;
     background-image: url(../img/about-banner.jpg);
     padding: 150px;
     margin: 0 0 50px 0;
@@ -833,6 +865,7 @@ hr {
 }
 
 .job {
+    position: relative;
     background-image: url(../img/about-banner.jpg);
     padding: 150px;
     margin: 0 0 50px 0;

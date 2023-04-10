@@ -32,6 +32,7 @@ Route::get('/JobSeekerprofile', [HomeController::class, 'JobSeekerprofile'])->na
 
 Route::get('/UpdateJobSeekerInfo',[UserController::class,'UpdateJobSeekerInfo'])->name('UpdateJobSeekerInfo');
 Route::post('/UpdateJobSeekerInformation', [UserController::class, 'UpdateJobSeekerInformation'])->name('UpdateJobSeekerInformation');
+Route::post('/UpdateCv', [UserController::class, 'UpdateCv'])->name('UpdateCv');
 
 
 Route::post('/resume_upload',[UserController::class,'resume_upload'])->name('resume_upload');

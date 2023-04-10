@@ -14,17 +14,17 @@
                         <div class="modal-body">
                             <div style="padding:0.5rem 2rem">
                                 @csrf
-                                <div class="cv_section">
+                                {{-- <div class="cv_section">
                                     <h1>RESUME</h1>
                                     <div class="file_img">
-                                        @if($data->Resume == 'null')
+                                        @if ($data->Resume == 'null')
                                         <img src="" alt="NOfile has been uploaded" style="height:50px">
                                         @else
                                             <img src="{{ asset('storage/default/pdf.png') }}" alt="" style="height:50px">
                                         @endif
                                     </div>
                                     <input type="file" value="$JobseekerInfo->Resume">
-                                </div>
+                                </div> --}}
                                 <h5 style="font-size: 2.375rem;">Add Your Personal Details</h5>
                                 <div class="sub_form shadow-sm p-4 mb-5 bg-white rounded">
                                     <div class="mb-3 ">
@@ -136,7 +136,7 @@
                                     <div class="mb-3 d-flex ">
                                         <div class="mb-3" style="width: 30%;">
                                             <label for="DateofBirth">Date Of Birth:</label>
-                                            <input type="date" class="form-control" name="DateofBirth"
+                                            <input type="date" class="form-control @error('DateofBirth') is-invalid @enderror" name="DateofBirth"
                                                 value="{{ $JobseekerInfo->DateofBirth }}">
                                             @error('DateofBirth')
                                                 <span class="invalid-feedback"
@@ -526,7 +526,8 @@
     </div>
     @if ($errors->any())
         <script>
-            $(document).ready(function() {
+            jQuery.noConflict();
+            jQuery(document).ready(function($) {
                 $('#ApplyJobs').modal('show');
             });
         </script>
@@ -564,7 +565,7 @@
                                 <p class="paragraph">{{ 'Rs. ' . $Jid->Salary }}</p>
                             </div>
                             <div>
-                                <p>{{$Jid->Skills}}</p>
+                                <p>{{ $Jid->Skills }}</p>
                             </div>
                         </div>
                     </div>
@@ -625,11 +626,12 @@
                 @endif
             </div>
             <div class="col-md-7 bg-white shadow p-5" style="overflow: hidden">
-                <div style="background: rgba(0,0,0,.03);margin:-3rem;padding:2rem 1rem;display:flex;justify-content:space-between">
+                <div
+                    style="background: rgba(0,0,0,.03);margin:-3rem;padding:2rem 1rem;display:flex;justify-content:space-between">
                     <h2 class="header2" style="margin-left:3rem;margin-bottom: 0">{{ ucfirst($Jid->Title) }}</h2>
                     <div class="d-flex gap-2 justify-content-center align-items-center">
                         <i class="uis uis-history" style="font-size:1.6rem;color:red;"></i>
-                        <h3 style="margin:0;height:fit-content;color:red">{{$difindays . ' days remaining'}}</h3>
+                        <h3 style="margin:0;height:fit-content;color:red">{{ $difindays . ' days remaining' }}</h3>
                     </div>
                 </div>
                 <hr style="height: 3px;width:110%;color: black !important;margin: 3rem -3rem 1rem -3rem">
@@ -701,7 +703,8 @@
                             <p class="paragraph">:&nbsp;&nbsp;&nbsp; {{ $Jid->ExpiryDate }}</p>
                             <div class="d-flex gap-2 justify-content-center align-items-center">
                                 <i class="uis uis-history" style="font-size:1.6rem;color:red;"></i>
-                                <h3 style="margin:0;height:fit-content;color:red">{{$difindays . ' days remaining'}}</h3>
+                                <h3 style="margin:0;height:fit-content;color:red">{{ $difindays . ' days remaining' }}
+                                </h3>
                             </div>
                         </div>
                     </div>
