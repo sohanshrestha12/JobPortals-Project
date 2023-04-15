@@ -27,10 +27,10 @@ Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
 Route::get('/services', [HomeController::class, 'services'])->name('services');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/companyprofile', [HomeController::class, 'companyprofile'])->name('CompanyProfile')->middleware('isLoggedIn');
-Route::get('/JobSeekerprofile', [HomeController::class, 'JobSeekerprofile'])->name('JobSeekerprofile');
+Route::get('/JobSeekerprofile', [HomeController::class, 'JobSeekerprofile'])->name('JobSeekerprofile')->middleware('isUserLoggedIn');
 
 
-Route::get('/UpdateJobSeekerInfo',[UserController::class,'UpdateJobSeekerInfo'])->name('UpdateJobSeekerInfo');
+Route::get('/UpdateJobSeekerInfo',[UserController::class,'UpdateJobSeekerInfo'])->name('UpdateJobSeekerInfo')->middleware('isUserLoggedIn');
 Route::post('/UpdateJobSeekerInformation', [UserController::class, 'UpdateJobSeekerInformation'])->name('UpdateJobSeekerInformation');
 Route::post('/UpdateCv', [UserController::class, 'UpdateCv'])->name('UpdateCv');
 
@@ -40,12 +40,12 @@ Route::get('/view/{id}', [HomeController::class, 'viewResume']);
 Route::get('/deleteResume/{id}',[UserController::class,'DeleteResume']);
 
 
-Route::get('/RegisterJobSeeker', [UserController::class, 'JobSeekerSignUp'])->name('JobSeekerSignUp');
+Route::get('/RegisterJobSeeker', [UserController::class, 'JobSeekerSignUp'])->name('JobSeekerSignUp')->middleware('alreadyLoggedIn');
 Route::post('/RegisterJobSeeker', [UserController::class, 'RegisterJobSeeker'])->name('RegisterJobSeeker');
 Route::get('auth/google', [UserController::class, 'loginWithGoogle'])->name('login_with_google');
 Route::get('auth/google/callback', [UserController::class, 'callbackFromGoogle'])->name('callback');
 Route::post('/UpdateProfilePicture', [UserController::class, 'UpdateProfilePicture'])->name('UpdateProfilePicture');
-Route::get('/AppliedJobs', [UserController::class, 'AppliedJobs'])->name('AppliedJobs');
+Route::get('/AppliedJobs', [UserController::class, 'AppliedJobs'])->name('AppliedJobs')->middleware('isUserLoggedIn');
 
 
 
@@ -64,19 +64,19 @@ Route::get('/PasswordResetSuccessful', [UserController::class, 'gobackmsg'])->na
 Route::get('/ApplicantsDetails/{userid}', [UserController::class, 'ApplicantsDetails'])->name('ApplicantsDetails');
 Route::get('/Jobaccepted/{usid}', [UserController::class, 'Jobaccepted'])->name('Jobaccepted');
 Route::get('/Jobrejected/{usid}', [UserController::class, 'Jobrejected'])->name('Jobrejected');
-Route::get('/CompanyMessage', [UserController::class,'CompanyMessage'])->name('CompanyMessage');
+Route::get('/CompanyMessage', [UserController::class,'CompanyMessage'])->name('CompanyMessage')->middleware('isLoggedIn');
 
 
 
 Route::get('/PostJobs', [JobController::class,'PostJobs'])->name('PostJob')->middleware('isLoggedIn');
 Route::post('/PostJobs',[JobController::class,'PostnewJob'])->name('PostnewJob');
-Route::get('/ListofAllJobs', [JobController::class,'ListJobs'])->name('ListofAllJobs');
+Route::get('/ListofAllJobs', [JobController::class,'ListJobs'])->name('ListofAllJobs')->middleware('isLoggedIn');
 Route::get('/editJobs/{id}', [JobController::class,'editJob'])->name('editJobs');
 Route::post('/editJobs', [JobController::class,'JobEditing'])->name('JobEdit');
 // Route::get('/deletejobs/{id}', [JobController::class,'Deletejobs'])->name('deletejobs');
 Route::post('/deletejobs', [JobController::class,'Deletejobs'])->name('deletejobs');
-Route::get('/ChangeCompanyPassword', [JobController::class,'ChangeCompanyPassword'])->name('ChangeCompanyPassword');
-Route::get('/ChangeJobSeekerPassword', [JobController::class,'ChangeJobSeekerPassword'])->name('ChangeJobSeekerPassword');
+Route::get('/ChangeCompanyPassword', [JobController::class,'ChangeCompanyPassword'])->name('ChangeCompanyPassword')->middleware('isLoggedIn');
+Route::get('/ChangeJobSeekerPassword', [JobController::class,'ChangeJobSeekerPassword'])->name('ChangeJobSeekerPassword')->middleware('isUserLoggedIn');
 Route::post('/ChangePassword', [JobController::class,'ChangePassword'])->name('ChangePassword');
 Route::post('/ChangeUserPassword', [JobController::class,'ChangeUserPassword'])->name('ChangeUserPassword');
 
