@@ -25,7 +25,10 @@
                                     </div>
                                     <input type="file" value="$JobseekerInfo->Resume">
                                 </div> --}}
-                                <h5 style="font-size: 2.375rem;">Add Your Personal Details</h5>
+                                <div>
+                                    <h5 style="font-size: 2.375rem;">Add Your Personal Details</h5>
+                                    @if($JobseekerInfo->Resume == null) <span style="font-size: 1.2rem">{{'(Please Upload your resume in your profile to apply for this job.)'}}</span> @endif
+                                </div>
                                 <div class="sub_form shadow-sm p-4 mb-5 bg-white rounded">
                                     <div class="mb-3 ">
                                         <input type="hidden" name="id" value="{{ $JobseekerInfo->id }}">
@@ -38,132 +41,133 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3 d-flex w-100 ">
-
                                         <div class="mb-3 " style="width: 30%;">
                                             <label for="District">District</label>
-                                            <select class="form-select @error('District') is-invalid @enderror "
-                                                name="District">
+                                            <select class="form-select @error('District') is-invalid @enderror" name="District">
                                                 <option hidden disabled selected value> Select</option>
-                                                <option @if ($JobseekerInfo->District == 'Kathmandu') selected @endif value="Kathmandu">
+                                                <option @if ($data->District == 'Kathmandu') selected @endif value="Kathmandu">
                                                     Kathmandu</option>
-                                                <option @if ($JobseekerInfo->District == 'Bhaktapur') selected @endif value="Bhaktapur">
+                                                <option @if ($data->District == 'Bhaktapur') selected @endif value="Bhaktapur">
                                                     Bhaktapur</option>
-                                                <option @if ($JobseekerInfo->District == 'Lalitpur') selected @endif value="Lalitpur">
+                                                <option @if ($data->District == 'Lalitpur') selected @endif value="Lalitpur">
                                                     Lalitpur</option>
-                                                <option @if ($JobseekerInfo->District == 'Pokhara') selected @endif value="Pokhara">
+                                                <option @if ($data->District == 'Pokhara') selected @endif value="Pokhara">
                                                     Pokhara</option>
-                                                <option @if ($JobseekerInfo->District == 'Biratnagar') selected @endif
-                                                    value="Biratnagar">
+                                                <option @if ($data->District == 'Biratnagar') selected @endif value="Biratnagar">
                                                     Biratnagar</option>
-                                                <option @if ($JobseekerInfo->District == 'Birgunj') selected @endif value="Birgunj">
+                                                <option @if ($data->District == 'Birgunj') selected @endif value="Birgunj">
                                                     Birgunj</option>
-                                                <option @if ($JobseekerInfo->District == 'Chitwan') selected @endif value="Chitwan">
+                                                <option @if ($data->District == 'Chitwan') selected @endif value="Chitwan">
                                                     Chitwan</option>
-                                                <option @if ($JobseekerInfo->District == 'Dharan') selected @endif value="Dharan">
+                                                <option @if ($data->District == 'Dharan') selected @endif value="Dharan">
                                                     Dharan</option>
-                                                <option @if ($JobseekerInfo->District == 'Nepalgunj') selected @endif
-                                                    value="Nepalgunj">
+                                                <option @if ($data->District == 'Nepalgunj') selected @endif value="Nepalgunj">
                                                     Nepalgunj</option>
-                                                <option @if ($JobseekerInfo->District == 'Outside Nepal') selected @endif
-                                                    value="Outside Nepal">
+                                                <option @if ($data->District == 'Outside Nepal') selected @endif
+                                                    value="Outside
+                                                Nepal">
                                                     Outside Nepal</option>
                                             </select>
+                                            @error('District')
+                                                <span class="invalid-feedback"
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-3 mx-auto" style="width: 30%;">
                                             <label for="Municipality">Municipality</label>
                                             <select class="form-select @error('Municipality') is-invalid @enderror "
                                                 name="Municipality">
                                                 <option hidden disabled selected value> Select</option>
-                                                <option @if ($JobseekerInfo->Municipality == 'Kathmandu') selected @endif
-                                                    value="Kathmandu">
+                                                <option @if ($data->Municipality == 'Kathmandu') selected @endif value="Kathmandu">
                                                     Kathmandu</option>
-                                                <option @if ($JobseekerInfo->Municipality == 'Bhaktapur') selected @endif
-                                                    value="Bhaktapur">
+                                                <option @if ($data->Municipality == 'Bhaktapur') selected @endif value="Bhaktapur">
                                                     Bhaktapur</option>
-                                                <option @if ($JobseekerInfo->Municipality == 'Lalitpur') selected @endif
-                                                    value="Lalitpur">
+                                                <option @if ($data->Municipality == 'Lalitpur') selected @endif value="Lalitpur">
                                                     Lalitpur</option>
-                                                <option @if ($JobseekerInfo->Municipality == 'Pokhara') selected @endif value="Pokhara">
+                                                <option @if ($data->Municipality == 'Pokhara') selected @endif value="Pokhara">
                                                     Pokhara</option>
-                                                <option @if ($JobseekerInfo->Municipality == 'Biratnagar') selected @endif
-                                                    value="Biratnagar">
+                                                <option @if ($data->Municipality == 'Biratnagar') selected @endif value="Biratnagar">
                                                     Biratnagar</option>
-                                                <option @if ($JobseekerInfo->Municipality == 'Birgunj') selected @endif value="Birgunj">
+                                                <option @if ($data->Municipality == 'Birgunj') selected @endif value="Birgunj">
                                                     Birgunj</option>
-                                                <option @if ($JobseekerInfo->Municipality == 'Chitwan') selected @endif value="Chitwan">
+                                                <option @if ($data->Municipality == 'Chitwan') selected @endif value="Chitwan">
                                                     Chitwan</option>
-                                                <option @if ($JobseekerInfo->Municipality == 'Dharan') selected @endif value="Dharan">
+                                                <option @if ($data->Municipality == 'Dharan') selected @endif value="Dharan">
                                                     Dharan</option>
-                                                <option @if ($JobseekerInfo->Municipality == 'Nepalgunj') selected @endif
-                                                    value="Nepalgunj">
+                                                <option @if ($data->Municipality == 'Nepalgunj') selected @endif value="Nepalgunj">
                                                     Nepalgunj</option>
-                                                <option @if ($JobseekerInfo->Municipality == 'Outside Nepal') selected @endif
-                                                    value="Outside Nepal">
+                                                <option @if ($data->Municipality == 'Outside Nepal') selected @endif
+                                                    value="Outside
+                                                Nepal">
                                                     Outside Nepal</option>
                                             </select>
+                                            @error('Municipality')
+                                                <span class="invalid-feedback"
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-3 " style="width: 30%;">
                                             <label for="city">City</label>
-                                            <select class="form-select @error('city') is-invalid @enderror "
-                                                name="city">
+                                            <select class="form-select @error('city') is-invalid @enderror " name="city">
                                                 <option hidden disabled selected value> Select</option>
-                                                <option @if ($JobseekerInfo->city == 'Kathmandu') selected @endif
-                                                    value="Kathmandu">
+                                                <option @if ($data->city == 'Kathmandu') selected @endif value="Kathmandu">
                                                     Kathmandu</option>
-                                                <option @if ($JobseekerInfo->city == 'Bhaktapur') selected @endif
-                                                    value="Bhaktapur">
+                                                <option @if ($data->city == 'Bhaktapur') selected @endif value="Bhaktapur">
                                                     Bhaktapur</option>
-                                                <option @if ($JobseekerInfo->city == 'Lalitpur') selected @endif
-                                                    value="Lalitpur">
+                                                <option @if ($data->city == 'Lalitpur') selected @endif value="Lalitpur">
                                                     Lalitpur</option>
-                                                <option @if ($JobseekerInfo->city == 'Pokhara') selected @endif value="Pokhara">
+                                                <option @if ($data->city == 'Pokhara') selected @endif value="Pokhara">
                                                     Pokhara</option>
-                                                <option @if ($JobseekerInfo->city == 'Biratnagar') selected @endif
-                                                    value="Biratnagar">
+                                                <option @if ($data->city == 'Biratnagar') selected @endif value="Biratnagar">
                                                     Biratnagar</option>
-                                                <option @if ($JobseekerInfo->city == 'Birgunj') selected @endif value="Birgunj">
+                                                <option @if ($data->city == 'Birgunj') selected @endif value="Birgunj">
                                                     Birgunj</option>
-                                                <option @if ($JobseekerInfo->city == 'Chitwan') selected @endif value="Chitwan">
+                                                <option @if ($data->city == 'Chitwan') selected @endif value="Chitwan">
                                                     Chitwan</option>
-                                                <option @if ($JobseekerInfo->city == 'Dharan') selected @endif value="Dharan">
+                                                <option @if ($data->city == 'Dharan') selected @endif value="Dharan">
                                                     Dharan</option>
-                                                <option @if ($JobseekerInfo->city == 'Nepalgunj') selected @endif
-                                                    value="Nepalgunj">
+                                                <option @if ($data->city == 'Nepalgunj') selected @endif value="Nepalgunj">
                                                     Nepalgunj</option>
                                             </select>
+                                            @error('city')
+                                                <span class="invalid-feedback"
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="mb-3 d-flex ">
                                         <div class="mb-3" style="width: 30%;">
                                             <label for="DateofBirth">Date Of Birth:</label>
-                                            <input type="date"
-                                                class="form-control @error('DateofBirth') is-invalid @enderror"
-                                                name="DateofBirth" value="{{ $JobseekerInfo->DateofBirth }}">
+                                            <input type="date" class="form-control @error('DateofBirth') is-invalid @enderror "
+                                                name="DateofBirth" value="{{ $data->DateofBirth }}">
                                             @error('DateofBirth')
                                                 <span class="invalid-feedback"
-                                                    style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3 mx-auto" style="width: 30%;">
                                             <label for="Gender">Gender:</label>
-                                            <select class="form-select   @error('Gender') is-invalid @enderror "
-                                                name="Gender">
+                                            <select class="form-select   @error('Gender') is-invalid @enderror " name="Gender">
                                                 <option hidden disabled selected value> Select</option>
-                                                <option @if ($JobseekerInfo->Gender == 'Male') selected @endif value="Male">
+                                                <option @if ($data->Gender == 'Male') selected @endif value="Male">
                                                     Male</option>
-                                                <option @if ($JobseekerInfo->Gender == 'Female') selected @endif value="Female">
+                                                <option @if ($data->Gender == 'Female') selected @endif value="Female">
                                                     Female</option>
-                                                <option @if ($JobseekerInfo->Gender == 'Others') selected @endif value="Others">
+                                                <option @if ($data->Gender == 'Others') selected @endif value="Others">
                                                     Others</option>
                                             </select>
+                                            @error('Gender')
+                                                <span class="invalid-feedback"
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-3 " style="width: 30%;">
                                             <label for="phoneno">Mobile Number:</label>
-                                            <input type="text" class="form-control" name="phoneno"
-                                                value="{{ $JobseekerInfo->phoneno }}">
+                                            <input type="text" class="form-control @error('phoneno') is-invalid @enderror"
+                                                name="phoneno" value="{{ $data->phoneno }}">
                                             @error('phoneno')
                                                 <span class="invalid-feedback"
-                                                    style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -190,10 +194,10 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="Objective">Your Career Objective:</label>
-                                        <textarea class="form-control" name="Objective">{{ $JobseekerInfo->Objective }}</textarea>
+                                        <textarea class=" form-control editor @error('Objective') is-invalid @enderror" name="Objective">{{ $data->Objective }}</textarea>
                                         @error('Objective')
                                             <span class="invalid-feedback"
-                                                style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
+                                                style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
@@ -202,37 +206,39 @@
                                 <div class="sub_form shadow-sm p-4 mb-5 bg-white rounded ">
                                     <div class="mb-3 d-flex w-100 ">
                                         <div class="mb-3 " style="width: 30%;">
-                                            <label for="usr">Degree:</label>
-                                            <select class="form-select " name="Degree">
+                                            <label for="Degree">Degree:</label>
+                                            <select class="form-select @error('Degree') is-invalid @enderror" name="Degree">
                                                 <option hidden disabled selected value> Select</option>
-                                                <option @if ($JobseekerInfo->Degree == 'SLC/SEE') selected @endif
-                                                    value="SLC/SEE">
-                                                    SLC/SEE
+                                                <option @if ($data->Degree == 'SLC/SEE') selected @endif value="SLC/SEE">SLC/SEE
                                                 </option>
-                                                <option @if ($JobseekerInfo->Degree == 'Intermediate') selected @endif
-                                                    value="Intermediate">
+                                                <option @if ($data->Degree == 'Intermediate') selected @endif value="Intermediate">
                                                     Intermediate</option>
-                                                <option @if ($JobseekerInfo->Degree == 'Bachelor') selected @endif
-                                                    value="Bachelor">
+                                                <option @if ($data->Degree == 'Bachelor') selected @endif value="Bachelor">
                                                     Bachelor</option>
-                                                <option @if ($JobseekerInfo->Degree == 'Diploma') selected @endif
-                                                    value="Diploma">
-                                                    Diploma
+                                                <option @if ($data->Degree == 'Diploma') selected @endif value="Diploma">Diploma
                                                 </option>
                                             </select>
+                                            @error('Degree')
+                                                <span class="invalid-feedback"
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-3 mx-auto" style="width: 30%;">
                                             <label for="Institution">Institution:</label>
-                                            <input type="text" class="form-control" name="Institution"
-                                                value="{{ $JobseekerInfo->Institution }}">
+                                            <input type="text" class="form-control @error('Institution') is-invalid @enderror"
+                                                name="Institution" value="{{ $data->Institution }}">
+                                            @error('Institution')
+                                                <span class="invalid-feedback"
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="mb-3" style="width: 30%;">
                                             <label for="University">University:</label>
-                                            <input type="text" class="form-control" name="University"
-                                                value="{{ $JobseekerInfo->University }}">
+                                            <input type="text" class="form-control @error('University') is-invalid @enderror"
+                                                name="University" value="{{ $data->University }}">
                                             @error('University')
                                                 <span class="invalid-feedback"
-                                                    style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
+                                                    style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -264,10 +270,10 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="Skills">Your Skills:</label>
-                                        <textarea class="form-control" name="Skills">{{ $JobseekerInfo->Skills }}</textarea>
+                                        <textarea class="form-control editor @error('Skills') is-invalid @enderror" name="Skills">{{ $data->Skills }}</textarea>
                                         @error('Skills')
                                             <span class="invalid-feedback"
-                                                style="font-size:1.3rem;padding-left:1rem;">{{ $message }}</span>
+                                                style="font-size:1.3rem;padding-left:1rem;color:red;">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
@@ -384,6 +390,11 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div>
+                                    @if(Session::has('NoResume'))
+                                        <p style="color:red;font-size:1.3rem;width:fit-content;margin:auto;">{{Session::get('NoResume')}}</p>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -396,7 +407,7 @@
             </div>
         </div>
     </div>
-    @if ($errors->any())
+    @if ($errors->any() || Session::has('NoResume'))
         <script>
             jQuery.noConflict();
             jQuery(document).ready(function($) {

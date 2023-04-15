@@ -67,14 +67,14 @@ class JobController extends Controller
                     $user->save();
                 }
             }
-       
+
             // $user = Job::find(2)->Jobseeker;
             // dd($user);
-            $Jobinfo = Job::where('isdeleted',0)->get();
-        
-            $Jobactive = Job::where(['company_id' => Session::get('CloginId'),'status' => 1,'isdeleted' => 0])->get();
-            $Jobexpired = Job::where(['company_id' => Session::get('CloginId'),'status' => 0,'isdeleted' => 0])->get();
-            return view('Company.ListofJobs', compact('data', 'Jobinfo','Jobactive','Jobexpired'));
+            $Jobinfo = Job::where('isdeleted', 0)->get();
+
+            $Jobactive = Job::where(['company_id' => Session::get('CloginId'), 'status' => 1, 'isdeleted' => 0])->get();
+            $Jobexpired = Job::where(['company_id' => Session::get('CloginId'), 'status' => 0, 'isdeleted' => 0])->get();
+            return view('Company.ListofJobs', compact('data', 'Jobinfo', 'Jobactive', 'Jobexpired'));
         }
     }
 
@@ -85,13 +85,14 @@ class JobController extends Controller
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
             $value = Job::find($id);
-            $check = $value->status == 0?'expired':null;
-            return view('Company.EditJob', compact('data','id','value','check'));
+            $check = $value->status == 0 ? 'expired' : null;
+            return view('Company.EditJob', compact('data', 'id', 'value', 'check'));
         }
     }
 
 
-    public function JobEditing(Request $req){
+    public function JobEditing(Request $req)
+    {
         $req->validate([
             'jobTitle' => 'required',
             'jobCategory' => 'required',
@@ -103,7 +104,7 @@ class JobController extends Controller
             'salary' => 'required|integer',
             'status' => 'required',
             'Education' => 'required',
-            'EducationDegree' =>'required'
+            'EducationDegree' => 'required'
         ]);
         $newData = Job::where('id', '=', $req->Jobid)->first();
         $newData->Title = $req->jobTitle;
@@ -119,70 +120,100 @@ class JobController extends Controller
         $newData->Education = $req->Education;
         $newData->save();
 
-        return redirect()->route('ListofAllJobs')->with('sucess','The record has been successfully changed.');
+        return redirect()->route('ListofAllJobs')->with('sucess', 'The record has been successfully changed.');
     }
 
 
-    public function Deletejobs(Request $req){
+    public function Deletejobs(Request $req)
+    {
         Job::find($req->Jobid)->delete();
         return back();
     }
-    
-    public function ChangeCompanyPassword(){
+
+    public function ChangeCompanyPassword()
+    {
         $data = null;
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
             return view('Company.ChangePassword', compact('data'));
         }
     }
-    public function ChangePassword(Request $req){
+    public function ChangePassword(Request $req)
+    {
         $req->validate([
             'CurrentPassword' => 'required',
             'NewPassword' => 'required|confirmed|min:6',
             'NewPassword_confirmation' => 'required'
         ]);
         $currentCompany = User::find(session()->get('CloginId'));
-        if($req->email == $currentCompany->email){
-            if(Hash::check($req->CurrentPassword, $currentCompany->password)){
+        if ($req->email == $currentCompany->email) {
+            if (Hash::check($req->CurrentPassword, $currentCompany->password)) {
                 $currentCompany->password = Hash::make($req->NewPassword);
                 $currentCompany->Save();
-                return back()->with('success','Password Changed Successfully.');
+                return back()->with('success', 'Password Changed Successfully.');
+            } else {
+                return back()->with('fail', 'Current password is not valid. Please try again!!!');
             }
-            else{
-                return back()->with('fail','Current password is not valid. Please try again!!!');
-            }
+        } else {
+            return back()->with('fail', 'Email not found.');
         }
-        else{
-            return back()->with('fail','Email not found.');
+    }
+
+
+    public function ApplyJob(Request $req, $Jobid)
+    {
+       
+        $update = User::find($req->id);
+        if (!isset($req->Fresher)) {
+            $update->Checked = 0;
+            $update->save();
+
+
+            $req->validate([
+                'name' => 'required',
+                'city' => 'required',
+                'phoneno' => 'required|integer',
+                'Skills' => 'required',
+                'Gender' => 'required',
+                'Roles' => 'required',
+                'Objective' => 'required',
+                'Degree' => 'required',
+                'JobTime' => 'required',
+                'Level' => 'required',
+                'District' => 'required',
+                'Institution' => 'required',
+                'Municipality' => 'required',
+                'Industry' => 'required',
+                'University' => 'required',
+                'Organization' => 'required',
+                'Position' => 'required',
+                'Joined_year' => 'required',
+                'Passed_year' => 'required',
+                'DateofBirth' => 'required'
+            ]);
+        } else {
+            $update->Checked = 1;
+            $update->save();
+
+            $req->validate([
+                'name' => 'required',
+                'city' => 'required',
+                'phoneno' => 'required|integer',
+                'Skills' => 'required',
+                'Gender' => 'required',
+                'Objective' => 'required',
+                'Degree' => 'required',
+                'JobTime' => 'required',
+                'District' => 'required',
+                'Institution' => 'required',
+                'Municipality' => 'required',
+                'University' => 'required',
+                'Joined_year' => 'required',
+                'Passed_year' => 'required',
+                'DateofBirth' => 'required'
+            ]);
         }
-    } 
 
-
-    public function ApplyJob(Request $req, $Jobid){
-// dd($req->all());
-
-        $req->validate([
-            'name' => 'required',
-            'city' => 'required',
-            'phoneno' => 'required|integer',
-            'Skills' => 'required',
-            'Gender' => 'required',
-            'Roles' => 'required',
-            'Objective' => 'required',
-            'Degree' => 'required',
-            'JobTime' => 'required',
-            'Level' => 'required',
-            'District' => 'required',
-            'Institution' => 'required',
-            'Municipality' => 'required',
-            'Industry' => 'required',
-            'University' => 'required',
-            'Organization' => 'required',
-            'Position' => 'required', 
-            'Joined_year' => 'required',
-            'Passed_year' => 'required', 
-            'DateofBirth' => 'required'
-        ]);
 
         $Jobseekerinfo = User::find($req->id);
         $Jobseekerinfo->name = $req->name;
@@ -206,49 +237,53 @@ class JobController extends Controller
         $Jobseekerinfo->Passed_year = $req->Passed_year;
         $Jobseekerinfo->DateofBirth = $req->DateofBirth;
         $Jobseekerinfo->save();
-        
-        $Jobseekerinfo->Applyjobs()->attach($Jobid);   
-        return back()->with('appliedsuccess','You have successfully applied for this job.');
-    }  
 
-    public function Applicants($Jobid){
+        if($Jobseekerinfo->Resume == null){
+            return back()->with('NoResume','Please provide your Resume from your profile to apply for this job.');
+        }
+
+        $Jobseekerinfo->Applyjobs()->attach($Jobid);
+        return back()->with('appliedsuccess', 'You have successfully applied for this job.');
+    }
+
+    public function Applicants($Jobid)
+    {
         $data = null;
         $Jid = Job::find($Jobid);
-        Session::put('ApplicantJobid',$Jobid); 
+        Session::put('ApplicantJobid', $Jobid);
         $Jobuser = Job::find($Jobid)->Jobseeker;
         if (Session::has('CloginId')) {
             $data = User::find(Session::get('CloginId'));
-            return view('Company.Applicants',compact('data','Jobid','Jid','Jobuser'));
+            return view('Company.Applicants', compact('data', 'Jobid', 'Jid', 'Jobuser'));
         }
     }
 
-    public function ChangeJobSeekerPassword(){
+    public function ChangeJobSeekerPassword()
+    {
         $data = null;
         if (Session::has('UloginId')) {
             $data = User::find(Session::get('UloginId'));
             return view('JobSeeker.ChangePassword', compact('data'));
         }
     }
-    public function ChangeUserPassword(Request $req){
+    public function ChangeUserPassword(Request $req)
+    {
         $req->validate([
             'CurrentPassword' => 'required',
             'NewPassword' => 'required|confirmed|min:6',
             'NewPassword_confirmation' => 'required'
         ]);
         $currentUser = User::find(session()->get('UloginId'));
-        if($req->email == $currentUser->email){
-            if(Hash::check($req->CurrentPassword, $currentUser->password)){
+        if ($req->email == $currentUser->email) {
+            if (Hash::check($req->CurrentPassword, $currentUser->password)) {
                 $currentUser->password = Hash::make($req->NewPassword);
                 $currentUser->Save();
-                return back()->with('success','Password Changed Successfully.');
+                return back()->with('success', 'Password Changed Successfully.');
+            } else {
+                return back()->with('fail', 'Current password is not valid. Please try again!!!');
             }
-            else{
-                return back()->with('fail','Current password is not valid. Please try again!!!');
-            }
+        } else {
+            return back()->with('fail', 'Email not found.');
         }
-        else{
-            return back()->with('fail','Email not found.');
-        }
-    } 
-
+    }
 }
