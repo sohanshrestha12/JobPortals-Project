@@ -224,6 +224,21 @@ class HomeController extends Controller
         }
         return view('Job.UserCompanyProfile', compact('data', 'Cid','postedJobs'));
     }
+    public function ShowAdminCompanyProfile($id)
+    {
+        $postedJobs = Job::where([['company_id',$id],['status',1],['isdeleted',0]])->paginate(5);
+
+        $Verifycompany = User::where(['role' => 'company', 'Verify' => '0'])->get();    
+        $Cid = User::find($id);
+        return view('Admin.VerifiedCompanyProfile', compact('Cid','Verifycompany','postedJobs'));
+    }
+    public function VerifyShowAdminCompanyProfile($id)
+    {
+        $Verifycompany = User::where(['role' => 'company', 'Verify' => '0'])->get();    
+
+        $Cid = User::find($id); 
+        return view('Admin.VerifyCompanyProfile', compact('Cid','Verifycompany'));
+    }
 
 
 }

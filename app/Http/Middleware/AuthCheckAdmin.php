@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
-class AlreadyLoggedIn
+class AuthCheckAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,9 @@ class AlreadyLoggedIn
      */
     public function handle(Request $request, Closure $next)
     {
-        if((Session()->has('CloginId') || Session()->has('UloginId') || Session()->has('GUloginId') || Session()->has('AloginId')) && (url('login') == $request->url() || url('RegisterCompany') == $request->url() || url('RegisterJobSeeker') == $request->url())){
-            return back();
+        $db_id = User::find(Session()->get('AloginId'));
+        if(!Session()->has('AloginId') || !$db_id){
+            return redirect()->route('home');
         }
         return $next($request);
     }

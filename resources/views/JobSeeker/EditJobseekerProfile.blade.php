@@ -15,7 +15,9 @@
         .main1 {
             padding: 0 30px;
         }
-
+        body{
+            height: 200vh;
+        }
         form {
             width: 100%;
             padding: 69px;
@@ -460,8 +462,7 @@
                                             Senior Level</option>
                                         <option @if ($data->Level == 'Top Level') selected @endif value="Top Level">Top
                                             Level</option>
-                                        <option @if ($data->Level == 'Top Level') selected @endif value="Top Level">Top
-                                            Level</option>
+                                       
                                     </select>
                                     @error('Level')
                                         <span class="invalid-feedback"
@@ -511,7 +512,7 @@
                                         @endif
                                         <div id="FileInfo"
                                             style="@if (is_null($storagePath)) display:none @endif">
-                                            <a href="{{ url('/view', $data->id) }}">
+                                            <a href="{{ url('/view', $data->id) }}" target="blank">
                                                 <div class="resume_img">
                                                     <img src="{{ asset('storage/Resume/Files-PNG-File.png') }}"
                                                         alt="" style="height:56px">

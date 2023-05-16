@@ -166,12 +166,14 @@
             color: #fff;
 
         }
-        .Contact_details ul li{
+
+        .Contact_details ul li {
             display: flex;
             align-items: center;
             font-size: 16px;
         }
-        .Contact_details ul i{
+
+        .Contact_details ul i {
             font-size: 20px;
         }
     </style>
@@ -195,8 +197,6 @@
         @else
             <section class="header_section" style="height: 330px; ">
                 <div class="backcover w-100 bg-primary position-relative" style="height: 180px;z-index:-1 ">
-                    <img style="height: 180px;width:100%; "
-                        src="{{ asset('storage/JobSeekerImg/pexels-aleksandar-pasaric-3629227.jpg') }}" alt="NOt found">
                 </div>
                 <div class="header position-absolute d-flex" style="top: 174px;left: 60px;">
                     <div class="profileImg  bg-secondary rounded-circle"
@@ -205,9 +205,10 @@
         top: 156px;
         left: 33px;">
                         @if ($data->ProfileImg === 'defaultImg.png')
-                            <img style="border-radius: 50%;" src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
+                            <img style="border-radius: 50%;" src="{{ asset('storage/default/defaultImg.png') }}"
+                                alt="404 not found">
                         @else
-                            <img style="border-radius: 50%;" src="{{ asset('storage/JobSeekerImg/' . $data->ProfileImg) }}"
+                            <img style="border-radius: 50%;object-fit:cover;" src="{{ asset('storage/JobSeekerImg/' . $data->ProfileImg) }}"
                                 alt="404 not found">
                         @endif
                         <form action="{{ route('UpdateProfilePicture') }}" enctype="multipart/form-data" method="post"
@@ -253,26 +254,32 @@
                         </div>
                         <hr>
                         <div class="Language font">
+                            <h1>Date of Birth</h1>
+                            <p style="margin-left:20px">{{ $data->DateofBirth }}</p>
+                        </div>
+                        <hr>
+                        <div class="Language font">
                             <h1>LANGUAGE</h1>
+                            <p style="margin-left:20px">English</p>
                         </div>
                         <!-- <hr>
 
-                <div class="resume_part font">
-               
-                    <form action="{{ route('resume_upload') }}" method="post" enctype="multipart/form-data" >
-                        <div class="mb-3 font">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $data->id }}"  >
-                        <label for="formFileLg" class="form-label font ">Upload Your Resume:</label>
-                        <input class="form-control form-control-lg" type="file" id="file-upload"  name="Resume" value="{{ $data->Resume }}" >
-                        <div id="file-upload-filename"></div>
-                        <button class="btn btn-danger"> <a href="{{ url('/view', $data->id) }}"class="font" style="text-decoration: none; color:white" >view</a></button>
-                        <button type="submit" class="btn btn-danger">Submit</button>
-                        </div>
-                    </form>
+                                    <div class="resume_part font">
+                                   
+                                        <form action="{{ route('resume_upload') }}" method="post" enctype="multipart/form-data" >
+                                            <div class="mb-3 font">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $data->id }}"  >
+                                            <label for="formFileLg" class="form-label font ">Upload Your Resume:</label>
+                                            <input class="form-control form-control-lg" type="file" id="file-upload"  name="Resume" value="{{ $data->Resume }}" >
+                                            <div id="file-upload-filename"></div>
+                                            <button class="btn btn-danger"> <a href="{{ url('/view', $data->id) }}"class="font" style="text-decoration: none; color:white" >view</a></button>
+                                            <button type="submit" class="btn btn-danger">Submit</button>
+                                            </div>
+                                        </form>
 
-                   
-                </div> -->
+                                       
+                                    </div> -->
 
 
 
@@ -288,12 +295,9 @@
                         <hr>
 
                         <div class="experience font ">
-                            <h1>EXPERIENCE</h1>
-                            <p style="margin-top:20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ipsam
-                                ipsum rerum itaque laboriosam cupiditate, maxime recusandae, fugiat hic beatae in officiis
-                                quam
-                                sit reiciendis soluta temporibus nemo. Possimus, voluptatem. maxime recusandae, fugiat hic
-                                ..
+                            <h1>Degree</h1>
+                            <p>{{ $data->Degree }}</p>
+                            <p style="margin-top:20px;">
                             </p>
 
                         </div>
@@ -301,12 +305,63 @@
 
                         <div class="EDUCATION font ">
                             <h1>EDUCATION</h1>
-                            <h4 class="mt-2 font"><i class="uil uil-university"></i>University</h4>
-                            <p>{{ $data->University }}</p>
-                            <h4>Institution:</h4>
-                            <p>{{ $data->Institution }}</p>
+                            <div style="display: flex; gap: 30px;margin-top:20px">
+
+                                <div>
+
+                                    <h4 class="font"><i class="uil uil-university"></i>University:</h4>
+                                    <p style="margin:  0 0 18px 30px;">{{ $data->University }}</p>
+
+                                    <h4 class="font"><i class="uil uil-award"></i>Joined year:</h4>
+                                    <p style="margin:  0 0 18px 30px;">{{ $data->Joined_year }}</p>
+
+                                </div>
+                                <div>
+
+                                    <h4 class="font"><i class="uil uil-building"></i>Institution:</h4>
+                                    <p style="margin:  0 0 18px 30px;">{{ $data->Institution }}</p>
+
+                                    <h4 class="font"><i class="uil uil-award"></i>Passed year:</h4>
+                                    <p style="margin:  0 0 18px 30px;">{{ $data->Passed_year }}</p>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <hr>
+                    <div class="about_user font ">
+                        <h1 style="margin-bottom: 20px">Experience</h1>
+                        @if ($data->Checked == 0)
+                            <div style="display: flex; gap: 30px;margin-top:20px">
+
+                                <div>
+
+                                    <h4 class="font"><i class="uil uil-user-check"></i>Position:</h4>
+                                    <p style="margin:  0 0 18px 30px;">{{ $data->Position }}</p>
+
+                                    <h4 class="font"><i class="uil uil-university"></i>Organization:</h4>
+                                    <p style="margin:  0 0 18px 30px;">{{ $data->Organization }}</p>
+
+
+                                </div>
+                                <div>
+                                    <h4 class="font"><i class="uil uil-building"></i>Industry:</h4>
+                                    <p style="margin:  0 0 18px 30px;">{{ $data->Industry }}</p>
+
+                                    <h4 class="font"><i class="uil uil-book-open"></i>Job Level:</h4>
+                                    <p style="margin:  0 0 18px 30px;">{{ $data->Level }}</p>
+
+                                </div>
+                                <div style="flex:1">
+                                    <h4 class="font"><i class="uil uil-award"></i>Roles & Responsibility:</h4>
+                                    <p style="margin:  0 0 18px 30px;">{{ $data->Roles }}</p>
+                                </div>
+                            </div>
+                        @else
+                        <p style="margin:  0 0 18px 20px;">Fresher</p>
+                        @endif
+                    </div>
+                    <hr>
                 </div>
             </section>
         @endif

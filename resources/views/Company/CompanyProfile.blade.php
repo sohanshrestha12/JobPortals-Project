@@ -3,7 +3,10 @@
     <div class="profile-right-box">
         <div class="container" style="padding: 0 4rem">
             <div class="row">
-                <h1 class="header1" style="color: #ff6158;letter-spacing:1px;padding-left:25px;">Company Profile</h1>
+                <div style="display: flex;align-items: center;justify-content:space-between">
+                    <h1 class="header1" style="color: #ff6158;letter-spacing:1px;padding-left:25px;">Company Profile</h1>
+                    @if($data->Verify == 0) <span style="font-size:1.3rem;margin-right:90px"><i style="margin:0 3px 0 0;font-size:1.4rem;color:red" class="uil uil-exclamation-circle"></i>Unverified! Please provide company information so Admin can verify your company.</span> @endif
+                </div>
                 <hr style="height: 3px;width:90%;color: black !important;margin: 0.7rem 0 5rem 2.5rem;">
                 <div class="col-md-3 d-flex flex-column align-items-center mt" style="gap: 3rem">
                     <div class="company-logo shadow">
@@ -110,10 +113,13 @@
                             </div>
                             <div class="company-form-grp">
                                 <label for="description">Description </label>
-                                <textarea name="description" rows="5" style="padding: 0.5rem 1rem">@if ($data->description == ''){{ 'Write about your company.' }}
+                                <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror" style="padding: 0.5rem 1rem">@if ($data->description == ''){{ 'Write about your company.' }}
                                     @else{{ $data->description }}
                                     @endif
                                 </textarea>
+                                @error('description')
+                                    <span class="invalid-feedback" style="font-size:1.3rem">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="company-form-grp d-flex justify-content-end">
                                 <button type="submit">Update</button>

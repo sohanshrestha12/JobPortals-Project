@@ -47,7 +47,7 @@
                         <td>{{ $value->email }}</td>
                         <td>{{ $value->description }}</td>
                         <td>
-                            <a href="javscript:void(0)" data-value="{{ $value->id }}" class="AdminDeleteJobsPermanent"><i
+                            <a href="javscript:void(0)" data-value="{{ $value->id }}" class="AdminDeleteContact"><i
                                     class="uil uil-trash-alt" style="margin-left:0.8rem;color:red;font-size:1.4rem" title="Delete"></i></a>
                         </td>
                     </tr>

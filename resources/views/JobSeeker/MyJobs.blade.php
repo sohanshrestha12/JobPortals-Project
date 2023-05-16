@@ -21,6 +21,7 @@
                                     <th scope="col">Expire date</th>
                                     <th scope="col">Job status</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,7 +92,11 @@
                                                     </div>
                                                 </td>
                                             @endif
+                                            <td>
+                                                <a style="font-size:15px;color:white;padding:11px 12px;background:#ff6158;border-radius:8px" href="{{ url('JobProfile/' . $jobs->id) }}">View Details</a>
+                                            </td>
                                         </tr>
+                                        
                                     @endforeach
                                 @endif
                             </tbody>

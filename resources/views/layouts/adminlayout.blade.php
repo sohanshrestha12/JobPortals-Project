@@ -40,7 +40,9 @@
                 </li>
                 <li @if(Request::is('Verifycompany')) class="adminactive" @endif>
                     <a href="{{ route('Verifycompany') }}" @if(Request::is('Verifycompany')) style="color:var(--purple)" @endif>
-                        <div class="notify">{{ count($Verifycompany) }}</div>
+                        @if( count($Verifycompany) >0 )
+                            <div class="notify">{{ count($Verifycompany) }}</div>
+                        @endif
                         <span class="icon">
                             <ion-icon name="people-circle-outline"></ion-icon>
                         </span>

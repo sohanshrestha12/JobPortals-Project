@@ -37,7 +37,8 @@
                         <a href="{{ url('verify/' . $com->id) }}" class="btn btn-primary">
                             Verified</a>
                     </td>
-                    <td>okay</td>
+                    <td><a href="{{url('AdminCompanyProfile/' . $com->id )}}" class="btn" style="padding:5px 10px;color:white;background-color:#ff6158">View Details</a></td>
+
                 </tr>
             @endforeach
         @endif

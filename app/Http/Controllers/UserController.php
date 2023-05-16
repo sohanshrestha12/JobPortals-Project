@@ -10,6 +10,7 @@ use App\Models\UserJob;
 use Carbon\Carbon;
 use App\Rules\CompanyDate;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Session\SessionServiceProvider;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -68,13 +69,16 @@ class UserController extends Controller
     }
     public function UpdateJobSeekerInfo()
     {
-        $usr = User::find(Session::get('UloginId'));
-        $storagePath = $usr->Resume;
+        $storagePath=null;
         $data = null;
         if (Session::has('UloginId')) {
+            $usr = User::find(Session::get('UloginId'));
+            $storagePath = $usr->Resume;
             $data = User::find(Session::get('UloginId'));
         }
         if (Session::has('GUloginId')) {
+            $usr = User::where('email',Session::get('GuloginId'))->first();
+            $storagePath = $usr->Resume;
             $data = User::where('email', Session::get('GUloginId'))->first();
         }
         return view('JobSeeker.EditJobseekerProfile', compact('data', 'storagePath'));
@@ -195,7 +199,8 @@ class UserController extends Controller
                 'location' => 'required',
                 'phoneno' => 'required|integer',
                 'weblink' => 'nullable|url',
-                'established' => ['required', new CompanyDate]
+                'established' => ['required', new CompanyDate],
+                'description' => 'required'
             ],
             [
                 'name.required' => 'The company name field is required.',

@@ -85,27 +85,30 @@ Route::post('/ChangeUserPassword', [JobController::class,'ChangeUserPassword'])-
 
 Route::get('/JobProfile/{id}',[HomeController::class,'ShowJobProfile'])->name('JobProfile');
 Route::get('/UserCompanyProfile/{id}',[HomeController::class,'ShowCompanyProfile'])->name('ShowCompanyProfile');
+Route::get('/AdminCompanyProfile/{id}',[HomeController::class,'ShowAdminCompanyProfile'])->name('AdminCompanyProfile')->middleware('isAdminLoggedIn');
+Route::get('/VerifyAdminCompanyProfile/{id}',[HomeController::class,'VerifyShowAdminCompanyProfile'])->name('VerifyShowAdminCompanyProfile')->middleware('isAdminLoggedIn');
 
 Route::post('/ApplyJob/{Jobid}',[JobController::class,'ApplyJob'])->name('ApplyJob');
 Route::get('/Applicants/{Jobid}',[JobController::class,'Applicants'])->name('Applicants');
 
 
 //admin login
-Route::get('/admindashboard', [Admin::class, 'admindashboard'])->name('admindashboard');
+Route::get('/admindashboard', [Admin::class, 'admindashboard'])->name('admindashboard')->middleware('isAdminLoggedIn');
 Route::get('/adminmail', [Admin::class, 'adminmessage'])->name('adminmessage');
-Route::get('/Verifycompany', [Admin::class, 'Verifycompany'])->name('Verifycompany');
-Route::get('/Verifiedcompany', [Admin::class, 'Verifiedcompany'])->name('Verifiedcompany');
-Route::get('/adminJobs', [Admin::class, 'adminJobs'])->name('adminJobs');
-Route::post('/Admindeletejobs', [Admin::class, 'Admindeletejobs'])->name('Admindeletejobs');
-Route::post('/AdmindeletejobsPermanently', [Admin::class, 'AdmindeletejobsPermanently'])->name('AdmindeletejobsPermanently');
-Route::get('/adminChangePassword', [Admin::class, 'adminpw'])->name('adminpw');
-Route::get('/adminlogout', [Admin::class, 'adminlogout']);
+Route::get('/Verifycompany', [Admin::class, 'Verifycompany'])->name('Verifycompany')->middleware('isAdminLoggedIn');
+Route::get('/Verifiedcompany', [Admin::class, 'Verifiedcompany'])->name('Verifiedcompany')->middleware('isAdminLoggedIn');
+Route::get('/adminJobs', [Admin::class, 'adminJobs'])->name('adminJobs')->middleware('isAdminLoggedIn');
+Route::post('/Admindeletejobs', [Admin::class, 'Admindeletejobs'])->name('Admindeletejobs')->middleware('isAdminLoggedIn');
+Route::post('/AdmindeletejobsPermanently', [Admin::class, 'AdmindeletejobsPermanently'])->name('AdmindeletejobsPermanently')->middleware('isAdminLoggedIn');
+Route::get('/adminChangePassword', [Admin::class, 'adminpw'])->name('adminpw')->middleware('isAdminLoggedIn');
+Route::get('/adminlogout', [Admin::class, 'adminlogout'])->middleware('isAdminLoggedIn')->middleware('isAdminLoggedIn');
 Route::post('/ContactAdmin', [Admin::class, 'ContactAdmin'])->name('ContactAdmin');
-Route::post('/AdmindeleteContact', [Admin::class, 'AdmindeleteContact'])->name('AdmindeleteContact'); 
-Route::post('/AdminChangePassword', [Admin::class, 'AdminChangePassword'])->name('AdminChangePassword'); 
+Route::post('/AdmindeleteContact', [Admin::class, 'AdmindeleteContact'])->name('AdmindeleteContact')->middleware('isAdminLoggedIn'); 
+Route::post('/AdminChangePassword', [Admin::class, 'AdminChangePassword'])->name('AdminChangePassword')->middleware('isAdminLoggedIn'); 
 
 Route::get('/AdminVerifiedsearch', [Admin::class,'AdminVerifiedsearch'])->name('AdminVerifiedsearch');
 Route::get('/AdminVerifysearch', [Admin::class,'AdminVerifysearch'])->name('AdminVerifysearch');
+Route::get('/AdminDeleteCompany/{id}', [Admin::class,'AdminDeleteCompany'])->name('AdminDeleteCompany');
 
 Route::get('/verify/{comid}', [Admin::class,'verify'])->name('VerifyComapany');
 ?>

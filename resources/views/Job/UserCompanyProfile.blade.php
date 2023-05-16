@@ -35,8 +35,8 @@
                     </div>
                     <div class="col-md-4">
                         <h2 class="header2" style="letter-spacing:2px">Official Website:</h2>
-                        @if ($Cid->link == null || $Cid->link == '')
-                            <p style="letter-spacing:2px">Link not available.</p>
+                        @if ($Cid->link == null || $Cid->link == ''  || $Cid->link == 'Link not available.')
+                            <p style="letter-spacing:2px;">Link not available.</p>
                         @else
                             <a href="{{ $Cid->link }}" target="_blank"
                                 style="font-size:16px; text-decoration:none;letter-spacing:2px">{{ $Cid->link }}</a>
@@ -48,7 +48,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-9 p-4">
                 <h1 style="margin-bottom: 10px">Company description</h1>
-                @if (empty($Cid->description))
+                @if (empty($Cid->description) || $Cid->description == 'Write about your company.')
                     <p>The Company has not updated its company details. As more and more people rely on online searches to
                         learn about companies, it's essential to ensure that your online presence accurately represents your
                         brand and offerings.Updating your company's description can help potential customers understand what
