@@ -60,7 +60,8 @@
                         <a href="javascript:void(0)" id="login" class="login btn" style="padding:4px 15px">Login</a>
                         <div class="dropdown" id="signup-dropdown">
                             <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown" style="padding:5px 15px">
+                                data-bs-toggle="dropdown" aria-expanded="false" id="click-signup-dropdown"
+                                style="padding:5px 15px">
                                 SignUp
                             </a>
 
@@ -80,10 +81,20 @@
                         session()->has('CloginId') ||
                         session()->has('GUloginId'))
                     <div class="profile">
-                        @if ($data->ProfileImg === 'defaultImg.png')
-                            <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
+                        @if (Session::has('UloginId') || Session::has('GUloginId'))
+                            @if ($data->ProfileImg === 'defaultImg.png')
+                                <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
+                            @else
+                                <img src="{{ asset('storage/JobSeekerImg/' . $data->ProfileImg) }}"
+                                    alt="404 not found">
+                            @endif
                         @else
-                            <img src="{{ asset('storage/Company Logo/' . $data->ProfileImg) }}" alt="404 not found">
+                            @if ($data->ProfileImg === 'defaultImg.png')
+                                <img src="{{ asset('storage/default/defaultImg.png') }}" alt="404 not found">
+                            @else
+                                <img src="{{ asset('storage/Company Logo/' . $data->ProfileImg) }}"
+                                    alt="404 not found">
+                            @endif
                         @endif
                         <div class="dropdown" id="signup-dropdown">
                             <a class="btn dropdown-toggle" href="javascript:void(0)" role="button"
@@ -93,18 +104,18 @@
                             </a>
                             @if (Session::has('CloginId'))
                                 <ul class="dropdown-menu" id="drop-menu" style="width:12rem">
-                                    <li><i class="uil uil-user"></i><a class="dropdown-item"
+                                    <li><i style="margin:0;" class="uil uil-user"></i><a class="dropdown-item"
                                             href="{{ route('CompanyProfile') }}">Profile</a></li>
                                     <hr class="mb-2">
-                                    <li> <i class="uil uil-signout"></i><a class="dropdown-item"
+                                    <li> <i style="margin:0;" class="uil uil-signout"></i><a class="dropdown-item"
                                             href="{{ route('logout') }}">Logout</a></li>
                                 </ul>
-                                @elseif(Session::has('UloginId') || Session::has('GUloginId'))
+                            @elseif(Session::has('UloginId') || Session::has('GUloginId'))
                                 <ul class="dropdown-menu" id="drop-menu" style="width:12rem">
-                                    <li><i class="uil uil-user"></i><a class="dropdown-item"
+                                    <li><i style="margin:0;" class="uil uil-user"></i><a class="dropdown-item"
                                             href="{{ route('JobSeekerprofile') }}">Profile</a></li>
                                     <hr class="mb-2">
-                                    <li> <i class="uil uil-signout"></i><a class="dropdown-item"
+                                    <li> <i style="margin:0;" class="uil uil-signout"></i><a class="dropdown-item"
                                             href="{{ route('logout') }}">Logout</a></li>
                                 </ul>
                             @endif
@@ -226,7 +237,7 @@
                     <div class="Google_login shadow-sm">
                         <ul>
                             <li>
-                                <img src="{{asset('img/google-logo.png')}}" alt="404 image not found">
+                                <img src="{{ asset('img/google-logo.png') }}" alt="404 image not found">
                                 <a href="{{ route('login_with_google') }}" class="paragraph">Login With Google</a>
                             </li>
                         </ul>

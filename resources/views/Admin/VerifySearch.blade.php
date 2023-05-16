@@ -34,12 +34,15 @@
                     <td>{{ $com->category }}</td>
                     <td>{{ $com->city . ', ' . $com->location }}</td>
                     <td>{{ $com->phoneno }}</td>
-                    <td>{{ $com->link }}</td>
+                    <td>@if($com->link == null || $com->link == '' || $com->link == 'Link not available.') Link not available. @else <a href="{{ $com->link }}" target="_blank">{{ $com->link }}</a> @endif</td>
+
                     <td>
                         <a href="{{ url('verify/' . $com->id) }}" class="btn btn-danger">
                             Pending</a>
                     </td>
-                    <td>okay</td>
+                    <td><a href="{{url('VerifyAdminCompanyProfile/' . $com->id )}}" class="btn" style="padding:5px 10px;color:white;background-color:#ff6158">View Details</a>
+                        <a href="{{url('AdminDeleteCompany/' . $com->id)}}" class="btn btn-danger">Delete</a>
+                    </td>
                 </tr>
             @endforeach
         @endif

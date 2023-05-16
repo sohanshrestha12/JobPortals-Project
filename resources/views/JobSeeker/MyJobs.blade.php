@@ -21,71 +21,84 @@
                                     <th scope="col">Expire date</th>
                                     <th scope="col">Job status</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($appliedJobs as $jobs)
-                                    <tr style="height:60px;">
-                                        <td>{{ $jobs->Title }}</td>
-                                        <td>{{ $jobs->Type }}</td>
-                                        <td>{{ $jobs->Salary }}</td>
-                                        <td>{{ $jobs->ExpiryDate }}</td>
-                                        @if ($jobs->status == 0)
-                                            <td><span
-                                                    style="padding:5px 12px;font-size:14px;background:#EB5406; border-radius:25px;color:white">expired</span>
-                                            </td>
-                                        @else
-                                            <td><span
-                                                    style="padding:5px 16px;font-size:14px;background:#00FA9A; border-radius:25px;color:white">active</span>
-                                            </td>
-                                        @endif
-
-                                        @php
-                                            $status = App\Models\UserJob::where([['user_id', Session::get('UloginId')], ['job_id', $jobs->id]])->first();
-                                        @endphp
-                                        @if ($jobs->isdeleted == 1)
-                                        <td>
-                                            <div style="display:flex;gap:1px;justify-content:center;align-items:center;">
-                                                <i class="uil uil-trash-alt"
-                                                    style="font-size:2.8rem;color:red"></i>
-                                                <p
-                                                    style="margin:0;color:red;font-weight:700;letter-spacing:0.7px;font-size:1.6rem">
-                                                    Deleted</p>
-                                            </div>
-                                        </td>
-                                        @elseif ($status->status == 0)
-                                            <td>
-                                                <div style="display:flex;gap:1px;justify-content:center;align-items:center;">
-                                                    <i class="uil uil-times-circle"
-                                                        style="font-size:2.8rem;color:#dc143c"></i>
-                                                    <p
-                                                        style="margin:0;color:#dc143c;font-weight:700;letter-spacing:0.7px;font-size:1.6rem">
-                                                        Rejected</p>
-                                                </div>
-                                            </td>
-                                        @elseif($status->status == 1)
-                                            <td>
-                                                <div style="display:flex;justify-content:center;align-items:center;">
-                                                    <i class="uil uil-check-circle"
-                                                        style="font-size:2.8rem;color:#2a9634"></i>
-                                                    <p
-                                                        style="margin:0;color:#2a9634;font-weight:700;letter-spacing:0.7px;font-size:1.6rem">
-                                                        Accepted</p>
-                                                </div>
-                                            </td>
-                                        @elseif($status->status == 2)
-                                        <td>
-                                            <div style="display:flex;justify-content:center;align-items:center;gap:5px;">
-                                                <i class="uil uil-history"
-                                                    style="font-size:2.3rem;color:#ff8c00"></i>
-                                                <p
-                                                    style="margin:0;color:#ff8c00;font-weight:700;letter-spacing:0.7px;font-size:1.6rem">
-                                                    Pending</p>
-                                            </div>
-                                        </td>
-                                        @endif
+                                @if (count($appliedJobs) <= 0)
+                                    <tr style=" height:60px">
+                                        <td colspan="6" style="text-align: center">No applied jobs yet.</td>
                                     </tr>
-                                @endforeach
+                                @else
+                                    @foreach ($appliedJobs as $jobs)
+                                        <tr style="height:60px;">
+                                            <td>{{ $jobs->Title }}</td>
+                                            <td>{{ $jobs->Type }}</td>
+                                            <td>{{ $jobs->Salary }}</td>
+                                            <td>{{ $jobs->ExpiryDate }}</td>
+                                            @if ($jobs->status == 0)
+                                                <td><span
+                                                        style="padding:5px 12px;font-size:14px;background:#EB5406; border-radius:25px;color:white">expired</span>
+                                                </td>
+                                            @else
+                                                <td><span
+                                                        style="padding:5px 16px;font-size:14px;background:#00FA9A; border-radius:25px;color:white">active</span>
+                                                </td>
+                                            @endif
+
+                                            @php
+                                                $status = App\Models\UserJob::where([['user_id', Session::get('UloginId')], ['job_id', $jobs->id]])->first();
+                                            @endphp
+                                            @if ($jobs->isdeleted == 1)
+                                                <td>
+                                                    <div
+                                                        style="display:flex;gap:1px;justify-content:center;align-items:center;">
+                                                        <i class="uil uil-trash-alt" style="font-size:2.8rem;color:red"></i>
+                                                        <p
+                                                            style="margin:0;color:red;font-weight:700;letter-spacing:0.7px;font-size:1.6rem">
+                                                            Deleted</p>
+                                                    </div>
+                                                </td>
+                                            @elseif ($status->status == 0)
+                                                <td>
+                                                    <div
+                                                        style="display:flex;gap:1px;justify-content:center;align-items:center;">
+                                                        <i class="uil uil-times-circle"
+                                                            style="font-size:2.8rem;color:#dc143c"></i>
+                                                        <p
+                                                            style="margin:0;color:#dc143c;font-weight:700;letter-spacing:0.7px;font-size:1.6rem">
+                                                            Rejected</p>
+                                                    </div>
+                                                </td>
+                                            @elseif($status->status == 1)
+                                                <td>
+                                                    <div style="display:flex;justify-content:center;align-items:center;">
+                                                        <i class="uil uil-check-circle"
+                                                            style="font-size:2.8rem;color:#2a9634"></i>
+                                                        <p
+                                                            style="margin:0;color:#2a9634;font-weight:700;letter-spacing:0.7px;font-size:1.6rem">
+                                                            Accepted</p>
+                                                    </div>
+                                                </td>
+                                            @elseif($status->status == 2)
+                                                <td>
+                                                    <div
+                                                        style="display:flex;justify-content:center;align-items:center;gap:5px;">
+                                                        <i class="uil uil-history"
+                                                            style="font-size:2.3rem;color:#ff8c00"></i>
+                                                        <p
+                                                            style="margin:0;color:#ff8c00;font-weight:700;letter-spacing:0.7px;font-size:1.6rem">
+                                                            Pending</p>
+                                                    </div>
+                                                </td>
+                                            @endif
+                                            <td>
+                                                <a style="font-size:15px;color:white;padding:11px 12px;background:#ff6158;border-radius:8px" href="{{ url('JobProfile/' . $jobs->id) }}">View Details</a>
+                                            </td>
+                                        </tr>
+                                        
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

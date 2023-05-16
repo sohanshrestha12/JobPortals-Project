@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('EducationDegree');
             $table->string('Education');
             $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('users');
+            $table->foreign('company_id')->references('id')->on('users')->onDelete("cascade");
             $table->timestamps();
         });
     }

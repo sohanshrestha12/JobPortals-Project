@@ -34,7 +34,6 @@ return new class extends Migration
             $table->integer('Joined_year')->nullable();
             $table->integer('Passed_year')->nullable();
             $table->string('DateofBirth')->nullable();
-            $table->string('AboutMe',500)->nullable();
             $table->string('Position')->nullable();
             $table->string('Organization')->nullable();
             $table->string('University')->nullable();
@@ -49,6 +48,7 @@ return new class extends Migration
             $table->string('Roles',500)->nullable();
             $table->string('established',500)->nullable();
             $table->string('Objective',500)->nullable();
+            $table->integer('Checked')->nullable();
             $table->timestamps();
         });
 

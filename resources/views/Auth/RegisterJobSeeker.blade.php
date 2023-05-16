@@ -12,11 +12,7 @@
                 @endif
                 <h1 class="header1">Jobseeker Registration</h1>
                 <p class="paragraph mt-4"> Fill out the form below to create a <span class="paragraph"
-                        style="font-weight: 500">free account</span>. Once you create an account, log in to the system and
-                    post
-                    your vacancies online to reach out to hundreds of thousands of our website visitors and active users
-                    looking
-                    for a new job.
+                        style="font-weight: 500">free account</span>. Once you have filled out the registration form, you will have access to our job listings and can start applying for jobs that match your skills and interests. 
                 </p>
                 <hr style="color: black !important;height:2px;opacity:1;">
                 <form id="company-register-form" action="{{ route('RegisterJobSeeker') }}" method="POST">

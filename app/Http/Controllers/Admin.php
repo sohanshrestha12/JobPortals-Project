@@ -129,4 +129,9 @@ class Admin extends Controller
         $search = User::where([['role','company'],['Verify',0],['name','LIKE',"%$req->value%"]])->get();
         return view('Admin.VerifySearch',compact('search'));
     }
+    public function AdminDeleteCompany($id){
+    ; 
+        User::find($id)->delete();
+        return back();
+    }
 }

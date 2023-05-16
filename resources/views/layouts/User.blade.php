@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Portal || JobSeeker Profile</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/companydashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -50,10 +51,10 @@
                             </a>
 
                             <ul class="dropdown-menu" id="drop-menu" style="width:12rem">
-                                <li><i class="uil uil-user"></i><a class="dropdown-item"
+                                <li><i style="margin:0;" class="uil uil-user"></i><a class="dropdown-item"
                                         href="{{ route('JobSeekerprofile') }}">Profile</a></li>
                                 <hr class="mb-2">
-                                <li> <i class="uil uil-signout"></i><a class="dropdown-item"
+                                <li> <i style="margin:0;" class="uil uil-signout"></i><a class="dropdown-item"
                                         href="{{ route('logout') }}">Logout</a></li>
                             </ul>
                         </div>
